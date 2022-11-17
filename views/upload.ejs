@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>업로드페이지</h1>
+    <h3>Naver Smart Editor 2.0</h3>
+    <a href="https://beforb.tistory.com/m/53">참고링크</a>
+
+    <form action="insertStudentInfoForm" method="post">
+        <div id="smarteditor">
+            <textarea name="editorTxt" id="editorTxt" rows="20" cols="10" placeholder="내용을 입력해주세요"
+                style="width: 500px"></textarea>
+        </div>
+        <button type="button" onclick="submitPost()">제출</button>
+    </form>
+
+    <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+    <script>
+        let oEditors = []
+
+        smartEditor = function () {
+            console.log("Naver SmartEditor")
+            nhn.husky.EZCreator.createInIFrame({
+                oAppRef: oEditors,
+                elPlaceHolder: "editorTxt",
+                sSkinURI: "/static/smarteditor/SmartEditor2Skin.html",
+                fCreator: "createSEditor2"
+            })
+        }
+
+        $(document).ready(function () {
+            smartEditor()
+        })
+
+        submitPost = function () {
+            oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", [])
+            let content = document.getElementById("editorTxt").value
+
+            if (content == '') {
+                alert("내용을 입력해주세요.")
+                oEditors.getById["editorTxt"].exec("FOCUS")
+                return
+            } else {
+                console.log(content)
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
