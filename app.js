@@ -21,7 +21,9 @@ app.get('/upload',(req,res)=>{
 app.get('/login', (req,res) => {
   res.render('pages/login');
 })
-
+app.get("/signup", (req, res) => {
+  res.render("pages/signup");
+});
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
