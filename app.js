@@ -10,8 +10,8 @@ app.use("/static", express.static(__dirname + "/static"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/signup", (req, res) => {
-  res.render("signup");
+app.get("/", (req, res) => {
+  res.render("pages/signup");
 });
 
 app.listen(PORT, () => {
