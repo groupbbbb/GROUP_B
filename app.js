@@ -11,9 +11,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/upload',(req,res)=>{
-  return res.render('upload');
+  return res.render('pages/upload');})
+
 app.get('/', (req,res) => {
-  res.render('login');
+  res.render('pages/login');
 })
 
 app.listen(PORT, () => {
