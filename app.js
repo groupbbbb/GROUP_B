@@ -10,10 +10,16 @@ app.use("/static", express.static(__dirname + "/static"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
 app.get('/', (req,res) => {
   res.render('pages/main');
 })
+
+// const userRouter = require('./routes/user'); 
+// const chatRouter = require('./routes/chat'); 
+// const postRouter = require('./routes/post'); 
+// app.use('/user', userRouter);
+// app.use('/chat', chatRouter);
+// app.use('/post', postRouter);
 
 app.get('/upload',(req,res)=>{
   return res.render('pages/upload');})
