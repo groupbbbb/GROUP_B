@@ -10,6 +10,10 @@ app.use("/static", express.static(__dirname + "/static"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.get('/upload',(req,res)=>{
+  return res.render('upload');
+})
+
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });
