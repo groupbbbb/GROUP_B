@@ -10,6 +10,7 @@ app.use("/static", express.static(__dirname + "/static"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
 app.get('/', (req,res) => {
   res.render('pages/main');
 })
@@ -20,6 +21,7 @@ app.get('/upload',(req,res)=>{
 app.get('/login', (req,res) => {
   res.render('pages/login');
 })
+
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
