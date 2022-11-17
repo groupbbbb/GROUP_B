@@ -1,175 +1,211 @@
 -- 워크벤치에서 생성해준 SQL
--- 수정해서 사용하면됨
-
 -- MySQL Workbench Forward Engineering
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+-- SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+-- SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+-- SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
--- -----------------------------------------------------
--- Schema sns
--- -----------------------------------------------------
 
+-- ##############################################################################
+--                                    DB 생성
+-- ##############################################################################
 -- -----------------------------------------------------
--- Schema sns
+-- DB명 : pocogram으로 설정
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `sns` DEFAULT CHARACTER SET utf8 ;
-USE `sns` ;
+CREATE DATABASE pocogram DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+use pocogram;
 
+
+-- ##############################################################################
+--                                  테이블 생성
+-- ##############################################################################
 -- -----------------------------------------------------
--- Table `sns`.`user`
+-- Table `pocogram`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sns`.`user` (
+CREATE TABLE IF NOT EXISTS `pocogram`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `userId` VARCHAR(20) NOT NULL,
-  `pw` VARCHAR(100) NOT NULL,
+  `userID` VARCHAR(20) NOT NULL UNIQUE,
+  `userPW` VARCHAR(100) NOT NULL,
   `name` VARCHAR(10) NOT NULL,
   `birth` DATE NULL,
   `profile_img` BLOB NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `userid_UNIQUE` (`userId` ASC) VISIBLE)
-ENGINE = InnoDB;
+  PRIMARY KEY (`id`));
 
 
 -- -----------------------------------------------------
--- Table `sns`.`post`
+-- Table `pocogram`.`post`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sns`.`post` (
+CREATE TABLE IF NOT EXISTS `pocogram`.`post` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `content` VARCHAR(5000) NOT NULL,
   `date` TIMESTAMP NOT NULL,
   `img` BLOB NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_post_user_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_post_user`
     FOREIGN KEY (`user_id`)
-    REFERENCES `sns`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `pocogram`.`user` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
 
 
 -- -----------------------------------------------------
--- Table `sns`.`comment`
+-- Table `pocogram`.`comment`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sns`.`comment` (
+CREATE TABLE IF NOT EXISTS `pocogram`.`comment` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `content` VARCHAR(1000) NOT NULL,
   `date` TIMESTAMP NOT NULL,
   `post_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_comment_post1_idx` (`post_id` ASC) VISIBLE,
-  INDEX `fk_comment_user1_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_comment_post1`
     FOREIGN KEY (`post_id`)
-    REFERENCES `sns`.`post` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `pocogram`.`post` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_comment_user1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `sns`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `pocogram`.`user` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
 
 
 -- -----------------------------------------------------
--- Table `sns`.`follow`
+-- Table `pocogram`.`follow`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sns`.`follow` (
+CREATE TABLE IF NOT EXISTS `pocogram`.`follow` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `followee_id` INT NOT NULL,
   `follower_id` INT NOT NULL,
-  INDEX `fk_follow_user1_idx` (`followee_id` ASC) VISIBLE,
-  INDEX `fk_follow_user2_idx` (`follower_id` ASC) VISIBLE,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_follow_user1`
     FOREIGN KEY (`followee_id`)
-    REFERENCES `sns`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `pocogram`.`user` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_follow_user2`
     FOREIGN KEY (`follower_id`)
-    REFERENCES `sns`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `pocogram`.`user` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
 
 
 -- -----------------------------------------------------
--- Table `sns`.`like`
+-- Table `pocogram`.`likes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sns`.`like` (
+CREATE TABLE IF NOT EXISTS `pocogram`.`likes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `post_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_like_post1_idx` (`post_id` ASC) VISIBLE,
-  INDEX `fk_like_user1_idx` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `fk_like_post1`
+  CONSTRAINT `fk_likes_post1`
     FOREIGN KEY (`post_id`)
-    REFERENCES `sns`.`post` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_like_user1`
+    REFERENCES `pocogram`.`post` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_likes_user1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `sns`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `pocogram`.`user` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
 
 
 -- -----------------------------------------------------
--- Table `sns`.`chatting`
+-- Table `pocogram`.`room`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sns`.`chatting` (
+CREATE TABLE IF NOT EXISTS `pocogram`.`room` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` VARCHAR(100) NOT NULL,
-  `date` TIMESTAMP NOT NULL,
+  PRIMARY KEY (`id`));
+
+
+-- -----------------------------------------------------
+-- Table `pocogram`.`participant`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `pocogram`.`participant` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `room_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_chatting_user1_idx` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `fk_chatting_user1`
+  CONSTRAINT `fk_participant_user1`
     FOREIGN KEY (`user_id`)
-    REFERENCES `sns`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
+    REFERENCES `pocogram`.`user` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_participant_room1`
+    FOREIGN KEY (`room_id`)
+    REFERENCES `pocogram`.`room` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
 
 -- -----------------------------------------------------
--- Table `sns`.`msg`
+-- Table `pocogram`.`msg`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sns`.`msg` (
+CREATE TABLE IF NOT EXISTS `pocogram`.`msg` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `chatting_id` INT NOT NULL,
-  `from_user_id` INT NOT NULL,
-  `to_user_id` INT NOT NULL,
+  `content` VARCHAR(1000) NOT NULL,
   `date` TIMESTAMP NOT NULL,
+  `participant_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_msg_user1_idx` (`to_user_id` ASC) VISIBLE,
-  INDEX `fk_msg_chatting1_idx` (`chatting_id` ASC) VISIBLE,
-  INDEX `fk_msg_user2_idx` (`from_user_id` ASC) VISIBLE,
-  CONSTRAINT `fk_msg_user1`
-    FOREIGN KEY (`to_user_id`)
-    REFERENCES `sns`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_msg_chatting1`
-    FOREIGN KEY (`chatting_id`)
-    REFERENCES `sns`.`chatting` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_msg_user2`
-    FOREIGN KEY (`from_user_id`)
-    REFERENCES `sns`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  CONSTRAINT `fk_msg_participant1`
+    FOREIGN KEY (`participant_id`)
+    REFERENCES `pocogram`.`participant` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
 
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- ##############################################################################
+--                                데이터 추가 샘플
+-- ##############################################################################
+
+-- user
+INSERT INTO user (userID,userPW,name) VALUES 
+  ('user1','1234','유저1'),
+  ('user2','1234','유저2'),
+  ('user3','1234','유저3'),
+  ('user4','1234','유저4');
+
+-- post
+INSERT INTO post (user_id, content, date) VALUES 
+  (1,'내용1',NOW()),
+  (2,'내용2',NOW()),
+  (3,'내용3',NOW()),
+  (4,'내용4',NOW());
+
+-- comment
+INSERT INTO comment (user_id,post_id,content,date) VALUES 
+  (1,1,'댓글 내용1',NOW()),
+  (2,2,'댓글 내용2',NOW()),
+  (3,3,'댓글 내용3',NOW()),
+  (4,4,'댓글 내용4',NOW());
+
+-- likes
+INSERT INTO likes (user_id,post_id) VALUES 
+  (1,1),
+  (2,2),
+  (3,3);
+
+-- follow
+INSERT INTO follow (followee_id,follower_id) VALUES 
+  (1,2),
+  (2,1),
+  (3,1);
+
+-- room
+INSERT INTO room (id) VALUES (1),(2),(3);
+
+-- participant
+INSERT INTO participant (user_id, room_id) VALUES
+  (1,1),
+  (1,2),
+  (2,1),
+  (2,2);
+
+-- msg
+INSERT INTO msg (content,date,participant_id) VALUES
+  ('하이1',NOW(),1),
+  ('하이2',NOW(),2),
+  ('하이3',NOW(),3),
+  ('하이4',NOW(),4);
