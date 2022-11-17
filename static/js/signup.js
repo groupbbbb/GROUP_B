@@ -1,14 +1,14 @@
-function join() {
-  const form = document.forms["information"];
+// function join() {
+//   const form = document.forms["information"];
 
-  const data = {
-    email: information.userid.value,
-    userName: information.userName.value,
-    birthday: information.birthday.value,
-    pw: information.pw.value,
-    pwCheck: information.pwCheck.value,
-  };
-}
+//   const data = {
+//     email: information.userid.value,
+//     userName: information.userName.value,
+//     birthday: information.birthday.value,
+//     pw: information.pw.value,
+//     pwCheck: information.pwCheck.value,
+//   };
+// }
 
 document.querySelector(".closeEyePw").addEventListener("click", function () {
   const password = document.querySelector("#pw");
