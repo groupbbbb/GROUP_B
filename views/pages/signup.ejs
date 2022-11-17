@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+
+    <link rel="stylesheet" href="../static/css/signup.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+    />
+  </head>
+  <body>
+    <main class="signup">
+      <div class="signupBoard">
+        <img id="logo" src="../static/image/logo.png" alt="logo" />
+
+        <form action="" id="information" name="information">
+          <div class="inputBox">
+            <input
+              type="text"
+              name="userName"
+              id="userName"
+              placeholder="성명"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <input
+              type="userid"
+              name="userid"
+              id="userid"
+              placeholder="아이디"
+              required
+            />
+          </div>
+          <div class="inputBox">
+            <input
+              type="text"
+              name="birthday"
+              id="birthday"
+              required
+              placeholder="생년월일"
+              onfocus="(this.type='date')"
+              onblur="(this.type='text')"
+            />
+          </div>
+          <div class="inputBox active">
+            <input
+              type="password"
+              name="pw"
+              id="pw"
+              placeholder="비밀번호"
+              required
+              minlength="8"
+              maxlength="16"
+            />
+            <img
+              class="closeEyePw"
+              id="closeEye"
+              src="../static/image/eye-slash.svg"
+              alt="closeEye"
+            />
+          </div>
+          <div class="inputBox">
+            <input
+              type="password"
+              name="pwCheck"
+              id="pwCheck"
+              placeholder="비밀번호 확인"
+              required
+              minlength="8"
+              maxlength="16"
+            />
+            <img
+              class="closeEyePwCheck"
+              id="closeEye"
+              src="../static/image/eye-slash.svg"
+              alt="closeEye"
+            />
+          </div>
+          <button class="join" onclick="join();">가입하기</button>
+        </form>
+      </div>
+      <div class="signinMove">계정이 있으신가요? <a href="/">로그인</a></div>
+    </main>
+
+    <script src="../static/js/signup.js"></script>
+  </body>
+</html>
