@@ -12,6 +12,8 @@ app.use(express.json());
 
 app.get('/upload',(req,res)=>{
   return res.render('upload');
+app.get('/', (req,res) => {
+  res.render('login');
 })
 
 app.listen(PORT, () => {
