@@ -16,10 +16,10 @@ app.get("/", (req, res) => {
 
 // const userRouter = require('./routes/user');
 // const chatRouter = require('./routes/chat');
-// const postRouter = require('./routes/post');
+const postRouter = require('./routes/post');
 // app.use('/user', userRouter);
 // app.use('/chat', chatRouter);
-// app.use('/post', postRouter);
+app.use('/post', postRouter);
 
 app.get("/upload", (req, res) => {
   return res.render("pages/upload");
