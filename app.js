@@ -10,7 +10,15 @@ app.use("/static", express.static(__dirname + "/static"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.get("/upload", (req, res) => {
+  return res.render("pages/upload");
+});
+
 app.get("/", (req, res) => {
+  res.render("pages/login");
+});
+
+app.get("/signup", (req, res) => {
   res.render("pages/signup");
 });
 
