@@ -1,0 +1,104 @@
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: #fafafa;
+  font-family: "GmarketSansMedium";
+}
+
+.signup {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#logo {
+  width: 10vw;
+}
+
+.signupBoard {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #dbdbdb;
+  padding: 2vw;
+}
+
+#information {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputBox {
+  width: 17vw;
+  margin: 0.5vw 0;
+  height: 3vw;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  background-color: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inputBox input {
+  width: 12vw;
+  background-color: #fafafa;
+  border: none;
+}
+
+.inputBox img {
+  margin-right: 1vw;
+}
+
+::placeholder {
+  color: #8e8e8e;
+}
+
+.join {
+  width: 17.1vw;
+  margin-top: 1.5vw;
+  border-radius: 3px;
+  border: none;
+  background-color: #b2dffc;
+  font-weight: 700;
+  color: white;
+  padding: 1.5vw;
+}
+
+.join:hover {
+  cursor: pointer;
+  background-color: #0095f6;
+}
+
+.signinMove {
+  background-color: white;
+  border: 1px solid #dbdbdb;
+  padding: 1vw;
+  width: 22vw;
+  margin-top: 1vw;
+  text-align: center;
+}
+
+.signinMove a {
+  text-decoration: none;
+  color: #0095f6;
+}
+
+input[type="date"]::-webkit-datetime-edit-text,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+  color: #8e8e8e;
+}
