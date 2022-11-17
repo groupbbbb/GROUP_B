@@ -14,10 +14,10 @@ document.querySelector(".closeEyePw").addEventListener("click", function () {
   const password = document.querySelector("#pw");
   const closeEyePw = document.querySelector(".closeEyePw");
   if (password.getAttribute("type") === "password") {
-    closeEyePw.setAttribute("src", "../static/img/eye.svg");
+    closeEyePw.setAttribute("src", "../static/image/eye.svg");
     password.setAttribute("type", "text");
   } else {
-    closeEyePw.setAttribute("src", "../static/img/eye-slash.svg");
+    closeEyePw.setAttribute("src", "../static/image/eye-slash.svg");
     password.setAttribute("type", "password");
   }
 });
@@ -28,10 +28,10 @@ document
     const password = document.querySelector("#pwCheck");
     const closeEyePw = document.querySelector(".closeEyePwCheck");
     if (password.getAttribute("type") === "password") {
-      closeEyePw.setAttribute("src", "../static/img/eye.svg");
+      closeEyePw.setAttribute("src", "../static/image/eye.svg");
       password.setAttribute("type", "text");
     } else {
-      closeEyePw.setAttribute("src", "../static/img/eye-slash.svg");
+      closeEyePw.setAttribute("src", "../static/image/eye-slash.svg");
       password.setAttribute("type", "password");
     }
   });
