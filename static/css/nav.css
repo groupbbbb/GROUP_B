@@ -3,6 +3,10 @@ body {
   margin: 0;
 }
 
+.headerBox {
+  border-bottom: solid 1px rgb(121, 121, 121);
+}
+
 .header {
   height: 4rem;
   display: flex;
@@ -14,8 +18,8 @@ body {
 
 .logo {
   width: 180px;
-  height: 133px;
-  margin-top: -30px;
+  height: 130px;
+  margin-top: -33px;
 }
 
 ul {
@@ -25,20 +29,54 @@ ul {
 }
 
 ul > li {
-  margin-left: 2.5vw;
   height: auto;
   width: 100%;
 }
+
+ul > li:not(:first-of-type) {
+  margin-left: 30px;
+}
+
 img {
   cursor: pointer;
   width: 40px;
 }
 
-@media screen and (max-width: 767px) {
+@media (max-width: 420px) {
   .logo {
-    visibility: hidden;
+    display: none;
+  }
+
+  .icon {
+    text-align: center;
   }
   ul {
-    margin-left: -50%;
+    width: 100vw;
+    justify-content: center;
+    padding-left: 0;
+  }
+
+  li img {
+    width: 30px;
+  }
+}
+
+@media (min-width: 421px) and (max-width: 580px) {
+  .logo {
+    display: none;
+  }
+
+  li img {
+    width: 35px;
+  }
+
+  ul {
+    width: 100vw;
+    justify-content: center;
+    padding-left: 0;
+  }
+
+  .icon {
+    text-align: center;
   }
 }
