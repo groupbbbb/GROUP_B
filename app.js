@@ -12,21 +12,30 @@ app.use("/pages", express.static(__dirname + "/pages"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.render("pages/mainpage");
-});
 
-app.get("/upload", (req, res) => {
-  return res.render("pages/upload");
-});
+app.get('/', (req,res) => {
+  res.render('pages/mainpage');
+})
 
-app.get("/login", (req, res) => {
-  res.render("pages/login");
-});
+const userRouter = require('./routes/user');
+// const chatRouter = require('./routes/chat');
+// const postRouter = require('./routes/post');
+app.use('/user', userRouter);
+// app.use('/chat', chatRouter);
+// app.use('/post', postRouter);
 
-app.get("/signup", (req, res) => {
-  res.render("pages/signup");
-});
+
+// app.get("/upload", (req, res) => {
+//   return res.render("pages/upload");
+// });
+
+// app.get("/login", (req, res) => {
+//   res.render("pages/login");
+// });
+
+// app.get("/signup", (req, res) => {
+//   res.render("pages/signup");
+// });
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
