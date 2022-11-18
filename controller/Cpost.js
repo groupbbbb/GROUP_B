@@ -80,3 +80,34 @@ exports.postView = (req,res) => {
         res.render('pages/postView', {data:result});
     })
 }
+
+exports.Upload = (req,res) => {
+    res.render('pages/postUpload');
+};
+
+
+exports.postUpload = (req,res) => {
+    console.log(req.body);
+
+    models.Post.create({
+        user_id : req.body.user_id,
+        content : req.body.content,
+        img : req.body.img,
+    }).then(result => {
+        res.send({
+            user_id : req.body.user_id,
+            content : req.body.content,
+            img : req.body.img,
+        });
+    })
+}
+
+
+exports.postViewOne = (req,res) => {
+    models.Post.findOne({
+        where : {id : req.body.id}
+    }).then(result => {
+        console.log("##  : ",result)
+        res.send(result);
+    })
+}

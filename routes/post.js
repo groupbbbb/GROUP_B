@@ -26,5 +26,10 @@ const controller = require('../controller/Cpost');
 const router = express.Router();
 
 router.get('/',controller.postView);
+router.get('/upload',controller.Upload);
+
+
+router.post('/postUpload',controller.postUpload);
+router.post('/postViewOne',controller.postViewOne);
 
 module.exports = router;

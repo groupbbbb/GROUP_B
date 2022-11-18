@@ -6,13 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-</head>
+    <link rel="stylesheet" href="/static/css/postUpload.css">
+    </head>
 
 <body>
-    <h1>업로드페이지</h1>
-    <h3>Naver Smart Editor 2.0</h3>
+
+    <!-- <h3>Naver Smart Editor 2.0</h3>
     <a href="https://beforb.tistory.com/m/53">참고링크</a>
 
     <form action="insertStudentInfoForm" method="post">
@@ -21,41 +24,21 @@
                 style="width: 500px"></textarea>
         </div>
         <button type="button" onclick="submitPost()">제출</button>
+    </form> -->
+    업로드<hr>
+    <form name="form_upload">
+        <!-- <input type="file" name="userfile"><br> -->
+        id<input type="text" name="user_id"><br><br>
+        content<input type="text" name="content"><br><br>
+        img<input type="text" name="img"><br><br>
+        <button type="button" onclick="upload()">업로드</button><br>
     </form>
-
-    <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
-    <script>
-        let oEditors = []
-
-        smartEditor = function () {
-            console.log("Naver SmartEditor")
-            nhn.husky.EZCreator.createInIFrame({
-                oAppRef: oEditors,
-                elPlaceHolder: "editorTxt",
-                sSkinURI: "/static/smarteditor/SmartEditor2Skin.html",
-                fCreator: "createSEditor2"
-            })
-        }
-
-        $(document).ready(function () {
-            smartEditor()
-        })
-
-        submitPost = function () {
-            oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", [])
-            let content = document.getElementById("editorTxt").value
-
-            if (content == '') {
-                alert("내용을 입력해주세요.")
-                oEditors.getById["editorTxt"].exec("FOCUS")
-                return
-            } else {
-                console.log(content)
-            }
-        }
-    </script>
+    <br><br><a href="/post">포스트보기</a>
 
 
+
+    <!-- <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script> -->
+    <script src="/static/js/postUpload.js" ></script>
 </body>
 
 </html>
