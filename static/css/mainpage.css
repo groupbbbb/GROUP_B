@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "GmarketSansMedium";
+}
+
+.slideContainer {
+  position: relative;
+  width: 470px;
+  margin: auto;
+  margin-top: 5%;
+  height: 70vh;
+  border: solid 1px rgb(129, 128, 128);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.profile {
+  width: 100%;
+  border-bottom: solid 1px rgb(129, 128, 128);
+  display: flex;
+  align-items: center;
+  padding: 1px;
+  height: 6vh;
+}
+
+.profileImg {
+  border: solid 1px grey;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-left: 5px;
+}
+
+.slideBox {
+  width: 300%;
+  height: 42vh;
+  border-bottom: solid 1px rgb(129, 128, 128);
+  display: flex;
+}
+
+.slideImg {
+  width: 100%;
+}
+
+.slideImg img {
+  width: 100%;
+  height: 100%;
+}
+
+.userWriting {
+  border-bottom: solid 1px rgb(129, 128, 128);
+  height: 17vh;
+}
+
+input:focus {
+  outline: none;
+}
+
+.commentBox {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.comment {
+  width: 35px;
+}
+
+.commentBox img {
+  width: 8%;
+}
+.content {
+  width: 85%;
+  border: 0;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  width: auto;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.next {
+  position: absolute;
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.btn {
+  top: 40%;
+}
+
+@media (max-width: 420px) {
+  .slideContainer {
+    width: 80%;
+  }
+}
+
+@media (min-width: 421px) and (max-width: 580px) {
+  .slideContainer {
+    width: 80%;
+  }
+}
