@@ -17,32 +17,36 @@
     <%- include('../common/nav.ejs') %>
     <main class="signup">
       <div class="signupBoard">
-        <img id="logo" src="../static/image/logo.png" alt="logo" />
+        <img id="logo" src="/static/img/logo.png" alt="logo" />
 
-        <form action="" id="information" name="information">
+        <form id="information" name="information">
           <div class="inputBox">
             <input
               type="text"
-              name="userName"
-              id="userName"
+              name="name"
+              id="name"
               placeholder="성명"
+              maxlength="10"
               required
             />
           </div>
-          <div class="inputBox">
+          <div class="inputBox idInput">
             <input
-              type="userid"
-              name="userid"
-              id="userid"
+              type="userID"
+              name="userID"
+              id="userID"
               placeholder="아이디"
+              maxlength="10"
               required
             />
           </div>
+          <button type="button" onclick="userid_check()" class="checkBtn">중복</button>
+          <p id="idMsg"></p>
           <div class="inputBox">
             <input
               type="text"
-              name="birthday"
-              id="birthday"
+              name="birth"
+              id="birth"
               required
               placeholder="생년월일"
               onfocus="(this.type='date')"
@@ -52,8 +56,8 @@
           <div class="inputBox active">
             <input
               type="password"
-              name="pw"
-              id="pw"
+              name="userPW"
+              id="userPW"
               placeholder="비밀번호"
               required
               minlength="8"
@@ -62,7 +66,7 @@
             <img
               class="closeEyePw"
               id="closeEye"
-              src="../static/image/eye-slash.svg"
+              src="/static/img/eye-slash.svg"
               alt="closeEye"
             />
           </div>
@@ -79,11 +83,12 @@
             <img
               class="closeEyePwCheck"
               id="closeEye"
-              src="../static/image/eye-slash.svg"
+              src="/static/img/eye-slash.svg"
               alt="closeEye"
             />
           </div>
-          <button class="join" onclick="join();">가입하기</button>
+          <p id="pwMsg"></p>
+          <button type="button" class="join" onclick="join();">가입하기</button>
         </form>
       </div>
       <div class="signinMove">
@@ -93,4 +98,5 @@
 
     <script src="../static/js/signup.js"></script>
   </body>
+  
 </html>
