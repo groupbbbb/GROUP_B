@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>postView</title>
+</head>
+<body>
+    전체 포스트
+    <% for (let i=0; i < data.length; i++) { %>
+        <div>
+            <hr>
+            <div><%= data[i].id %></div>
+            <!-- <div><%= data[i].user_id %></div>
+            <div><%= data[i].content %></div>
+            <div><%= data[i].date %></div>
+            <div><%= data[i].img %></div> -->
+            <hr>
+        </div>
+    <% } %>
+</body>
+</html>

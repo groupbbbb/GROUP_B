@@ -1,6 +1,6 @@
-const Post = function(Sequelize, DataTypes){
+const Likes = function(Sequelize, DataTypes){
     const model = Sequelize.define(
-        'post',
+        'likes',
         {
             id:{
                 type : DataTypes.INTEGER,
@@ -8,25 +8,17 @@ const Post = function(Sequelize, DataTypes){
                 primaryKey : true,
                 autoIncrement : true,
             },
+            post_id:{
+                type: DataTypes.INTEGER,
+                allowNull : false,
+            },
             user_id:{
                 type: DataTypes.INTEGER,
                 allowNull : false,
             },
-            content:{
-                type : DataTypes.STRING(5000),
-                allowNull : false,
-            },
-            date:{
-                type: DataTypes.DATEONLY,
-                allowNull : false,
-            },
-            img:{
-                type : DataTypes.BLOB,
-                allowNull : true,
-            }
         },
         {
-            tableName : 'post',
+            tableName : 'likes',
             freezeTableName : true,
             timestamps : false, 
         },
@@ -34,4 +26,4 @@ const Post = function(Sequelize, DataTypes){
     return model;
 };
 
-module.exports = Post;
+module.exports = Likes;

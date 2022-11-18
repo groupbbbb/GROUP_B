@@ -74,14 +74,9 @@
 
 const models = require('../models'); 
 
-exports.post = (req,res) => {
-    res.render('pages/postUpload');
-};
 
-
-exports.allPosts = (req,res) => {
+exports.postView = (req,res) => {
     models.Post.findAll().then(result => {
-        console.log(result);
-        res.send({data:result});
+        res.render('pages/postView', {data:result});
     })
 }

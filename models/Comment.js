@@ -1,6 +1,6 @@
-const Post = function(Sequelize, DataTypes){
+const Comment = function(Sequelize, DataTypes){
     const model = Sequelize.define(
-        'post',
+        'comment',
         {
             id:{
                 type : DataTypes.INTEGER,
@@ -8,25 +8,25 @@ const Post = function(Sequelize, DataTypes){
                 primaryKey : true,
                 autoIncrement : true,
             },
-            user_id:{
-                type: DataTypes.INTEGER,
-                allowNull : false,
-            },
             content:{
-                type : DataTypes.STRING(5000),
+                type : DataTypes.STRING(1000),
                 allowNull : false,
             },
             date:{
                 type: DataTypes.DATEONLY,
                 allowNull : false,
             },
-            img:{
-                type : DataTypes.BLOB,
-                allowNull : true,
-            }
+            post_id:{
+                type: DataTypes.INTEGER,
+                allowNull : false,
+            },
+            user_id:{
+                type: DataTypes.INTEGER,
+                allowNull : false,
+            },
         },
         {
-            tableName : 'post',
+            tableName : 'comment',
             freezeTableName : true,
             timestamps : false, 
         },
@@ -34,4 +34,4 @@ const Post = function(Sequelize, DataTypes){
     return model;
 };
 
-module.exports = Post;
+module.exports = Comment;
