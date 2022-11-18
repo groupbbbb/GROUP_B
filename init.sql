@@ -144,7 +144,8 @@ CREATE TABLE IF NOT EXISTS `pocogram`.`participant` (
 CREATE TABLE IF NOT EXISTS `pocogram`.`msg` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `content` VARCHAR(1000) NOT NULL,
-  `date` TIMESTAMP NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
   `participant_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_msg_participant1`
@@ -204,8 +205,8 @@ INSERT INTO participant (user_id, room_id) VALUES
   (2,2);
 
 -- msg
-INSERT INTO msg (content,date,participant_id) VALUES
-  ('하이1',NOW(),1),
-  ('하이2',NOW(),2),
-  ('하이3',NOW(),3),
-  ('하이4',NOW(),4);
+INSERT INTO msg (content,createdAt,updatedAt,participant_id) VALUES
+  ('하이1',NOW(),NOW(),1),
+  ('하이2',NOW(),NOW(),2),
+  ('하이3',NOW(),NOW(),3),
+  ('하이4',NOW(),NOW(),4);

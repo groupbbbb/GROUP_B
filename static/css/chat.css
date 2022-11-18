@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: #fafafa;
+  font-family: "GmarketSansMedium";
+}
+
+.chat {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chatBoard {
+  width: 80vw;
+  background-color: white;
+  border: 1px solid #dbdbdb;
+  display: flex;
+  justify-content: space-between;
+  height: 35vw;
+}
+
+.chatLeft {
+  border-right: 1px solid #dbdbdb;
+  width: 35%;
+}
+
+.chatLeftTopUserid {
+  width: 50%;
+  text-align: center;
+}
+
+.chatRight {
+  width: 65%;
+}
+
+.chatLeftTop {
+  border-bottom: 1px solid #dbdbdb;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.messageAddImg {
+  width: 3vw;
+}
+
+.chatRightTop {
+  border-bottom: 1px solid #dbdbdb;
+}

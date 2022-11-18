@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const Sequelize = require('sequelize');
-const config = require(__dirname + '/../config/config.json')['development'];
+const Sequelize = require("sequelize");
+const config = require(__dirname + "/../config/config.json")["development"];
 const db = {};
 
 let sequelize = new Sequelize(
@@ -14,8 +14,8 @@ let sequelize = new Sequelize(
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.Chat = require('./Chat')(sequelize, Sequelize);
-db.User = require('./User')(sequelize, Sequelize);
-db.Post = require('./Post')(sequelize, Sequelize);
+db.Chat = require("./Chat")(sequelize, Sequelize);
+db.User = require("./User")(sequelize, Sequelize);
+// db.Post = require("./Post")(sequelize, Sequelize);
 
 module.exports = db;
