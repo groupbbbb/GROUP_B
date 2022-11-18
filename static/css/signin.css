@@ -33,6 +33,7 @@ input {
     margin: 5px;
     background-color: #f9f9f9;
     border: solid #cac9c9 1px;
+    border-radius: 3px;
 }
 body {
     background-color: #f9f9f9;
@@ -48,12 +49,16 @@ body {
     color: white;
     border: none;
     margin: 5px 0;
+    border-radius: 3px;
 }
 .signupLink {
     text-decoration : none;
     color: inherit;
     font-size: small;
-    color: rgb(112, 112, 225);
+    color: #0095f6;;
+}
+.no {
+    color: black;
 }
 
 @media screen and (min-width:1024px) {
