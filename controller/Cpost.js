@@ -105,13 +105,13 @@ exports.postUpload = (req,res) => {
     models.Post.create({
         user_id : req.body.user_id,
         content : req.body.content,
-        img : req.file.path,
+        img_src : req.file.path,
     }).then(result => {
         // console.log('### res >> ',res);
         res.send({
             user_id : req.body.user_id,
             content : req.body.content,
-            img : req.file.path,
+            img_src : req.file.path,
         });
     })
 }

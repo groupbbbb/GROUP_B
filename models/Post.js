@@ -16,8 +16,8 @@ const Post = function(Sequelize, DataTypes){
                     type : DataTypes.STRING(5000),
                     allowNull : false,
                 },
-                img:{
-                    type : DataTypes.BLOB,
+                img_src:{
+                    type : DataTypes.STRING(500),
                     allowNull : true,
                 },
                 
