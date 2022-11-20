@@ -74,40 +74,28 @@
 
 const models = require('../models'); 
 
-
-// exports.postView = (req,res) => {
-//     models.Post.findAll().then(result => {
-//         res.render('pages/postView', {data:result});
-//     })
-// }
-
+// 전체 포스트 보기
 exports.postView = (req,res) => {
     models.Post.findAll().then(result => {
         res.render('pages/postView', {data:result});
     })
 }
 
+// 선택 포스트 보기
+exports.postViewOne = (req,res) => {
+    models.Post.findOne({
+        where : {id : req.body.id}
+    }).then(result => {
+        res.send(result);
+    })
+}
+
+// 포스트 업로드 페이지
 exports.Upload = (req,res) => {
     res.render('pages/postUpload');
 };
 
-
-// exports.postUpload = (req,res) => {
-//     console.log("#### postUpload req.body >> ", req);
-
-    // models.Post.create({
-    //     user_id : req.body.user_id,
-    //     content : req.body.content,
-    //     img : req.body.img,
-    // }).then(result => {
-    //     res.send({
-    //         user_id : req.body.user_id,
-    //         content : req.body.content,
-    //         img : req.body.img,
-    //     });
-    // })
-// }
-
+// 포스트 업로드 하기
 exports.postUpload = (req,res) => {
     console.log('===============================================');
     console.log("#### postUpload req.body >> ", req.body);
@@ -117,21 +105,13 @@ exports.postUpload = (req,res) => {
     models.Post.create({
         user_id : req.body.user_id,
         content : req.body.content,
-        img : req.file.path,
+        img_src : req.file.path,
     }).then(result => {
         // console.log('### res >> ',res);
         res.send({
             user_id : req.body.user_id,
             content : req.body.content,
-            img : req.file.path,
+            img_src : req.file.path,
         });
-    })
-}
-
-exports.postViewOne = (req,res) => {
-    models.Post.findOne({
-        where : {id : req.body.id}
-    }).then(result => {
-        res.send(result);
     })
 }

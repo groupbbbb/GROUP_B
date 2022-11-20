@@ -55,19 +55,13 @@ CREATE TABLE IF NOT EXISTS `pocogram`.`post` (
   `content` VARCHAR(5000) NOT NULL,
   `createdAt` DATETIME NOT NULL,
   `updatedAt` DATETIME NOT NULL,
-  `img` BLOB NULL,
+  `img_src` VARCHAR(500) NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_post_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `pocogram`.`user` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
-
-  INSERT INTO post2 (user_id, content, createdAt, updatedAt) VALUES 
-  (1,'내용1',NOW(),NOW()),
-  (2,'내용2',NOW(),NOW()),
-  (3,'내용3',NOW(),NOW()),
-  (4,'내용4',NOW(),NOW());
 
 
 -- -----------------------------------------------------

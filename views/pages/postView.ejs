@@ -27,20 +27,19 @@
                 업로드 날짜 : <%= data[i].createdAt %>
             </div>
             <div>
-                <% if(data[i].img){%>
-                <img src="../../<%= data[i].img %>">
+                <% if(data[i].img_src){%>
+                <img src="../../<%= data[i].img_src %>">
                 <% } %>
             </div>
-            <!-- Trigger/Open The Modal -->
+
             <button id="myBtn" onclick="postViewOne(this, '<%= data[i].id %>')">자세히보기</button>
 
             <!-- The Modal -->
-            <div id="myModal" class="modal">
-                <!-- Modal content -->
+            <!-- <div id="myModal" class="modal">
                 <div id="modal-content" class="modal-content">
                     <span class="close">×</span>
                 </div>
-            </div>
+            </div> -->
 
         </div>
         <% } %>

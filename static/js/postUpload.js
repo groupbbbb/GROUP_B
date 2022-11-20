@@ -29,44 +29,17 @@
 
 
 
-// function upload() {
-//     const form = document.forms['form_upload'];
-//     axios({
-//         method: 'POST',
-//         url: '/post/postUpload',
-//         data: {
-//             user_id: Number(form.user_id.value),
-//             content: form.content.value,
-//             img: form.img.file,
-//         },
-//     })
-//         .then((res) => {
-//             return res.data;
-//         })
-//         .then((data) => {
-//             // document.location.href = '/user/signin';
-//         });
-// }
 
 
 function upload(){
-    const formData = new FormData();                        // 폼 객체 생성
-    const file = document.getElementById('img');    // file input
-
+    const formData = new FormData();
+    const file = document.getElementById('img');
     const form = document.forms['form_upload'];
-
-    // input의 name과 input에 value 
-    // formData.append('img',new Blob([file.files[0]],{type:"image/jpg"}));  
 
     formData.append('img',file.files[0]);  
     formData.append('user_id',Number(form.user_id.value));
     formData.append('content',form.content.value);
 
-    console.log(formData.get('img'));
-    console.log(formData.get('user_id'));
-    console.log(formData.get('content'));
-
-    // axios 통신
     axios({
         method: 'POST',
         url : '/post/postUpload',
@@ -75,9 +48,6 @@ function upload(){
             'Content-Type' : 'multipart/form-data',
         }
     }).then(function(res){
-        console.log(res);
-        console.log(res.data);
-        console.log(res.data.img.path);
-        // document.querySelector('img').src=res.data.path;
+        // console.log(res);
     })
 }
