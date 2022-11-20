@@ -97,21 +97,16 @@ exports.Upload = (req,res) => {
 
 // 포스트 업로드 하기
 exports.postUpload = (req,res) => {
-    console.log('===============================================');
-    console.log("#### postUpload req.body >> ", req.body);
-    console.log("#### postUpload req.file >> ", req.file);
-    console.log('===============================================');
-
-    models.Post.create({
-        user_id : req.body.user_id,
-        content : req.body.content,
-        img_src : req.file.path,
-    }).then(result => {
-        // console.log('### res >> ',res);
-        res.send({
+    if(req.file){
+        models.Post.create({
             user_id : req.body.user_id,
             content : req.body.content,
             img_src : req.file.path,
-        });
-    })
+        })
+    }else{
+        models.Post.create({
+            user_id : req.body.user_id,
+            content : req.body.content,
+        })
+    }
 }

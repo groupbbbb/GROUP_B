@@ -4,12 +4,12 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const upload = multer({
-  dest: 'static/img/uploads/',
+  dest: 'static/img/postUploads/',
 });
 const uploadDetail = multer({
   storage: multer.diskStorage({
     destination(req, file, done) {
-      done(null, 'static/img/uploads/');
+      done(null, 'static/img/postUploads/');
     },
     filename(req, file, done) {
       const ext = path.extname(file.originalname);
