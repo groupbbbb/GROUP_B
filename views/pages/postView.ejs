@@ -27,8 +27,9 @@
                 업로드 날짜 : <%= data[i].createdAt %>
             </div>
             <div>
-                이미지 : <%= data[i].img %>
-                <img src="<%= data[i].img %>">
+                <% if(data[i].img){%>
+                <img src="../../<%= data[i].img %>">
+                <% } %>
             </div>
             <!-- Trigger/Open The Modal -->
             <button id="myBtn" onclick="postViewOne(this, '<%= data[i].id %>')">자세히보기</button>

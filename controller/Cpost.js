@@ -75,6 +75,12 @@
 const models = require('../models'); 
 
 
+// exports.postView = (req,res) => {
+//     models.Post.findAll().then(result => {
+//         res.render('pages/postView', {data:result});
+//     })
+// }
+
 exports.postView = (req,res) => {
     models.Post.findAll().then(result => {
         res.render('pages/postView', {data:result});
@@ -86,28 +92,46 @@ exports.Upload = (req,res) => {
 };
 
 
+// exports.postUpload = (req,res) => {
+//     console.log("#### postUpload req.body >> ", req);
+
+    // models.Post.create({
+    //     user_id : req.body.user_id,
+    //     content : req.body.content,
+    //     img : req.body.img,
+    // }).then(result => {
+    //     res.send({
+    //         user_id : req.body.user_id,
+    //         content : req.body.content,
+    //         img : req.body.img,
+    //     });
+    // })
+// }
+
 exports.postUpload = (req,res) => {
-    console.log(req.body);
+    console.log('===============================================');
+    console.log("#### postUpload req.body >> ", req.body);
+    console.log("#### postUpload req.file >> ", req.file);
+    console.log('===============================================');
 
     models.Post.create({
         user_id : req.body.user_id,
         content : req.body.content,
-        img : req.body.img,
+        img : req.file.path,
     }).then(result => {
+        // console.log('### res >> ',res);
         res.send({
             user_id : req.body.user_id,
             content : req.body.content,
-            img : req.body.img,
+            img : req.file.path,
         });
     })
 }
-
 
 exports.postViewOne = (req,res) => {
     models.Post.findOne({
         where : {id : req.body.id}
     }).then(result => {
-        console.log("##  : ",result)
         res.send(result);
     })
 }

@@ -28,50 +28,56 @@
 // } 
 
 
-// =====================================================================
 
-function getFormatDate(date) {
-    var year = date.getFullYear();
-    var month = (1 + date.getMonth());
-    month = month > 10 ? month : '0' + month; // 10이 넘지 않으면 앞에 0을 붙인다
-    var day = date.getDate();
-    day = day > 10 ? day : '0' + day; // 10이 넘지 않으면 앞에 0을 붙인다
-    var hours = date.getHours();
-    hours = hours > 10 ? hours : '0' + hours; // 10이 넘지 않으면 앞에 0을 붙인다
-    var minutes = date.getMinutes();
-    minutes = minutes > 10 ? minutes : '0' + minutes; // 10이 넘지 않으면 앞에 0을 붙인다
-    var seconds = date.getSeconds();
-    seconds = seconds > 10 ? seconds : '0' + seconds; // 10이 넘지 않으면 앞에 0을 붙인다
+// function upload() {
+//     const form = document.forms['form_upload'];
+//     axios({
+//         method: 'POST',
+//         url: '/post/postUpload',
+//         data: {
+//             user_id: Number(form.user_id.value),
+//             content: form.content.value,
+//             img: form.img.file,
+//         },
+//     })
+//         .then((res) => {
+//             return res.data;
+//         })
+//         .then((data) => {
+//             // document.location.href = '/user/signin';
+//         });
+// }
 
-    // return year + '-' + month + '-' + day;
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds} `
-}
 
-
-function upload() {
-    const form = document.forms['form_upload'];
-    // var date = getFormatDate(new Date()); // 오늘 날짜 지정
-    
+function upload(){
     const formData = new FormData();                        // 폼 객체 생성
-    const file = document.getElementById('img');            // file input
-    console.log('==============================');
-    console.dir(file.files[0]); // file input에 들어간 파일 정보
-    console.log('==============================');
+    const file = document.getElementById('img');    // file input
 
+    const form = document.forms['form_upload'];
+
+    // input의 name과 input에 value 
+    // formData.append('img',new Blob([file.files[0]],{type:"image/jpg"}));  
+
+    formData.append('img',file.files[0]);  
+    formData.append('user_id',Number(form.user_id.value));
+    formData.append('content',form.content.value);
+
+    console.log(formData.get('img'));
+    console.log(formData.get('user_id'));
+    console.log(formData.get('content'));
+
+    // axios 통신
     axios({
         method: 'POST',
-        url: '/post/postUpload',
-        data: {
-            user_id: Number(form.user_id.value),
-            content: form.content.value,
-            img: file.files[0],
-        },
+        url : '/post/postUpload',
+        data : formData,
+        headers: {
+            'Content-Type' : 'multipart/form-data',
+        }
+    }).then(function(res){
+        console.log(res);
+        console.log(res.data);
+        console.log(res.data.img.path);
+        // document.querySelector('img').src=res.data.path;
     })
-        .then((res) => {
-            return res.data;
-        })
-        .then((data) => {
-
-            // document.location.href = '/user/signin';
-        });
 }
