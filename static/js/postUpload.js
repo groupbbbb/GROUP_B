@@ -35,8 +35,9 @@ function upload(){
     const formData = new FormData();
     const file = document.getElementById('img');
     const form = document.forms['form_upload'];
-
-    formData.append('img',file.files[0]);  
+    if(file.files[0]){
+        formData.append('img',file.files[0]);  
+    }
     formData.append('user_id',Number(form.user_id.value));
     formData.append('content',form.content.value);
 
