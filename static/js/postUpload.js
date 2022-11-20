@@ -50,8 +50,13 @@ function getFormatDate(date) {
 
 function upload() {
     const form = document.forms['form_upload'];
-    var date = getFormatDate(new Date()); // 오늘 날짜 지정
-
+    // var date = getFormatDate(new Date()); // 오늘 날짜 지정
+    
+    const formData = new FormData();                        // 폼 객체 생성
+    const file = document.getElementById('img');            // file input
+    console.log('==============================');
+    console.dir(file.files[0]); // file input에 들어간 파일 정보
+    console.log('==============================');
 
     axios({
         method: 'POST',
@@ -59,8 +64,7 @@ function upload() {
         data: {
             user_id: Number(form.user_id.value),
             content: form.content.value,
-            img: form.img.value,
-            date : date,
+            img: file.files[0],
         },
     })
         .then((res) => {

@@ -11,36 +11,42 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
     />
+    <%- include('../common/include.ejs') %>
   </head>
   <body>
+    <%- include('../common/nav.ejs') %>
     <main class="signup">
       <div class="signupBoard">
         <img id="logo" src="/static/img/logo.png" alt="logo" />
 
-        <form action="" id="information" name="information">
+        <form id="information" name="information">
           <div class="inputBox">
             <input
               type="text"
-              name="userName"
-              id="userName"
+              name="name"
+              id="name"
               placeholder="성명"
+              maxlength="10"
               required
             />
           </div>
-          <div class="inputBox">
+          <div class="inputBox idInput">
             <input
-              type="userid"
-              name="userid"
-              id="userid"
+              type="userID"
+              name="userID"
+              id="userID"
               placeholder="아이디"
+              maxlength="10"
               required
             />
           </div>
+          <button type="button" onclick="userid_check()" class="checkBtn">중복</button>
+          <p id="idMsg"></p>
           <div class="inputBox">
             <input
               type="text"
-              name="birthday"
-              id="birthday"
+              name="birth"
+              id="birth"
               required
               placeholder="생년월일"
               onfocus="(this.type='date')"
@@ -50,8 +56,8 @@
           <div class="inputBox active">
             <input
               type="password"
-              name="pw"
-              id="pw"
+              name="userPW"
+              id="userPW"
               placeholder="비밀번호"
               required
               minlength="8"
@@ -81,12 +87,17 @@
               alt="closeEye"
             />
           </div>
-          <button class="join" onclick="join();">가입하기</button>
+          <p id="pwMsg"></p>
+          <button type="button" class="join" onclick="join();">가입하기</button>
         </form>
       </div>
-      <div class="signinMove">계정이 있으신가요? <a href="/">로그인</a></div>
+      <div class="signinMove">
+        계정이 있으신가요? <a href="/login">로그인</a>
+      </div>
     </main>
 
-    <script src="/static/js/signup.js"></script>
+    <script src="../static/js/signup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
+  
 </html>

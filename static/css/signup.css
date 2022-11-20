@@ -79,7 +79,6 @@ body {
 
 .join:hover {
   cursor: pointer;
-  background-color: #0095f6;
 }
 
 .signinMove {
@@ -94,6 +93,21 @@ body {
 .signinMove a {
   text-decoration: none;
   color: #0095f6;
+}
+
+#idMsg {
+  font-size: 12px;
+}
+
+#pwMsg {
+  font-size: 12px;
+}
+
+.checkBtn {
+  background-color: #b2dffc;
+  color: white;
+  border-radius: 3px;
+  border: none;
 }
 
 input[type="date"]::-webkit-datetime-edit-text,

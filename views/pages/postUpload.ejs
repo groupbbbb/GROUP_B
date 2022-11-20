@@ -30,12 +30,41 @@
         <!-- <input type="file" name="userfile"><br> -->
         id<input type="text" name="user_id"><br><br>
         content<input type="text" name="content"><br><br>
-        img<input type="text" name="img"><br><br>
+        img<input type="file" name="img" id="img"><br><br>
         <button type="button" onclick="upload()">업로드</button><br>
     </form>
     <br><br><a href="/post">포스트보기</a>
 
 
+    <!-- <h2>동적 파일 업로드</h2>
+    <input type="file" name="dynamicFileName" id="dynamicFile"><br>
+    <button type="button" onclick="fileUpload()">업로드</button><br>
+    <img src="" width="200">
+
+    <script>
+        function fileUpload(){
+            const formData = new FormData();                        // 폼 객체 생성
+            const file = document.getElementById('dynamicFile');    // file input
+            console.dir(file);          // file input
+            console.dir(file.files[0]); // file input에 들어간 파일 정보
+            // input의 name과 input에 value
+            formData.append('dynamicFileName',file.files[0]);   
+            // axios 통신
+            axios({
+                method: 'POST',
+                url : '/dynamicFile',
+                data : formData,
+                headers: {
+                    'Content-Type' : 'multipart/form-data',
+                }
+            }).then(function(response){
+                console.log(response);
+                console.log(response.data);
+                console.log(response.data.path);
+                document.querySelector('img').src=response.data.path;
+            })
+        }
+    </script> -->
 
     <!-- <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script> -->
     <script src="/static/js/postUpload.js" ></script>

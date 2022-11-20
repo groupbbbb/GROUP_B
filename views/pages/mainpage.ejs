@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/mainpage.css" />
+
+    <%- include('../common/include.ejs') %>
+    <style>
+      @font-face {
+        font-family: "GmarketSansMedium";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('../common/nav.ejs') %> <% const srcs = [
+    ['dog.jpg','dog2.jpg','dog3.jpg'], ['english1.jpg', 'english2.jpg',
+    'english3.jpg'], ['model.jpg', 'model2.jpg', 'model3.jpg'], ['food.jpg',
+    'food2.jpg', 'food3.jpg'], ['festival2.jpg', 'festival3.jpg2',
+    'festival1.jpg3'], ] %> <% for (let i=0; i < srcs.length; i++) {%>
+
+    <div class="slideContainer">
+      <div class="profile">
+        <div class="profileImg"></div>
+        <%= %>
+      </div>
+      <div class="slideBox">
+        <% for (let k=0; k < srcs[i].length; k++) {%>
+        <div class="slideImg">
+          <img src="/static/img/<%= srcs[i][k] %>" alt="" />
+        </div>
+        <% } %>
+
+        <a class="prev btn" onclick="plusSlides(-1)">❮</a>
+        <a class="next btn" onclick="plusSlides(1)">❯</a>
+      </div>
+      <div class="userWriting">
+        <br />
+        <%= %>
+      </div>
+
+      <div class="commentBox">
+        <img src="/static/img/chat.jpg" alt="댓글창" class="comment" />
+        <input
+          type="text"
+          name="content"
+          class="content"
+          onfocus="this.placeholder=''"
+          onblur="this.placeholder='댓글달기'"
+          placeholder="댓글달기"
+        />
+      </div>
+    </div>
+    <% } %>
+
+    <br /><br /><br /><br /><br /><br />
+  </body>
+</html>

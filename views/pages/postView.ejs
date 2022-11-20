@@ -18,16 +18,17 @@
         <div>
             <hr>
             <div>
-                <%= data[i].user_id %>
+                게시자 : <%= data[i].user_id %>
             </div>
             <div>
-                <%= data[i].content %>
+                내용 : <%= data[i].content %>
             </div>
             <div>
-                <%= data[i].date %>
+                업로드 날짜 : <%= data[i].createdAt %>
             </div>
             <div>
-                <%= data[i].img %>
+                이미지 : <%= data[i].img %>
+                <img src="<%= data[i].img %>">
             </div>
             <!-- Trigger/Open The Modal -->
             <button id="myBtn" onclick="postViewOne(this, '<%= data[i].id %>')">자세히보기</button>

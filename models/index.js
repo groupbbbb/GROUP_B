@@ -16,8 +16,11 @@ db.Sequelize = Sequelize;
 
 // db.Chat = require('./Chat')(sequelize, Sequelize);
 db.User = require('./User')(sequelize, Sequelize);
+
 db.Post = require('./Post')(sequelize, Sequelize);
 db.Likes = require('./Likes')(sequelize, Sequelize);
 db.Comment = require('./Comment')(sequelize, Sequelize);
+
+// db.Post = require('./Post')(sequelize, Sequelize);
 
 module.exports = db;
