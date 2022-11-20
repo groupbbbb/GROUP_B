@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>postView</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/postView.css">
+</head>
+
+<body>
+    전체 포스트
+    <% for (let i=0; i < data.length; i++) { %>
+        <div>
+            <hr>
+            <div>
+                게시자 : <%= data[i].user_id %>
+            </div>
+            <div>
+                내용 : <%= data[i].content %>
+            </div>
+            <div>
+                업로드 날짜 : <%= data[i].createdAt %>
+            </div>
+            <div>
+                <% if(data[i].img){%>
+                <img src="../../<%= data[i].img %>">
+                <% } %>
+            </div>
+            <!-- Trigger/Open The Modal -->
+            <button id="myBtn" onclick="postViewOne(this, '<%= data[i].id %>')">자세히보기</button>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div id="modal-content" class="modal-content">
+                    <span class="close">×</span>
+                </div>
+            </div>
+
+        </div>
+        <% } %>
+
+        <br><br><a href="/post/upload">포스트올리기</a>
+
+
+            <script src="/static/js/postView.js"></script>
+</body>
+
+</html>

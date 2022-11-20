@@ -35,11 +35,26 @@ CREATE TABLE IF NOT EXISTS `pocogram`.`user` (
 -- -----------------------------------------------------
 -- Table `pocogram`.`post`
 -- -----------------------------------------------------
+-- CREATE TABLE IF NOT EXISTS `pocogram`.`post` (
+--   `id` INT NOT NULL AUTO_INCREMENT,
+--   `user_id` INT NOT NULL,
+--   `content` VARCHAR(5000) NOT NULL,
+--   `date` TIMESTAMP NOT NULL,
+--   `img` BLOB NULL,
+--   PRIMARY KEY (`id`),
+--   CONSTRAINT `fk_post_user`
+--     FOREIGN KEY (`user_id`)
+--     REFERENCES `pocogram`.`user` (`id`)
+--     ON DELETE CASCADE
+--     ON UPDATE CASCADE);
+
+
 CREATE TABLE IF NOT EXISTS `pocogram`.`post` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `content` VARCHAR(5000) NOT NULL,
-  `date` TIMESTAMP NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
   `img` BLOB NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_post_user`
@@ -48,6 +63,12 @@ CREATE TABLE IF NOT EXISTS `pocogram`.`post` (
     ON DELETE CASCADE
     ON UPDATE CASCADE);
 
+  INSERT INTO post2 (user_id, content, createdAt, updatedAt) VALUES 
+  (1,'내용1',NOW(),NOW()),
+  (2,'내용2',NOW(),NOW()),
+  (3,'내용3',NOW(),NOW()),
+  (4,'내용4',NOW(),NOW());
+
 
 -- -----------------------------------------------------
 -- Table `pocogram`.`comment`
@@ -55,7 +76,8 @@ CREATE TABLE IF NOT EXISTS `pocogram`.`post` (
 CREATE TABLE IF NOT EXISTS `pocogram`.`comment` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `content` VARCHAR(1000) NOT NULL,
-  `date` TIMESTAMP NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
   `post_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -138,13 +160,15 @@ CREATE TABLE IF NOT EXISTS `pocogram`.`participant` (
     ON DELETE CASCADE
     ON UPDATE CASCADE);
 
+
 -- -----------------------------------------------------
 -- Table `pocogram`.`msg`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pocogram`.`msg` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `content` VARCHAR(1000) NOT NULL,
-  `date` TIMESTAMP NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
   `participant_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_msg_participant1`
@@ -160,6 +184,7 @@ CREATE TABLE IF NOT EXISTS `pocogram`.`msg` (
 --                                데이터 추가 샘플
 -- ##############################################################################
 
+
 -- user
 INSERT INTO user (userID,userPW,name) VALUES 
   ('user1','1234','유저1'),
@@ -167,25 +192,29 @@ INSERT INTO user (userID,userPW,name) VALUES
   ('user3','1234','유저3'),
   ('user4','1234','유저4');
 
+
 -- post
-INSERT INTO post (user_id, content, date) VALUES 
-  (1,'내용1',NOW()),
-  (2,'내용2',NOW()),
-  (3,'내용3',NOW()),
-  (4,'내용4',NOW());
+INSERT INTO post (user_id, content, createdAt,updatedAt) VALUES 
+  (1,'내용1',NOW(),NOW()),
+  (2,'내용2',NOW(),NOW()),
+  (3,'내용3',NOW(),NOW()),
+  (4,'내용4',NOW(),NOW());
+
 
 -- comment
-INSERT INTO comment (user_id,post_id,content,date) VALUES 
-  (1,1,'댓글 내용1',NOW()),
-  (2,2,'댓글 내용2',NOW()),
-  (3,3,'댓글 내용3',NOW()),
-  (4,4,'댓글 내용4',NOW());
+INSERT INTO comment (user_id,post_id,content,createdAt,updatedAt) VALUES 
+  (1,1,'댓글 내용1',NOW(),NOW()),
+  (2,2,'댓글 내용2',NOW(),NOW()),
+  (3,3,'댓글 내용3',NOW(),NOW()),
+  (4,4,'댓글 내용4',NOW(),NOW());
+
 
 -- likes
 INSERT INTO likes (user_id,post_id) VALUES 
   (1,1),
   (2,2),
   (3,3);
+  
 
 -- follow
 INSERT INTO follow (followee_id,follower_id) VALUES 
@@ -193,8 +222,10 @@ INSERT INTO follow (followee_id,follower_id) VALUES
   (2,1),
   (3,1);
 
+
 -- room
 INSERT INTO room (id) VALUES (1),(2),(3);
+
 
 -- participant
 INSERT INTO participant (user_id, room_id) VALUES
@@ -203,9 +234,13 @@ INSERT INTO participant (user_id, room_id) VALUES
   (2,1),
   (2,2);
 
+
 -- msg
-INSERT INTO msg (content,date,participant_id) VALUES
-  ('하이1',NOW(),1),
-  ('하이2',NOW(),2),
-  ('하이3',NOW(),3),
-  ('하이4',NOW(),4);
+INSERT INTO msg (content,createdAt,updatedAt,participant_id) VALUES
+  ('하이1',NOW(),NOW(),1),
+  ('하이2',NOW(),NOW(),2),
+  ('하이3',NOW(),NOW(),3),
+  ('하이4',NOW(),NOW(),4);
+
+
+  

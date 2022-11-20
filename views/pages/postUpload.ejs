@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/postUpload.css">
+    </head>
+
+<body>
+
+    <!-- <h3>Naver Smart Editor 2.0</h3>
+    <a href="https://beforb.tistory.com/m/53">참고링크</a>
+
+    <form action="insertStudentInfoForm" method="post">
+        <div id="smarteditor">
+            <textarea name="editorTxt" id="editorTxt" rows="20" cols="10" placeholder="내용을 입력해주세요"
+                style="width: 500px"></textarea>
+        </div>
+        <button type="button" onclick="submitPost()">제출</button>
+    </form> -->
+    업로드<hr>
+    <form name="form_upload">
+        <!-- <input type="file" name="userfile"><br> -->
+        id<input type="text" name="user_id"><br><br>
+        content<input type="text" name="content"><br><br>
+        img<input type="file" name="img" id="img"><br><br>
+        <button type="button" onclick="upload()">업로드</button><br>
+    </form>
+    <br><br><a href="/post">포스트보기</a>
+
+<!-- 
+    <h2>동적 파일 업로드</h2>
+    <input type="file" name="dynamicFileName" id="dynamicFile"><br>
+    <button type="button" onclick="fileUpload()">업로드</button><br>
+    <img src="" width="200"> -->
+
+
+    <!-- <script type="text/javascript" src="/static/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script> -->
+    <script src="/static/js/postUpload.js" ></script>
+</body>
+
+</html>
