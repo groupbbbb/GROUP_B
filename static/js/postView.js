@@ -68,15 +68,25 @@ async function viewComment(obj, id){
         }).then((res) => {
             return res.data;
         })
-
-        console.log(data);
-
-        let div = document.createElement('div');
+        let str=""
         for(let i=0; i<data.length; i++){
-            let div = document.createElement('div');
-            div.innerText=`작성자 : ${data[i].user_id} // 내용 : ${data[i].content} // 등록시간 : ${data[i].createdAt}`;
-            form.append(div);
+            str+=`작성자 : ${data[i].user_id} // 내용 : ${data[i].content} // 등록시간 : ${data[i].createdAt}<br>`;
         }
-    }
+        document.querySelector(`.comment-list${id}`).innerHTML=str;
+}
 
 // 댓글 달기
+function uploadComment(obj, id){
+    const form = document.forms[`comment-form${id}`];
+    axios({
+        method: 'POST',
+        url : '/post/uploadComment',
+        data : {
+            content : form.content.value,
+            post_id : id,
+            user_id : Number(form.id.value),
+        }
+    }).then(function(res){
+    })
+}
+

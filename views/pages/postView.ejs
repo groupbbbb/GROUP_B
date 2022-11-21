@@ -41,8 +41,10 @@
             <button id="myBtn" onclick="editThis(this, '<%= data[i].id %>')">수정하기</button>
             <button id="myBtn" onclick="viewComment(this, '<%= data[i].id %>')">댓글보기</button>
             <form name="comment-form<%= data[i].id %>" class="display-none">
-                <input type="text" id="comment"/> <br />
-                <button type="button" onclick="editDo(this, '<%= data[i].id %>')">댓글 등록</button>
+                <input type="text" id="id" placeholder="id"/> <br />
+                <input type="text" id="content" placeholder="댓글내용"/> <br />
+                <button type="button" onclick="uploadComment(this, '<%= data[i].id %>')">댓글 등록</button>
+                <div class="comment-list<%= data[i].id %>"></div>
             </form>
         </div>
         <% } %>
