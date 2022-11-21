@@ -75,14 +75,14 @@
 const models = require('../models'); 
 
 // 전체 포스트 보기
-exports.postView = (req,res) => {
+exports.view = (req,res) => {
     models.Post.findAll().then(result => {
         res.render('pages/postView', {data:result});
     })
 }
 
 // 선택 포스트 보기
-exports.postViewOne = (req,res) => {
+exports.viewOne = (req,res) => {
     models.Post.findOne({
         where : {id : req.body.id}
     }).then(result => {
@@ -96,7 +96,7 @@ exports.Upload = (req,res) => {
 };
 
 // 포스트 업로드 하기
-exports.postUpload = (req,res) => {
+exports.upload = (req,res) => {
     if(req.file){
         models.Post.create({
             user_id : req.body.user_id,

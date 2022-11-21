@@ -32,7 +32,8 @@
                 <% } %>
             </div>
 
-            <button id="myBtn" onclick="postViewOne(this, '<%= data[i].id %>')">자세히보기</button>
+            <button id="myBtn" onclick="viewOne(this, '<%= data[i].id %>')">자세히보기</button>
+            <button id="myBtn" onclick="postDelete(this, '<%= data[i].id %>')">삭제하기</button>
 
             <!-- The Modal -->
             <!-- <div id="myModal" class="modal">

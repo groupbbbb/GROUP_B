@@ -43,7 +43,7 @@ function upload(){
 
     axios({
         method: 'POST',
-        url : '/post/postUpload',
+        url : '/post/upload',
         data : formData,
         headers: {
             'Content-Type' : 'multipart/form-data',

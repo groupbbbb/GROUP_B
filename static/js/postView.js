@@ -14,10 +14,10 @@
 //   })
   
 
-function postViewOne(obj, id) {
+function viewOne(obj, id) {
     axios({
         method: 'POST',
-        url: '/post/postViewOne',
+        url: '/post/viewOne',
         data: { id: id },
     }).then((res) => {
         return res.data;
