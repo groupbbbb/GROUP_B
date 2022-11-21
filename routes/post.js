@@ -20,11 +20,11 @@ const uploadDetail = multer({
 });
 
 
-router.get('/',controller.view);
-router.get('/upload',controller.Upload);
+router.get('/',controller.viewPage);
+router.get('/upload',controller.uploadPage);
 
-// router.post('/postUpload',controller.postUpload);
-router.post('/upload',uploadDetail.single('img'),controller.upload);
-router.post('/viewOne',controller.viewOne);
+router.post('/viewThis',controller.viewThis);
+router.post('/upload',uploadDetail.single('img'),controller.uploadPost);
+router.post('/delete',controller.deletePost);
 
 module.exports = router;

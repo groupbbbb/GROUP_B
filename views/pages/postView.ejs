@@ -22,6 +22,7 @@
             </div>
             <div>
                 내용 : <%= data[i].content %>
+                <input class="display-none edit-content" type="text" id="content" /> <br />
             </div>
             <div>
                 업로드 날짜 : <%= data[i].createdAt %>
@@ -32,15 +33,9 @@
                 <% } %>
             </div>
 
-            <button id="myBtn" onclick="viewOne(this, '<%= data[i].id %>')">자세히보기</button>
-            <button id="myBtn" onclick="postDelete(this, '<%= data[i].id %>')">삭제하기</button>
-
-            <!-- The Modal -->
-            <!-- <div id="myModal" class="modal">
-                <div id="modal-content" class="modal-content">
-                    <span class="close">×</span>
-                </div>
-            </div> -->
+            <button id="myBtn" onclick="viewThis(this, '<%= data[i].id %>')">자세히보기</button>
+            <button id="myBtn" onclick="deleteThis(this, '<%= data[i].id %>')">삭제하기</button>
+            <button id="myBtn" onclick="editThis(this, '<%= data[i].id %>')">수정하기</button>
 
         </div>
         <% } %>

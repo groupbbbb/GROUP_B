@@ -1,20 +1,5 @@
-// $(function() {
-//     $(document).ready(function() {
-//       $("#myBtn").click(function() {
-//         $("#myModal").css({"display": "block"});});
-//       $(".close").click(function() {
-//         $("#myModal").css({"display": "none"});});
-//       $("html").click(function(event) {
-//         if (event.target.id === "myModal") {
-//           $("#myModal").css({
-//             "display": "none"
-//           });}
-//       });
-//     });
-//   })
-  
-
-function viewOne(obj, id) {
+// 선택 포스트 보기
+function viewThis(obj, id) {
     axios({
         method: 'POST',
         url: '/post/viewOne',
@@ -22,12 +7,22 @@ function viewOne(obj, id) {
     }).then((res) => {
         return res.data;
     }).then((data) => {
-        // document.querySelector('#modal-content').innerHTML=`
-        //     <span class="close">×</span>
-        //     <div>게시자 : ${data.user_id}</div>
-        //     <div>게시일 : ${data.date}</div>
-        //     <div>내용 : ${data.content}</div>`;
         console.log(data);
     });
 }
 
+// 선택 포스트 삭제
+function deleteThis(obj, id){
+    axios({
+        method: 'POST',
+        url: '/post/delete',
+        data: { id: id },
+    }).then((res) => {
+        return res.data;
+    });
+}
+
+// 선택 포스트 수정
+function EditThis(obj, id){
+    document.querySelector('.edit-content').toggle('display-none');
+}
