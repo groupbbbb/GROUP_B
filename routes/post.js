@@ -26,5 +26,6 @@ router.get('/upload',controller.uploadPage);
 router.post('/viewThis',controller.viewThis);
 router.post('/upload',uploadDetail.single('img'),controller.uploadPost);
 router.post('/delete',controller.deletePost);
+router.post('/edit',controller.editPost);
 
 module.exports = router;

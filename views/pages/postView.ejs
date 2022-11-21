@@ -22,7 +22,11 @@
             </div>
             <div>
                 내용 : <%= data[i].content %>
-                <input class="display-none edit-content" type="text" id="content" /> <br />
+                <form name="edit-form<%= data[i].id %>" class="display-none">
+                    <input type="text" id="content" class="edit-content<%= data[i].id %>"/> <br />
+                    <button type="button" onclick="editDo(this, '<%= data[i].id %>')">변경</button>
+                    <button type="button" onclick="editCancel(this, '<%= data[i].id %>')">취소</button>
+                </form>
             </div>
             <div>
                 업로드 날짜 : <%= data[i].createdAt %>
@@ -32,11 +36,9 @@
                 <img src="../../<%= data[i].img_src %>">
                 <% } %>
             </div>
-
             <button id="myBtn" onclick="viewThis(this, '<%= data[i].id %>')">자세히보기</button>
             <button id="myBtn" onclick="deleteThis(this, '<%= data[i].id %>')">삭제하기</button>
             <button id="myBtn" onclick="editThis(this, '<%= data[i].id %>')">수정하기</button>
-
         </div>
         <% } %>
 
