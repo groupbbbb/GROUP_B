@@ -106,8 +106,6 @@ function deleteComment(obj, id){
 
 // 댓글 한개 선택
 async function editComment(obj, id){
-    const form = document.forms[`editComment-form${id}`];
-    form.classList.toggle('display-none');
     let data =
         await axios({
             method: 'POST',
@@ -116,23 +114,9 @@ async function editComment(obj, id){
         }).then((res) => {
             return res.data;
         })
+    console.log(data);
+    const form = document.forms[`editComment-form${data.post_id}`];
+    form.classList.toggle('display-none');
     form.content.value=data.content;
 }
 
-// 수정 확인
-// function commentEditDo(obj, id) {
-//     const form = document.forms[`editPost-form${id}`];
-//     axios({
-//         method: 'POST',
-//         url: '/post/editComment',
-//         data: { id : id, content : form.content.value }
-//     }).then((res) => {
-//         return res.data;
-//     })
-// }
-
-// 수정 취소
-// function commentEditCancel(obj, id) {
-//     const form = document.forms[`editPost-form${id}`];
-//     form.classList.toggle('display-none');
-// }
