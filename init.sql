@@ -201,6 +201,7 @@ INSERT INTO comment (user_id,post_id,content,createdAt,updatedAt) VALUES
   (2,2,'댓글 내용2',NOW(),NOW()),
   (3,3,'댓글 내용3',NOW(),NOW()),
   (4,4,'댓글 내용4',NOW(),NOW());
+  (4,1,'댓글 내용5',NOW(),NOW());
 
 
 -- likes
@@ -238,3 +239,32 @@ INSERT INTO msg (content,createdAt,updatedAt,participant_id) VALUES
 
 
   
+-- join
+-- post,comment
+SELECT
+	post.id,
+	comment.id as comment_id,
+	comment.user_id as comment_user_id,
+	comment.content as comment_content
+FROM post
+LEFT JOIN comment
+	ON post.id=comment.post_id
+ORDER BY post.id;
+-- post,like
+SELECT
+	post.id,
+	likes.id as likes_id,
+	likes.user_id as likes_user_id
+	FROM post
+LEFT JOIN likes
+	ON post.id=likes.post_id
+ORDER BY post.id;
+-- post,comment,like
+SELECT post.id, comment.id, comment.user_id, comment.content, likes.id, likes.user_id
+from post
+join comment on post.id=comment.post_id
+join likes on post.id=likes.post_id;
+
+
+INSERT INTO likes (user_id,post_id) VALUES 
+  (4,1);

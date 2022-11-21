@@ -1,88 +1,14 @@
-// 참고용 코드
-// const models = require('../models'); 
-
-// exports.main = (req,res) => {
-//     res.render('index');
-// };
-
-// exports.signin = (req,res) => {
-//     res.render('signin');
-// };
-
-// exports.signup = (req,res) => {
-//     res.render('signup');
-// };
-
-// exports.postSignup = (req,res) => {
-//     models.User.create({
-//         userid : req.body.userid,
-//         name : req.body.name,
-//         pw : req.body.pw,
-//     }).then(result => {
-//         console.log("## controller > CUser.js - postSignup : ",result)
-//         res.send({
-//             userid:req.body.userid,
-//             name:req.body.name, 
-//             pw:req.body.pw,
-//         });
-//     })
-// };
-
-// exports.postSignin = (req, res) => {
-//     models.User.findOne({
-//         where : {userid : req.body.userid, pw : req.body.pw}
-//     }).then(result => {
-//         console.log("## controller > CUser.js - postSignin : ",result)
-//         res.send(result);
-//     })
-
-// }
-
-// exports.postProfile = (req,res) => {
-//     models.User.findOne({
-//         where : {userid : req.body.userid}
-//     }).then(result => {
-//         console.log("## controller > CUser.js - postProfile : ",result)
-//         res.render('profile',{data:result});
-//     })
-// }
-
-// exports.patchProfile = (req,res) => {
-//     models.User.update(
-//         {
-//             pw : req.body.pw,
-//             name : req.body.name
-//         },
-//         {
-//             where : {id : req.body.id}
-//         }
-//     ).then(result => {
-//         res.send(true);
-//     })
-// }
-
-// exports.deleteProfile = (req,res) => {
-//     models.User.destroy({
-//         where : {id : req.body.id}
-//     }).then(result => {
-//         res.send(true);
-//     })
-// }
-
-
-// ==================================================================================================
-
 const models = require('../models'); 
 
 // 전체 포스트 보기
-exports.postView = (req,res) => {
+exports.viewPage = (req,res) => {
     models.Post.findAll().then(result => {
         res.render('pages/postView', {data:result});
     })
 }
 
-// 선택 포스트 보기
-exports.postViewOne = (req,res) => {
+// 선택한 포스트 보기
+exports.viewThisPost = (req,res) => {
     models.Post.findOne({
         where : {id : req.body.id}
     }).then(result => {
@@ -91,12 +17,12 @@ exports.postViewOne = (req,res) => {
 }
 
 // 포스트 업로드 페이지
-exports.Upload = (req,res) => {
+exports.uploadPage = (req,res) => {
     res.render('pages/postUpload');
 };
 
-// 포스트 업로드 하기
-exports.postUpload = (req,res) => {
+// 포스트 업로드
+exports.uploadPost = (req,res) => {
     if(req.file){
         models.Post.create({
             user_id : req.body.user_id,
@@ -109,4 +35,69 @@ exports.postUpload = (req,res) => {
             content : req.body.content,
         })
     }
+}
+
+// 포스트 삭제
+exports.deletePost = (req,res) => {
+    models.Post.destroy({
+        where : {id : req.body.id}
+    })
+}
+
+// 포스트 수정
+exports.editPost = (req,res) => {
+    models.Post.update(
+        {content : req.body.content},
+        {where : {id : req.body.id}}
+    ).then(res => {
+        // res.send('수정 성공');
+    })
+}
+
+// 댓글 전체 보기
+exports.viewComment = (req,res) => {
+    models.Comment.findAll({
+        where : {post_id : req.body.id}
+    }).then(result => {
+        res.send(result);
+    })
+}
+
+// 댓글 하나 선택
+exports.viewThisComment = (req,res) => {
+    models.Comment.findOne({
+        where : {id : req.body.id}
+    }).then(result => {
+        res.send(result);
+    })
+}
+
+// 댓글 등록
+exports.uploadComment = (req,res) => {
+    models.Comment.create({
+        content : req.body.content,
+        post_id : req.body.post_id,
+        user_id : req.body.user_id
+    })
+}
+
+// 댓글 수정
+exports.editComment = (req,res) => {
+    models.Comment.update(
+        {content : req.body.content},
+        {where : {id : req.body.id}}
+    )
+}
+
+// 댓글 삭제
+exports.deleteComment = (req,res) => {
+    models.Comment.destroy({
+        where : {id : req.body.id}
+    })
+}
+
+exports.like = (req,res) => {
+}
+
+exports.cancelLike = (req,res) => {
 }

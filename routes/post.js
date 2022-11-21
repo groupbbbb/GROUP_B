@@ -19,12 +19,18 @@ const uploadDetail = multer({
   limits: { fileSize: 5 * 1024 * 1024 },
 });
 
+router.get('/',controller.viewPage);
+router.get('/upload',controller.uploadPage);
 
-router.get('/',controller.postView);
-router.get('/upload',controller.Upload);
+router.post('/upload',uploadDetail.single('img'),controller.uploadPost);
+router.post('/delete',controller.deletePost);
+router.post('/edit',controller.editPost);
+router.post('/viewThisPost',controller.viewThisPost);
 
-// router.post('/postUpload',controller.postUpload);
-router.post('/postUpload',uploadDetail.single('img'),controller.postUpload);
-router.post('/postViewOne',controller.postViewOne);
+router.post('/viewComment',controller.viewComment);
+router.post('/uploadComment',controller.uploadComment);
+router.post('/deleteComment',controller.deleteComment);
+router.post('/editComment',controller.editComment);
+router.post('/viewThisComment',controller.viewThisComment);
 
 module.exports = router;

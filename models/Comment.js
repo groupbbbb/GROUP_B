@@ -12,10 +12,6 @@ const Comment = function(Sequelize, DataTypes){
                 type : DataTypes.STRING(1000),
                 allowNull : false,
             },
-            date:{
-                type: DataTypes.DATEONLY,
-                allowNull : false,
-            },
             post_id:{
                 type: DataTypes.INTEGER,
                 allowNull : false,
@@ -28,10 +24,13 @@ const Comment = function(Sequelize, DataTypes){
         {
             tableName : 'comment',
             freezeTableName : true,
-            timestamps : false, 
+            timestamps : true,
+            createdAt: "createdAt",
+            updatedAt: 'updatedAt',
         },
     );
     return model;
+
 };
 
 module.exports = Comment;
