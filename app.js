@@ -1,4 +1,5 @@
 const express = require("express");
+const session = require('express-session');
 
 const app = express();
 const PORT = 8080;
@@ -12,10 +13,23 @@ app.use("/pages", express.static(__dirname + "/pages"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(
+  session({
+    secret: 'secretKey',
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
-app.get('/', (req,res) => {
-  res.render('pages/mainpage');
-})
+
+app.get('/', (req, res) => {
+  const user = req.session.user;
+  if (user !== undefined) {
+    res.render('pages/mainpage', { isLogin: true, user: user });
+  } else {
+    res.render('pages/mainpage', { isLogin: false });
+  }
+});
 
 const userRouter = require('./routes/user');
 // const chatRouter = require('./routes/chat');
@@ -41,3 +55,4 @@ app.use('/post', postRouter);
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });
+

@@ -5,9 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../static/css/login.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/static/css/signin.css" />
+    <%- include('../common/include.ejs') %>
+    <script type="text/javascript">
+      window.history.forward();
+      function noBack(){window.history.forward();}
+     </script>
+  </head>
+  <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
+    <%- include('../common/nav.ejs') %>
+    <body>
     <div class="login">
       <div class="imgArea">
         <img src="/static/img/loginImg.png" alt="loginImg" class="loginImg" />
@@ -15,10 +22,10 @@
       <div class="loginArea">
         <img src="/static/img/banner.png" alt="logo" class="logoImg" />
         <div class="loginForm">
-          <form action="/login">
+          <form name="signinForm" id="signinForm">
             <div>
               <input
-                name="userid"
+                name="userID"
                 type="text"
                 maxlength="20"
                 placeholder="아이디"
@@ -26,23 +33,23 @@
             </div>
             <div>
               <input
-                name="pw"
+                name="userPW"
                 type="password"
                 maxlength="20"
                 placeholder="비밀번호"
               />
             </div>
-            <button type="submit" class="loginBtn">로그인</button>
+            <button type="button" class="loginBtn" onclick="login();">로그인</button>
           </form>
           <br /><br />
-          <a href="/signup" class="signupLink"
-            >계정이 없으신가요? <strong>가입하기</strong></a
+          <a href="/user/signup" class="signupLink"
+            ><span class="noAccount">계정이 없으신가요?</span> <strong>가입하기</strong></a
           >
         </div>
       </div>
     </div>
-      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-      <script src="/static/js/signin.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/static/js/signin.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
 </html>
