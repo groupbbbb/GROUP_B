@@ -1,16 +1,14 @@
 const models = require('../models'); 
-// models.Comment.belongsTo(models.Post, { foreignKey: "PostComment" });
-// models.Post.hasMany(models.Comment, { foreignKey: "workbook_sn" });
 
-// 전체 포스트
+// 전체 포스트 보기
 exports.viewPage = (req,res) => {
     models.Post.findAll().then(result => {
         res.render('pages/postView', {data:result});
     })
 }
 
-// 선택 포스트
-exports.viewThis = (req,res) => {
+// 선택한 포스트 보기
+exports.viewThisPost = (req,res) => {
     models.Post.findOne({
         where : {id : req.body.id}
     }).then(result => {

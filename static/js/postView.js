@@ -1,8 +1,8 @@
 // 선택 포스트 보기
-function viewThis(obj, id) {
+function viewThisPost(obj, id) {
     axios({
         method: 'POST',
-        url: '/post/viewThis',
+        url: '/post/viewThisPost',
         data: { id: id },
     }).then((res) => {
         return res.data;
@@ -12,7 +12,7 @@ function viewThis(obj, id) {
 }
 
 // 선택 포스트 삭제
-function deleteThis(obj, id){
+function deletePost(obj, id){
     axios({
         method: 'POST',
         url: '/post/delete',
@@ -23,13 +23,13 @@ function deleteThis(obj, id){
 }
 
 // 수정할 포스트 선택
-async function editThis(obj, id){
+async function editPost(obj, id){
     const form = document.forms[`editPost-form${id}`];
     form.classList.toggle('display-none');
     let data =
         await axios({
             method: 'POST',
-            url: '/post/viewThis',
+            url: '/post/viewThisPost',
             data: { id: id },
         }).then((res) => {
             return res.data;
@@ -116,7 +116,9 @@ async function editComment(obj, id){
             return res.data;
         })
     const form = document.forms[`editComment-form${editCommentData.post_id}`];
-    form.classList.toggle('display-none');
+    if(form.classList.contains('display-none')){
+        form.classList.toggle('display-none');
+    }
     form.content.value=editCommentData.content;
 }
 

@@ -39,9 +39,9 @@
                 <img src="../../<%= data[i].img_src %>">
                 <% } %>
             </div>
-            <button onclick="viewThis(this, '<%= data[i].id %>')">자세히보기</button>
-            <button onclick="deleteThis(this, '<%= data[i].id %>')">삭제하기</button>
-            <button onclick="editThis(this, '<%= data[i].id %>')">수정하기</button>
+            <button onclick="viewThisPost(this, '<%= data[i].id %>')">자세히보기</button>
+            <button onclick="deletePost(this, '<%= data[i].id %>')">삭제하기</button>
+            <button onclick="editPost(this, '<%= data[i].id %>')">수정하기</button>
             <button onclick="viewComment(this, '<%= data[i].id %>')">댓글보기</button>
             <form name="uploadComment-form<%= data[i].id %>" class="display-none uploadComment-form">
                 <hr>
@@ -62,7 +62,7 @@
         <br><br><a href="/post/upload">포스트올리기</a>
 
 
-            <script src="/static/js/postView.js"></script>
+        <script src="/static/js/postView.js"></script>
 </body>
 
 </html>
