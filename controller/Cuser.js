@@ -45,12 +45,13 @@ exports.post_signin = (req, res) => {
       res.send(false);
     } else {
       req.session.user = req.body.userID;
-      res.send({isLogin: req.session.user, userID: req.body.userID});
+      res.send({isLogin: req.session.user});
     }
   });
 };
 
 exports.mypage = (req, res) => {
+  console.log(req.session.user);
   res.render('pages/mypage', {isLogin: req.session.user});
 };
 
