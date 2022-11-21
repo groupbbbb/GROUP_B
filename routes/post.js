@@ -32,6 +32,6 @@ router.post('/viewComment',controller.viewComment);
 router.post('/viewThisComment',controller.viewThisComment);
 router.post('/uploadComment',controller.uploadComment);
 router.post('/deleteComment',controller.deleteComment);
-router.post('/ediltComment',controller.editComment);
+router.post('/editComment',controller.editComment);
 
 module.exports = router;

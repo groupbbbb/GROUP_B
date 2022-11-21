@@ -88,9 +88,7 @@ exports.editComment = (req,res) => {
     models.Comment.update(
         {content : req.body.content},
         {where : {id : req.body.id}}
-    ).then(res => {
-        res.send('수정 성공');
-    })
+    )
 }
 
 // 댓글 삭제

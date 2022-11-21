@@ -69,7 +69,7 @@ async function viewComment(obj, id){
         })
         let str=""
         for(let i=0; i<data.length; i++){
-            str+=`작성자 : ${data[i].user_id} // 내용 : ${data[i].content} // 등록시간 : ${data[i].createdAt}<br>
+            str+=`작성자 : ${data[i].user_id}, 내용 : ${data[i].content} <br>등록시간 : ${data[i].createdAt}, 수정시간 : ${data[i].updatedAt}<br>
             <button type="button" onclick="deleteComment(this, ${data[i].id})">댓글 삭제</button>
             <button type="button" onclick="editComment(this, ${data[i].id})">댓글 수정</button><br>`;
         }
@@ -104,9 +104,10 @@ function deleteComment(obj, id){
     });
 }
 
+let editCommentData;
 // 댓글 한개 선택
 async function editComment(obj, id){
-    let data =
+    editCommentData =
         await axios({
             method: 'POST',
             url: '/post/viewThisComment',
@@ -114,9 +115,27 @@ async function editComment(obj, id){
         }).then((res) => {
             return res.data;
         })
-    console.log(data);
-    const form = document.forms[`editComment-form${data.post_id}`];
+    const form = document.forms[`editComment-form${editCommentData.post_id}`];
     form.classList.toggle('display-none');
-    form.content.value=data.content;
+    form.content.value=editCommentData.content;
 }
 
+// 수정 확인
+function commentEditDo(obj, id) {
+    const form = document.forms[`editComment-form${editCommentData.post_id}`];
+    axios({
+        method: 'POST',
+        url: '/post/editComment',
+        data: { 
+            id : editCommentData.id, 
+            content : form.content.value }
+    }).then((res) => {
+        return res.data;
+    })
+}
+
+// 수정 취소
+function commentEditCancel(obj, id) {
+    const form = document.forms[`editComment-form${editCommentData.post_id}`];
+    form.classList.toggle('display-none');
+}
