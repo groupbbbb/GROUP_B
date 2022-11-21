@@ -10,12 +10,12 @@
     <p onclick="signout();">로그아웃하기</p>
 </body>
 <script>
-    function signout() {
+    function signout(isLogin) {
         axios({
         method: 'POST',
         url: '/user/signin',
         data: {
-            
+            isLogin
         },
       })
     }
