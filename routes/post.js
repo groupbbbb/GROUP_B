@@ -29,6 +29,7 @@ router.post('/delete',controller.deletePost);
 router.post('/edit',controller.editPost);
 
 router.post('/viewComment',controller.viewComment);
+router.post('/viewThisComment',controller.viewThisComment);
 router.post('/uploadComment',controller.uploadComment);
 router.post('/deleteComment',controller.deleteComment);
 router.post('/ediltComment',controller.editComment);

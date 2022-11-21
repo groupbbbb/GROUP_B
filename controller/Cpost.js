@@ -56,6 +56,7 @@ exports.editPost = (req,res) => {
     })
 }
 
+// 댓글 전체 보기
 exports.viewComment = (req,res) => {
     models.Comment.findAll({
         where : {post_id : req.body.id}
@@ -64,6 +65,16 @@ exports.viewComment = (req,res) => {
     })
 }
 
+// 댓글 하나 선택
+exports.viewThisComment = (req,res) => {
+    models.Comment.findOne({
+        where : {id : req.body.id}
+    }).then(result => {
+        res.send(result);
+    })
+}
+
+// 댓글 등록
 exports.uploadComment = (req,res) => {
     models.Comment.create({
         content : req.body.content,
@@ -72,9 +83,11 @@ exports.uploadComment = (req,res) => {
     })
 }
 
+// 댓글 수정
 exports.editComment = (req,res) => {
 }
 
+// 댓글 삭제
 exports.deleteComment = (req,res) => {
     models.Comment.destroy({
         where : {id : req.body.id}

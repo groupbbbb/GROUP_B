@@ -1,3 +1,15 @@
 .display-none{
     display: none;
 }
+
+.posts{
+    background-color: aquamarine;
+}
+
+.uploadComment-form{
+    background-color: antiquewhite;
+}
+
+.editComment-form{
+    background-color: rgb(225, 197, 245);
+}
