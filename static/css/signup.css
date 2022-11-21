@@ -68,7 +68,7 @@ body {
 
 .join {
   width: 17.1vw;
-  margin-top: 1.5vw;
+  margin-top: 10px;
   border-radius: 3px;
   border: none;
   background-color: #b2dffc;
@@ -97,10 +97,12 @@ body {
 
 #idMsg {
   font-size: 12px;
+  margin: 2px;
 }
 
 #pwMsg {
   font-size: 12px;
+  margin: 2px 0 0 0 ;
 }
 
 .checkBtn {
@@ -110,6 +112,9 @@ body {
   border: none;
 }
 
+#closeEye {
+  width: 16px !important;
+}
 input[type="date"]::-webkit-datetime-edit-text,
 input[type="date"]::-webkit-datetime-edit-month-field,
 input[type="date"]::-webkit-datetime-edit-day-field,

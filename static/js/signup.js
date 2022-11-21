@@ -14,10 +14,10 @@ document.querySelector(".closeEyePw").addEventListener("click", function () {
   const password = document.querySelector("#pw");
   const closeEyePw = document.querySelector(".closeEyePw");
   if (password.getAttribute("type") === "password") {
-    closeEyePw.setAttribute("src", "../static/image/eye.svg");
+    closeEyePw.setAttribute("src", "/static/img/eye.svg");
     password.setAttribute("type", "text");
   } else {
-    closeEyePw.setAttribute("src", "../static/image/eye-slash.svg");
+    closeEyePw.setAttribute("src", "/static/img/eye-slash.svg");
     password.setAttribute("type", "password");
   }
 });
@@ -28,18 +28,18 @@ document
     const password = document.querySelector("#pwCheck");
     const closeEyePw = document.querySelector(".closeEyePwCheck");
     if (password.getAttribute("type") === "password") {
-      closeEyePw.setAttribute("src", "../static/image/eye.svg");
+      closeEyePw.setAttribute("src", "/static/img/eye.svg");
       password.setAttribute("type", "text");
     } else {
-      closeEyePw.setAttribute("src", "../static/image/eye-slash.svg");
+      closeEyePw.setAttribute("src", "/static/img/eye-slash.svg");
       password.setAttribute("type", "password");
     }
   });
 
-  function userid_check() {
+  const overlapChecking = document.querySelector('#userID');
+  overlapChecking.onblur = function () {
     const form = document.forms['information'];
     const idMsg = document.querySelector('#idMsg');
-    const idInput = document.querySelector('.idInput');
     idMsg.innerHTML = '';
 
     axios({
@@ -58,8 +58,19 @@ document
         idMsg.style.color = 'red';
       }
       });
+  }
+let pwChecking = document.querySelector('#pwCheck');
+const form = document.forms['information'];
+pwChecking.onblur = function () {
+    const pwMsg= document.querySelector('#pwMsg');
+    if (form.userPW.value !== form.pwCheck.value) {
+      pwMsg.innerHTML = '비밀번호가 일치하지않습니다.';
+      pwMsg.style.color = 'red';
+      return;
+    } else {
+      pwMsg.innerHTML = ''
+    }
 }
-
   function join() {
     const form = document.forms['information'];
     const idMsg = document.querySelector('#idMsg');
@@ -100,7 +111,7 @@ document
             title: '회원가입에 성공했습니다.',
             showConfirmButton: false,
           })
-          setTimeout("location.href='/user/signin'",1500)
+          setTimeout("location.href='/user/signin'",1200)
         });
       } else {
         idFocus();

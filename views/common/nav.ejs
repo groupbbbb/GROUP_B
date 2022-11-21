@@ -17,26 +17,39 @@
               src="/static/img/message.jpg"
               alt="전체 페이지"
               title="메세지"
-            />
-          </div>
-        </li>
+              />
+            </div>
+          </li>
+        <% if (isLogin) { %>
+          <%} else {  %>
+            <li>
+              <a href="/user/signin">
+              <img
+                src="/static/img/login?isLogin=<%= isLogin %>.jpg"
+                alt="로그인 페이지"
+                title="로그인"
+                />
+              </a>
+            </li>
+            <% }  %>
         <li>
-          <a href="/login">
-            <img
-              src="/static/img/login.jpg"
-              alt="로그인 페이지"
-              title="로그인"
-            />
-          </a>
-        </li>
-        <li>
-          <div onclick="myPage();">
+            <% if (isLogin) { %>
+            <a href="/user/mypage?isLogin=<%= isLogin %>">
             <img
               src="/static/img/mypage.jpg"
               alt="마이페이지"
               title="마이페이지"
             />
-          </div>
+            </a>
+            <%} else {  %>
+            <a href="/user/signin?isLogin=<%= isLogin %>">
+            <img
+              src="/static/img/mypage?isLogin=<%= isLogin %>.jpg"
+              alt="마이페이지"
+              title="마이페이지"
+            />
+            </a>
+            <% }  %>
         </li>
         <li>
           <div onclick="alarm()">
