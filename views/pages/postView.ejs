@@ -44,6 +44,7 @@
                 <input type="text" id="id" placeholder="id"/> <br />
                 <input type="text" id="content" placeholder="댓글내용"/> <br />
                 <button type="button" onclick="uploadComment(this, '<%= data[i].id %>')">댓글 등록</button>
+                <button type="button" onclick="editComment(this, '<%= data[i].id %>')">댓글 삭제</button>
                 <div class="comment-list<%= data[i].id %>"></div>
             </form>
         </div>

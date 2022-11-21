@@ -70,7 +70,8 @@ async function viewComment(obj, id){
         })
         let str=""
         for(let i=0; i<data.length; i++){
-            str+=`작성자 : ${data[i].user_id} // 내용 : ${data[i].content} // 등록시간 : ${data[i].createdAt}<br>`;
+            str+=`작성자 : ${data[i].user_id} // 내용 : ${data[i].content} // 등록시간 : ${data[i].createdAt}<br>
+            <button type="button" onclick="deleteComment(this, ${data[i].id})">댓글 삭제</button><br>`;
         }
         document.querySelector(`.comment-list${id}`).innerHTML=str;
 }
@@ -90,3 +91,14 @@ function uploadComment(obj, id){
     })
 }
 
+// 선택 댓글 삭제
+function deleteComment(obj, id){
+    console.log(id);
+    axios({
+        method: 'POST',
+        url: '/post/deleteComment',
+        data: { id: id },
+    }).then((res) => {
+        return res.data;
+    });
+}

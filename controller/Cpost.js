@@ -14,7 +14,6 @@ exports.viewThis = (req,res) => {
     models.Post.findOne({
         where : {id : req.body.id}
     }).then(result => {
-        console.log(result)
         res.send(result);
     })
 }
@@ -59,12 +58,12 @@ exports.editPost = (req,res) => {
 
 exports.viewComment = (req,res) => {
     models.Comment.findAll({
-        where : {user_id : req.body.id}
+        where : {post_id : req.body.id}
     }).then(result => {
-        console.log(result)
         res.send(result);
     })
 }
+
 exports.uploadComment = (req,res) => {
     models.Comment.create({
         content : req.body.content,
@@ -72,10 +71,14 @@ exports.uploadComment = (req,res) => {
         user_id : req.body.user_id
     })
 }
+
 exports.editComment = (req,res) => {
 }
 
 exports.deleteComment = (req,res) => {
+    models.Comment.destroy({
+        where : {id : req.body.id}
+    })
 }
 
 exports.like = (req,res) => {
