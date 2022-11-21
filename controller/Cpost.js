@@ -1,4 +1,6 @@
 const models = require('../models'); 
+// models.Comment.belongsTo(models.Post, { foreignKey: "PostComment" });
+// models.Post.hasMany(models.Comment, { foreignKey: "workbook_sn" });
 
 // 전체 포스트
 exports.viewPage = (req,res) => {
@@ -55,18 +57,29 @@ exports.editPost = (req,res) => {
     })
 }
 
+exports.viewComment = (req,res) => {
+    models.Comment.findAll({
+        where : {user_id : req.body.id}
+    }).then(result => {
+        console.log(result)
+        res.send(result);
+    })
+}
+exports.uploadComment = (req,res) => {
+    models.Comment.create({
+        content : req.body.content,
+        post_id : req.body.post_id,
+        user_id : req.body.user_id
+    })
+}
+exports.editComment = (req,res) => {
+}
+
+exports.deleteComment = (req,res) => {
+}
 
 exports.like = (req,res) => {
 }
 
 exports.cancelLike = (req,res) => {
-}
-
-exports.comment = (req,res) => {
-}
-
-exports.editComment = (req,res) => {
-}
-
-exports.deleteComment = (req,res) => {
 }
