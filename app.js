@@ -1,5 +1,5 @@
 const express = require("express");
-const session = require('express-session');
+const session = require("express-session");
 
 const app = express();
 const PORT = 8080;
@@ -15,44 +15,53 @@ app.use(express.json());
 
 app.use(
   session({
-    secret: 'secretKey',
+    secret: "secretKey",
     resave: false,
     saveUninitialized: true,
   })
 );
 
-
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   const user = req.session.user;
   if (user !== undefined) {
-    res.render('pages/mainpage', { isLogin: true, user: user });
+    res.render("pages/mainpage", { isLogin: true, user: user });
   } else {
-    res.render('pages/mainpage', { isLogin: false });
+    res.render("pages/mainpage", { isLogin: false });
   }
 });
 
-const userRouter = require('./routes/user');
+const userRouter = require("./routes/user");
 // const chatRouter = require('./routes/chat');
-const postRouter = require('./routes/post');
+const postRouter = require("./routes/post");
 
-app.use('/user', userRouter);
+app.use("/user", userRouter);
+
 // app.use('/chat', chatRouter);
-app.use('/post', postRouter);
+app.use("/post", postRouter);
 
+app.get("/upload", (req, res) => {
+  return res.render("pages/upload");
+});
 
-// app.get("/upload", (req, res) => {
-//   return res.render("pages/upload");
-// });
+app.get("/signin", (req, res) => {
+  res.render("pages/signin");
+});
 
-// app.get("/login", (req, res) => {
-//   res.render("pages/login");
-// });
+app.get("/signup", (req, res) => {
+  res.render("pages/signup");
+});
 
-// app.get("/signup", (req, res) => {
-//   res.render("pages/signup");
-// });
+app.get("/mypage", (req, res) => {
+  res.render("pages/mypage");
+});
 
+app.get("/mypageEdit", (req, res) => {
+  res.render("pages/mypageEdit");
+});
+
+app.get("/profile_edit", (req, res) => {
+  res.render("pages/profile_edit");
+});
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });
-
