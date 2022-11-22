@@ -11,18 +11,34 @@ function viewThisPost(obj, id) {
     });
 }
 
-// 선택 포스트 삭제
-function deletePost(obj, id){
+// 삭제할 포스트 선택
+async function deletePost(obj, id){
+    let data =
+        await axios({
+            method: 'POST',
+            url: '/post/viewThisPost',
+            data: { id: id },
+        }).then((res) => {
+            return res.data;
+        })
+    deletePostDo(obj,id,data.user_id);
+}
+
+// 포스트 삭제
+function deletePostDo(obj, post_id, user_id){
     axios({
         method: 'POST',
         url: '/post/delete',
-        data: { id: id },
+        data: { id: post_id, user_id : user_id },
     }).then((res) => {
         return res.data;
-    });
+    }).then((res)=>{
+        console.log(res);
+    })
 }
 
 // 수정할 포스트 선택
+const editPostSelected = {};
 async function editPost(obj, id){
     const form = document.forms[`editPost-form${id}`];
     form.classList.toggle('display-none');
@@ -35,6 +51,8 @@ async function editPost(obj, id){
             return res.data;
         })
     form.content.value=data.content;
+    editPostSelected.post_id=data.id;
+    editPostSelected.user_id=data.user_id;
 }
 
 // 수정 확인
@@ -43,9 +61,17 @@ function postEditDo(obj, id) {
     axios({
         method: 'POST',
         url: '/post/edit',
-        data: { id : id, content : form.content.value }
+        data: { 
+            id : id, 
+            user_id : editPostSelected.user_id, 
+            content : form.content.value, 
+        }
     }).then((res) => {
         return res.data;
+    }).then((res)=>{
+        console.log(res);
+        editPostSelected.post_id="";
+        editPostSelected.user_id="";
     })
 }
 
@@ -53,6 +79,8 @@ function postEditDo(obj, id) {
 function postEditCancel(obj, id) {
     const form = document.forms[`editPost-form${id}`];
     form.classList.toggle('display-none');
+    editPostSelected.post_id="";
+    editPostSelected.user_id="";
 }
 
 // 선택 포스트 댓글보기

@@ -23,15 +23,17 @@ exports.uploadPage = (req,res) => {
 
 // 포스트 업로드
 exports.uploadPost = (req,res) => {
+    const user_id = req.session.user_id;
+
     if(req.file){
         models.Post.create({
-            user_id : req.body.user_id,
+            user_id : user_id,
             content : req.body.content,
             img_src : req.file.path,
         })
     }else{
         models.Post.create({
-            user_id : req.body.user_id,
+            user_id : user_id,
             content : req.body.content,
         })
     }
@@ -39,19 +41,31 @@ exports.uploadPost = (req,res) => {
 
 // 포스트 삭제
 exports.deletePost = (req,res) => {
-    models.Post.destroy({
-        where : {id : req.body.id}
-    })
+    const user_id = req.session.user_id;
+    if(req.body.user_id==user_id){
+        models.Post.destroy(
+            {where : {id : req.body.id}}
+        ).then(result => {
+            res.send('삭제 성공');
+        })
+    }else{
+        res.send('삭제 실패 (로그인 유저와 게시자가 일치하지 않음)');
+    }
 }
 
 // 포스트 수정
 exports.editPost = (req,res) => {
-    models.Post.update(
-        {content : req.body.content},
-        {where : {id : req.body.id}}
-    ).then(res => {
-        // res.send('수정 성공');
-    })
+    const user_id = req.session.user_id;
+    if(req.body.user_id==user_id){
+        models.Post.update(
+            {content : req.body.content},
+            {where : {id : req.body.id}}
+        ).then(result => {
+            res.send('수정 성공');
+        })
+    }else{
+        res.send('수정 실패 (로그인 유저와 게시자가 일치하지 않음)')
+    }
 }
 
 // 댓글 전체 보기

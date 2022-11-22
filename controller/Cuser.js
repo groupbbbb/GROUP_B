@@ -45,6 +45,7 @@ exports.post_signin = (req, res) => {
       res.send(false);
     } else {
       req.session.user = req.body.userID;
+      req.session.user_id = result.dataValues.id;
       res.send({isLogin: req.session.user, id: result.dataValues.id});
     }
   });
