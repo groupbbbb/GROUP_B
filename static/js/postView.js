@@ -1,8 +1,10 @@
+// =========================================  포스트  =========================================
+
 // 선택 포스트 보기
 function viewThisPost(obj, id) {
     axios({
         method: 'POST',
-        url: '/post/viewThisPost',
+        url: '/post/viewThis',
         data: { id: id },
     }).then((res) => {
         return res.data;
@@ -11,25 +13,21 @@ function viewThisPost(obj, id) {
     });
 }
 
-// 삭제할 포스트 선택
+// 포스트 삭제
 async function deletePost(obj, id){
     let data =
         await axios({
             method: 'POST',
-            url: '/post/viewThisPost',
+            url: '/post/viewThis',
             data: { id: id },
         }).then((res) => {
             return res.data;
         })
-    deletePostDo(obj,id,data.user_id);
-}
 
-// 포스트 삭제
-function deletePostDo(obj, post_id, user_id){
     axios({
         method: 'POST',
         url: '/post/delete',
-        data: { id: post_id, user_id : user_id },
+        data: { id: id, user_id : data.user_id },
     }).then((res) => {
         return res.data;
     }).then((res)=>{
@@ -40,19 +38,32 @@ function deletePostDo(obj, post_id, user_id){
 // 수정할 포스트 선택
 const editPostSelected = {};
 async function editPost(obj, id){
-    const form = document.forms[`editPost-form${id}`];
-    form.classList.toggle('display-none');
     let data =
         await axios({
             method: 'POST',
-            url: '/post/viewThisPost',
+            url: '/post/viewThis',
             data: { id: id },
         }).then((res) => {
             return res.data;
         })
-    form.content.value=data.content;
-    editPostSelected.post_id=data.id;
-    editPostSelected.user_id=data.user_id;
+
+    axios({
+        method: 'POST',
+        url: '/post/editSessionCheck',
+        data: { user_id : data.user_id },
+    }).then((res) => {
+        return res.data;
+    }).then((res)=>{
+        if(res){
+            const form = document.forms[`editPost-form${id}`];
+            form.classList.toggle('display-none');
+            form.content.value=data.content;
+            editPostSelected.post_id=data.id;
+            editPostSelected.user_id=data.user_id;
+        }else{
+            console.log('회원정보 불일치')
+        }
+    })
 }
 
 // 수정 확인
@@ -82,6 +93,8 @@ function postEditCancel(obj, id) {
     editPostSelected.post_id="";
     editPostSelected.user_id="";
 }
+
+// =========================================  댓글  =========================================
 
 // 선택 포스트 댓글보기
 async function viewComment(obj, id){
@@ -169,3 +182,5 @@ function commentEditCancel(obj, id) {
     const form = document.forms[`editComment-form${editCommentData.post_id}`];
     form.classList.toggle('display-none');
 }
+
+// =========================================  좋아요  =========================================

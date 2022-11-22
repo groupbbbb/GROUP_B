@@ -1,5 +1,8 @@
 const models = require('../models'); 
 
+
+// =========================================  포스트  =========================================
+
 // 전체 포스트 보기
 exports.viewPage = (req,res) => {
     models.Post.findAll().then(result => {
@@ -9,6 +12,7 @@ exports.viewPage = (req,res) => {
 
 // 선택한 포스트 보기
 exports.viewThisPost = (req,res) => {
+    const user_id = req.session.user_id;
     models.Post.findOne({
         where : {id : req.body.id}
     }).then(result => {
@@ -24,18 +28,25 @@ exports.uploadPage = (req,res) => {
 // 포스트 업로드
 exports.uploadPost = (req,res) => {
     const user_id = req.session.user_id;
-
-    if(req.file){
-        models.Post.create({
-            user_id : user_id,
-            content : req.body.content,
-            img_src : req.file.path,
-        })
+    if(user_id){
+        if(req.file){
+            models.Post.create({
+                user_id : user_id,
+                content : req.body.content,
+                img_src : req.file.path,
+            }).then(result => {
+                res.send('업로드 성공');
+            })
+        }else{
+            models.Post.create({
+                user_id : user_id,
+                content : req.body.content,
+            }).then(result => {
+                res.send('업로드 성공');
+            })
+        }
     }else{
-        models.Post.create({
-            user_id : user_id,
-            content : req.body.content,
-        })
+        res.send('로그인 하세요');
     }
 }
 
@@ -53,6 +64,16 @@ exports.deletePost = (req,res) => {
     }
 }
 
+// 수정 포스트 선택
+exports.editPostSessionCheck = (req,res) => {
+    const user_id = req.session.user_id;
+    if(user_id==req.body.user_id){
+        res.send(true);
+    }else{
+        res.send(false);
+    }
+}
+
 // 포스트 수정
 exports.editPost = (req,res) => {
     const user_id = req.session.user_id;
@@ -67,6 +88,9 @@ exports.editPost = (req,res) => {
         res.send('수정 실패 (로그인 유저와 게시자가 일치하지 않음)')
     }
 }
+
+
+// =========================================  댓글  =========================================
 
 // 댓글 전체 보기
 exports.viewComment = (req,res) => {
@@ -110,8 +134,12 @@ exports.deleteComment = (req,res) => {
     })
 }
 
+
+// =========================================  좋아요  =========================================
+
+// 좋아요
 exports.like = (req,res) => {
 }
-
+// 취소
 exports.cancelLike = (req,res) => {
 }
