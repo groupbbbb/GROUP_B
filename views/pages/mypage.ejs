@@ -7,9 +7,11 @@
     <title>마이페이지</title>
 </head>
 <body>
+    <%= isLogin %>
     <p onclick="signout();">로그아웃하기</p>
 </body>
 <script>
+    console.log(isLogin);
     function signout(isLogin) {
         axios({
         method: 'POST',
