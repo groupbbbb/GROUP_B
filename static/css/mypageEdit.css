@@ -59,3 +59,11 @@ body {
   padding-bottom: 30px;
   border-bottom: 1px solid black;
 }
+
+#logoutBtn {
+  background-color: black;
+  color: white;
+  border-radius: 0 20px 20px 0;
+  width: 10%;
+  height: 5%;
+}
