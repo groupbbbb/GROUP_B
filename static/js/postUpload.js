@@ -38,7 +38,6 @@ function upload(){
     if(file.files[0]){
         formData.append('img',file.files[0]);  
     }
-    formData.append('user_id',Number(form.user_id.value));
     formData.append('content',form.content.value);
 
     axios({
@@ -49,6 +48,6 @@ function upload(){
             'Content-Type' : 'multipart/form-data',
         }
     }).then(function(res){
-        // console.log(res);
+        console.log(res.data);
     })
 }

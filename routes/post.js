@@ -25,12 +25,14 @@ router.get('/upload',controller.uploadPage);
 router.post('/upload',uploadDetail.single('img'),controller.uploadPost);
 router.post('/delete',controller.deletePost);
 router.post('/edit',controller.editPost);
-router.post('/viewThisPost',controller.viewThisPost);
+router.post('/editSessionCheck',controller.editPostSessionCheck);
+router.post('/viewThis',controller.viewThisPost);
 
 router.post('/viewComment',controller.viewComment);
 router.post('/uploadComment',controller.uploadComment);
 router.post('/deleteComment',controller.deleteComment);
 router.post('/editComment',controller.editComment);
+router.post('/editCommentSessionCheck',controller.editCommentSessionCheck);
 router.post('/viewThisComment',controller.viewThisComment);
 
 module.exports = router;

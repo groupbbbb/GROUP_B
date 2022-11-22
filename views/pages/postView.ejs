@@ -13,6 +13,10 @@
 </head>
 
 <body>
+    <a href="/user/signin">로그인</a>
+    <br><a href="/post">포스트보기</a>
+    <br><a href="/post/upload">포스트올리기</a>
+    <hr>
     전체 포스트
     <% for (let i=0; i < data.length; i++) { %>
         <div class="posts">
@@ -24,8 +28,8 @@
                 내용 : <%= data[i].content %>
                 <form name="editPost-form<%= data[i].id %>" class="display-none">
                     <input type="text" id="content" class="edit-content<%= data[i].id %>"/> <br />
-                    <button type="button" onclick="postEditDo(this, '<%= data[i].id %>')">변경</button>
-                    <button type="button" onclick="postEditCancel(this, '<%= data[i].id %>')">취소</button>
+                    <button type="button" onclick="editPostDo(this, '<%= data[i].id %>')">변경</button>
+                    <button type="button" onclick="editPostCancel(this, '<%= data[i].id %>')">취소</button>
                 </form>
             </div>
             <div>
@@ -45,7 +49,6 @@
             <button onclick="viewComment(this, '<%= data[i].id %>')">댓글보기</button>
             <form name="uploadComment-form<%= data[i].id %>" class="display-none uploadComment-form">
                 <hr>
-                <input type="text" id="id" placeholder="id"/> <br />
                 <input type="text" id="content" placeholder="댓글내용"/> <br />
                 <button type="button" onclick="uploadComment(this, '<%= data[i].id %>')">댓글 등록</button><br>
                 <hr>
@@ -59,7 +62,6 @@
         </div>
         <% } %>
 
-        <br><br><a href="/post/upload">포스트올리기</a>
 
 
         <script src="/static/js/postView.js"></script>
