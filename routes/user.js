@@ -9,8 +9,12 @@ router.post('/idCheck', controller.idCheck);
 router.get('/signin', controller.signin);
 router.post('/signin', controller.post_signin);
 
+
 router.get('/mypage', controller.mypage);
+router.post('/mypage', controller.post_mypage);
 router.post('/signout', controller.signout);
+
+router.post('/getMyInform', controller.getMyInform);
 
 
 module.exports = router;

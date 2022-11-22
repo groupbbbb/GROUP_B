@@ -52,17 +52,31 @@ exports.post_signin = (req, res) => {
 };
 
 exports.mypage = (req, res) => {
-  res.render('pages/mypage', {isLogin: req.session.user});
+  res.render('pages/mypage', {isLogin: true});
+};
+
+exports.post_mypage = (req, res) => {
+  res.send({isLogin : true, id : req.body.id});
 };
 
 exports.signout = (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      throw err;
-    }
-    res.redirect('/pages/mainpage');
-  })
+  req.session.destroy(function(){
+  });
+  res.render('pages/mypage', {isLogin:false});
 };
+
+exports.getMyInform = (req, res) => {
+  models.User.findOne({
+    where: {
+      id: req.body.id
+    },
+  }).then((result) => {
+   res.send({userID:result.dataValues.userID, userPW:result.dataValues.userPW, name:result.dataValues.name,
+    birth:result.dataValues.birth, profile_img:result.dataValues.profile_img});
+  });
+}
+  
+
 
 
 
