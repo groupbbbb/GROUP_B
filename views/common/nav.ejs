@@ -1,7 +1,7 @@
 <div class="headerBox">
   <header class="header">
     <a href="/">
-      <img src="/static/img/logomain.jpg" alt="logo" class="logo" />
+      <img src="/static/img/navlogo.jpg" alt="logo" class="logo" />
     </a>
 
     <nav class="navBar">
@@ -12,16 +12,17 @@
           </a>
         </li>
         <li>
-          <div onclick="message();">
+          <div onclick="chat();">
             <img
               src="/static/img/message.jpg"
-              alt="전체 페이지"
-              title="메세지"
+              alt="채팅"
+              title="채팅"
             />
           </div>
+          <div class="countChat counting"> <%= %> </div>
         </li>
         <li>
-          <a href="/login">
+          <a href="/signin">
             <img
               src="/static/img/login.jpg"
               alt="로그인 페이지"
@@ -30,17 +31,19 @@
           </a>
         </li>
         <li>
-          <div onclick="myPage();">
+          <a href="/mypage">
             <img
               src="/static/img/mypage.jpg"
               alt="마이페이지"
               title="마이페이지"
             />
-          </div>
+          </a>
+          
         </li>
         <li>
           <div onclick="alarm()">
             <img src="/static/img/alarm.jpg" alt="알림" title="알림" />
+            <div class="countAlarm counting"> <%= %> </div>
           </div>
         </li>
       </ul>

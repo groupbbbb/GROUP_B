@@ -32,6 +32,16 @@ ul > li {
   height: auto;
   width: 100%;
 }
+.counting {
+  position: absolute;
+  border: 1px solid red;
+  background-color: red;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  margin-top: -27px;
+  margin-left: 20px;
+}
 
 ul > li:not(:first-of-type) {
   margin-left: 30px;
@@ -78,5 +88,11 @@ img {
 
   .icon {
     text-align: center;
+  }
+
+  .counting {
+    width: 23px;
+    height: 23px;
+    margin-left: 33px;
   }
 }
