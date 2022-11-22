@@ -54,20 +54,20 @@ async function editPost(obj, id){
     }).then((res) => {
         return res.data;
     }).then((res)=>{
-        if(res){
+        if(res===true){
             const form = document.forms[`editPost-form${id}`];
             form.classList.toggle('display-none');
             form.content.value=data.content;
             editPostSelected.post_id=data.id;
             editPostSelected.user_id=data.user_id;
         }else{
-            console.log('회원정보 불일치')
+            console.log(res);
         }
     })
 }
 
 // 수정 확인
-function postEditDo(obj, id) {
+function editPostDo(obj, id) {
     const form = document.forms[`editPost-form${id}`];
     axios({
         method: 'POST',
@@ -87,12 +87,13 @@ function postEditDo(obj, id) {
 }
 
 // 수정 취소
-function postEditCancel(obj, id) {
+function editPostCancel(obj, id) {
     const form = document.forms[`editPost-form${id}`];
     form.classList.toggle('display-none');
     editPostSelected.post_id="";
     editPostSelected.user_id="";
 }
+
 
 // =========================================  댓글  =========================================
 
@@ -126,29 +127,15 @@ function uploadComment(obj, id){
         data : {
             content : form.content.value,
             post_id : id,
-            user_id : Number(form.id.value),
         }
-    }).then(function(res){
+    }).then((res)=>{
+        console.log(res.data);
     })
 }
 
 // 선택 댓글 삭제
-function deleteComment(obj, id){
-    const form = document.forms[`editComment-form${id}`];
+async function deleteComment(obj, id){
     let data =
-    axios({
-        method: 'POST',
-        url: '/post/deleteComment',
-        data: { id: id },
-    }).then((res) => {
-        return res.data;
-    });
-}
-
-let editCommentData;
-// 댓글 한개 선택
-async function editComment(obj, id){
-    editCommentData =
         await axios({
             method: 'POST',
             url: '/post/viewThisComment',
@@ -156,31 +143,71 @@ async function editComment(obj, id){
         }).then((res) => {
             return res.data;
         })
-    const form = document.forms[`editComment-form${editCommentData.post_id}`];
-    if(form.classList.contains('display-none')){
-        form.classList.toggle('display-none');
-    }
-    form.content.value=editCommentData.content;
+    axios({
+        method: 'POST',
+        url: '/post/deleteComment',
+        data: { id: id, user_id : data.user_id },
+    }).then((res) => {
+        console.log(res.data);
+    });
+}
+
+// 수정할 댓글 선택
+const editCommentSelected = {};
+async function editComment(obj, id){
+    let data =
+        await axios({
+            method: 'POST',
+            url: '/post/viewThisComment',
+            data: { id: id },
+        }).then((res) => {
+            return res.data;
+        })
+    
+    axios({
+        method: 'POST',
+        url: '/post/editCommentSessionCheck',
+        data: { user_id : data.user_id },
+    }).then((res) => {
+        return res.data;
+    }).then((res)=>{
+        if(res===true){
+            const form = document.forms[`editComment-form${data.post_id}`];
+            if(form.classList.contains('display-none')){
+                form.classList.toggle('display-none');
+            }
+            form.content.value=data.content;
+            editCommentSelected.id=data.id;
+            editCommentSelected.post_id=data.post_id;
+            editCommentSelected.user_id=data.user_id;
+        }else{
+            console.log(res);
+        }
+    })
+
 }
 
 // 수정 확인
 function commentEditDo(obj, id) {
-    const form = document.forms[`editComment-form${editCommentData.post_id}`];
+    const form = document.forms[`editComment-form${editCommentSelected.post_id}`];
     axios({
         method: 'POST',
         url: '/post/editComment',
         data: { 
-            id : editCommentData.id, 
+            id : editCommentSelected.id, 
             content : form.content.value }
     }).then((res) => {
         return res.data;
+    }).then((res)=>{
+        console.log(res);
     })
 }
 
 // 수정 취소
 function commentEditCancel(obj, id) {
-    const form = document.forms[`editComment-form${editCommentData.post_id}`];
+    const form = document.forms[`editComment-form${editCommentSelected.post_id}`];
     form.classList.toggle('display-none');
 }
+
 
 // =========================================  좋아요  =========================================

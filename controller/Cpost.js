@@ -35,14 +35,14 @@ exports.uploadPost = (req,res) => {
                 content : req.body.content,
                 img_src : req.file.path,
             }).then(result => {
-                res.send('업로드 성공');
+                res.send('게시글 업로드 성공');
             })
         }else{
             models.Post.create({
                 user_id : user_id,
                 content : req.body.content,
             }).then(result => {
-                res.send('업로드 성공');
+                res.send('게시글 업로드 성공');
             })
         }
     }else{
@@ -53,40 +53,38 @@ exports.uploadPost = (req,res) => {
 // 포스트 삭제
 exports.deletePost = (req,res) => {
     const user_id = req.session.user_id;
-    if(req.body.user_id==user_id){
+    if(!user_id){
+        res.send('로그인 하세요');
+    }else if(req.body.user_id==user_id){
         models.Post.destroy(
             {where : {id : req.body.id}}
         ).then(result => {
-            res.send('삭제 성공');
+            res.send('게시글 삭제 성공');
         })
     }else{
-        res.send('삭제 실패 (로그인 유저와 게시자가 일치하지 않음)');
+        res.send('회원정보 불일치');
     }
 }
 
-// 수정 포스트 선택
+// 포스트 수정 세션 체크
 exports.editPostSessionCheck = (req,res) => {
     const user_id = req.session.user_id;
-    if(user_id==req.body.user_id){
+    if(!user_id){
+        res.send('로그인 하세요');
+    }else if(user_id==req.body.user_id){
         res.send(true);
     }else{
-        res.send(false);
+        res.send('회원정보 불일치');
     }
 }
 
 // 포스트 수정
 exports.editPost = (req,res) => {
-    const user_id = req.session.user_id;
-    if(req.body.user_id==user_id){
-        models.Post.update(
-            {content : req.body.content},
-            {where : {id : req.body.id}}
-        ).then(result => {
-            res.send('수정 성공');
-        })
-    }else{
-        res.send('수정 실패 (로그인 유저와 게시자가 일치하지 않음)')
-    }
+    models.Post.update(
+        {content : req.body.content},
+        {where : {id : req.body.id}}
+    ).then(result => 
+        {res.send('게시글 수정 성공');})
 }
 
 
@@ -112,11 +110,48 @@ exports.viewThisComment = (req,res) => {
 
 // 댓글 등록
 exports.uploadComment = (req,res) => {
-    models.Comment.create({
-        content : req.body.content,
-        post_id : req.body.post_id,
-        user_id : req.body.user_id
-    })
+    const user_id = req.session.user_id;
+    if(!user_id){
+        res.send('로그인 하세요');
+    }else if(user_id){
+        models.Comment.create({
+            content : req.body.content,
+            post_id : req.body.post_id,
+            user_id : user_id,
+        }).then(result=>{
+            res.send('댓글 등록 완료');
+        })
+    }else{
+        res.send('로그인 하세요');
+    }
+}
+
+// 댓글 삭제
+exports.deleteComment = (req,res) => {
+    const user_id = req.session.user_id;
+    if(!user_id){
+        res.send('로그인 하세요');
+    }else if(user_id == req.body.user_id){
+        models.Comment.destroy({
+            where : {id : req.body.id}
+        }).then((result)=>{
+            res.send('댓글 삭제 성공');
+        })
+    }else{
+        res.send('회원정보 불일치');
+    }
+}
+
+// 댓글 수정 세션 체크
+exports.editCommentSessionCheck = (req,res) => {
+    const user_id = req.session.user_id;
+    if(!user_id){
+        res.send('로그인 하세요');
+    }else if(user_id==req.body.user_id){
+        res.send(true);
+    }else{
+        res.send('회원정보 불일치');
+    }
 }
 
 // 댓글 수정
@@ -124,16 +159,10 @@ exports.editComment = (req,res) => {
     models.Comment.update(
         {content : req.body.content},
         {where : {id : req.body.id}}
-    )
-}
-
-// 댓글 삭제
-exports.deleteComment = (req,res) => {
-    models.Comment.destroy({
-        where : {id : req.body.id}
+    ).then((result)=>{
+        res.send('댓글 수정 성공');
     })
 }
-
 
 // =========================================  좋아요  =========================================
 
