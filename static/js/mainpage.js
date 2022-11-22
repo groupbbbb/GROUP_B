@@ -73,6 +73,7 @@ const body = document.querySelector("body");
 const closeAll = document.querySelectorAll(".close");
 const hiddenBox = document.querySelectorAll(".hiddenBox");
 const box = document.querySelectorAll(".box");
+const filterColor = document.querySelector(".filterColor");
 
 for (let k = 0; k < box.length; k++) {
   searchAll[k].addEventListener("click", function () {
@@ -88,6 +89,9 @@ for (let l = 0; l < box.length; l++) {
   });
 }
 
+// searchAll.addEventListener("click", function () {
+//   filterColor.style.backgroundColor = "red";
+// });
 //팝업 슬라이드
 
 let slideImageAll = document.querySelectorAll(".halfSlide");

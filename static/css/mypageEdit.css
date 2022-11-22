@@ -5,19 +5,18 @@ body {
 
 .editBox {
   position: relative;
-  width: 1500px;
+  width: 80%;
   height: 800px;
-  /* border: 2px solid black; */
   margin: 30px auto;
 }
 
 .infoList {
   position: absolute;
 
-  width: 30%;
-  height: 55%;
+  width: 25%;
+  height: 500px;
   background-color: black;
-  margin-top: 70px;
+  margin-top: 100px;
   text-align: center;
   border-radius: 0 20px 20px 0;
 }
@@ -44,9 +43,8 @@ body {
 .likeList,
 .postEdit {
   position: absolute;
-  width: 60%;
-  height: 100%;
-
+  width: 900px;
+  height: 800px;
   right: 0;
   display: none;
 }
@@ -60,10 +58,87 @@ body {
   border-bottom: 1px solid black;
 }
 
-#logoutBtn {
+#logoutBtn,
+#editBtn {
   background-color: black;
   color: white;
+}
+#logoutBtn {
+  margin-top: 25px;
   border-radius: 0 20px 20px 0;
   width: 10%;
   height: 5%;
+}
+
+#editBtn {
+  margin-left: 32.5%;
+  width: 19%;
+  height: 9%;
+  border-radius: 20px 0 0 20px;
+  margin-top: 5%;
+}
+/* 내정보 수정 css */
+
+.myinfoBox {
+  position: absolute;
+  width: 90%;
+  height: 55%;
+}
+
+.myinfoBox > div {
+  margin-left: 20%;
+}
+
+.myinfoBox > div:not(:first-of-type) {
+  padding-top: 50px;
+}
+
+.word {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.photoWord {
+  font-size: 15px;
+  font-weight: 600;
+  margin-left: 10%;
+}
+
+.photo {
+  float: right;
+  margin-top: 65px;
+}
+
+#profileImg {
+  width: 200px;
+  height: 200px;
+  border: 1px solid grey;
+  border-radius: 50%;
+  margin-left: -20%;
+}
+
+.userInput {
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid grey;
+}
+
+.userInput:hover {
+  background-color: rgb(231, 231, 231);
+}
+
+#userID {
+  margin-left: 60px;
+}
+
+#userPW {
+  margin-left: 50px;
+}
+
+#name {
+  margin-left: 32px;
+}
+
+#birth {
+  margin-left: 15px;
 }
