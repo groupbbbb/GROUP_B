@@ -40,11 +40,11 @@ axios({
     setTimeout("location.href=`/?isLogin=${false}`",1200)
 })
 }
-
+//user 정보가지고와서 value에 넣는 코드
 let profileImg = document.querySelector('#profileImg'); 
 let userID = document.querySelector('#userID');
 let userPW = document.querySelector('#userPW'); 
-let name = document.querySelector('#name'); 
+let userName = document.querySelector('#name'); 
 let birth = document.querySelector('#birth');
 function myinform() {
   function getParameterByName(name) {
@@ -64,11 +64,27 @@ function myinform() {
   }).then((data) => {
     if (data.data.profile_img === null) {
         profileImg.setAttribute('src', "/static/img/profile_img.PNG");
-    }
-    userID.value = data.data.userID
-    userPW.value = data.data.userPW
-    name.value = data.data.name
-    birth.value = data.data.birth
-  })
-
+    };
+    userID.value = data.data.userID;
+    userPW.value = data.data.userPW;
+    userName.value = data.data.name;
+    birth.value = data.data.birth;
+  });
+}
+//user 정보 수정하는 코드
+const form = document.forms['informForm'];
+function modify() {
+  axios({
+    method: 'POST',
+    url: '/user/modifyUserInform',
+    data: {
+      userID: form.userID.value,
+      userPW: form.userPW.value,
+      userName: form.userName.value,
+      birth: form.birth.value,
+    },
+  }).then((data) => {
+    alert('수정되었습니다');
+    
+    });
 }
