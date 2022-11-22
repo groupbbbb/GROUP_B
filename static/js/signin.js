@@ -17,7 +17,7 @@ function login() {
             Swal.fire('아이디 또는 비밀번호를 잘못 입력했습니다.');
             form_login.reset();
           } else {
-            document.location.href = `/?userID=?isLogin=${data.data.isLogin}`;
+            document.location.href = `/?isLogin=${data.data.isLogin}?id=${data.data.id}`;
           }
         });
     }

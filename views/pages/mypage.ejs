@@ -5,11 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>마이페이지</title>
-  </head>
-  <body>
+</head>
+<body>
+    <%= isLogin %>
     <p onclick="signout();">로그아웃하기</p>
-  </body>
-  <script>
+</body>
+<script>
+    console.log(isLogin);
     function signout(isLogin) {
       axios({
         method: "POST",
