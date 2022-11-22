@@ -15,30 +15,41 @@
           <div onclick="chat();">
             <img
               src="/static/img/message.jpg"
-              alt="채팅"
-              title="채팅"
-            />
-          </div>
-          <div class="countChat counting"> <%= %> </div>
-        </li>
+              alt="전체 페이지"
+              title="메세지"
+              />
+            </div>
+          </li>
+        <% if (isLogin) { %>
+          <%} else {  %>
+            <li>
+              <a href="/user/signin">
+              <img
+                src="/static/img/login.jpg"
+                alt="로그인 페이지"
+                title="로그인"
+                />
+              </a>
+            </li>
+            <% }  %>
         <li>
-          <a href="/signin">
-            <img
-              src="/static/img/login.jpg"
-              alt="로그인 페이지"
-              title="로그인"
-            />
-          </a>
-        </li>
-        <li>
-          <a href="/mypage">
+            <% if (isLogin) { %>
+            <a href="/user/mypage">
             <img
               src="/static/img/mypage.jpg"
               alt="마이페이지"
               title="마이페이지"
             />
-          </a>
-          
+            </a>
+            <%} else {  %>
+            <a href="/user/signin">
+            <img
+              src="/static/img/mypage.jpg"
+              alt="마이페이지"
+              title="마이페이지"
+            />
+            </a>
+            <% }  %>
         </li>
         <li>
           <div onclick="alarm()">

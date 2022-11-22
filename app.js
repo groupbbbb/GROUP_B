@@ -1,4 +1,5 @@
 const express = require("express");
+const session = require("express-session");
 
 const app = express();
 const PORT = 8080;
@@ -12,16 +13,31 @@ app.use("/pages", express.static(__dirname + "/pages"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(
+  session({
+    secret: "secretKey",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
 app.get("/", (req, res) => {
-  res.render("pages/mainpage");
+  const user = req.session.user;
+  if (user !== undefined) {
+    res.render("pages/mainpage", { isLogin: true, user: user });
+  } else {
+    res.render("pages/mainpage", { isLogin: false });
+  }
 });
 
 const userRouter = require("./routes/user");
 // const chatRouter = require('./routes/chat');
-// const postRouter = require('./routes/post');
+const postRouter = require("./routes/post");
+
 app.use("/user", userRouter);
+
 // app.use('/chat', chatRouter);
-// app.use('/post', postRouter);
+app.use("/post", postRouter);
 
 app.get("/upload", (req, res) => {
   return res.render("pages/upload");
@@ -37,6 +53,10 @@ app.get("/signup", (req, res) => {
 
 app.get("/mypage", (req, res) => {
   res.render("pages/mypage");
+});
+
+app.get("/mypageEdit", (req, res) => {
+  res.render("pages/mypageEdit");
 });
 
 app.get("/profile_edit", (req, res) => {

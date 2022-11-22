@@ -5,15 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입</title>
-
     <link rel="stylesheet" href="/static/css/signup.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
     />
     <%- include('../common/include.ejs') %>
+    <script type="text/javascript">
+      window.history.forward();
+      function noBack(){window.history.forward();}
+     </script>
   </head>
-  <body>
+  <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
     <%- include('../common/nav.ejs') %>
     <main class="signup">
       <div class="signupBoard">
@@ -40,7 +43,6 @@
               required
             />
           </div>
-          <button type="button" onclick="userid_check()" class="checkBtn">중복</button>
           <p id="idMsg"></p>
           <div class="inputBox">
             <input
@@ -68,6 +70,7 @@
               id="closeEye"
               src="/static/img/eye-slash.svg"
               alt="closeEye"
+              width="16"
             />
           </div>
           <div class="inputBox">
@@ -96,8 +99,10 @@
       </div>
     </main>
 
-    <script src="../static/js/signup.js"></script>
+    <script src="/static/js/signup.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   </body>
   
 </html>

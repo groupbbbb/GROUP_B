@@ -1,7 +1,7 @@
 const models = require('../models');
 
 exports.signup = (req, res) => {
-  res.render('pages/signup');
+  res.render('pages/signup', {isLogin: req.session.user});
 };
 
 exports.post_signup = (req, res) => {
@@ -31,7 +31,7 @@ exports.idCheck = (req, res) => {
 
 
 exports.signin = (req, res) => {
-  res.render('pages/signin');
+  res.render('pages/signin', {isLogin: req.session.user});
 };
 
 exports.post_signin = (req, res) => {
@@ -44,10 +44,26 @@ exports.post_signin = (req, res) => {
     if (result === null) {
       res.send(false);
     } else {
-      res.send(true);
+      req.session.user = req.body.userID;
+      res.send({isLogin: req.session.user});
     }
   });
 };
+
+exports.mypage = (req, res) => {
+  console.log(req.session.user);
+  res.render('pages/mypage', {isLogin: req.session.user});
+};
+
+exports.signout = (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      throw err;
+    }
+    res.redirect('/pages/mainpage');
+  })
+};
+
 
 
 

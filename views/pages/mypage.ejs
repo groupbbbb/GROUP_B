@@ -4,36 +4,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/static/css/mypage.css" />
-    <%- include('../common/include.ejs') %>
+    <title>마이페이지</title>
   </head>
-
   <body>
-    <%- include('../common/nav.ejs') %>
-
-    <div class="editBox">
-      <div class="profileEdit">
-        <div class="infoList">
-          <div class="info">내정보 수정</div>
-
-          <div class="like">좋아요 목록</div>
-          <div class="fix">게시글 수정</div>
-        </div>
-        <div class="editCard">
-          <div class="myInformation">
-            <p>내정보 수정</p>
-          </div>
-          <div class="likeList">
-            <p>좋아요 목록</p>
-          </div>
-          <div class="postEdit">
-            <p>게시글 수정</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script src="/static/js/mypage.js"></script>
+    <p onclick="signout();">로그아웃하기</p>
   </body>
+  <script>
+    function signout(isLogin) {
+      axios({
+        method: "POST",
+        url: "/user/signin",
+        data: {
+          isLogin,
+        },
+      });
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </html>
