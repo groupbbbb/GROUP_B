@@ -23,35 +23,11 @@ db.Comment = require('./Comment')(sequelize, Sequelize);
 
 db.Post.hasMany(db.Likes,{foreignKey: 'post_id'});
 db.Likes.belongsTo(db.Post,{foreignKey: 'post_id'});
-
 db.User.hasMany(db.Post,{foreignKey: 'user_id'});
 db.Post.belongsTo(db.User,{foreignKey: 'user_id'});
-
 db.User.hasMany(db.Likes,{foreignKey: 'user_id'});
 db.Likes.belongsTo(db.User,{foreignKey: 'user_id'});
-
-// db.Post.belongsToMany(db.User, {
-//   through: "user-post",
-//   as: "post_id",
-//   foreignKey: "id",
-// });
-
-// db.User.belongsToMany(db.Post, {
-//   through: "user-post",
-//   as: "user_id",
-//   foreignKey: "id",
-// });
-
-// db.User.belongsToMany(db.User, {
-//   through: "Follow",
-//   as: "Follower_id",
-//   foreignKey: "Follower_id",
-// });
-
-// db.User.belongsToMany(db.User, {
-//   through: "Follow",
-//   as: "Followee_id",
-//   foreignKey: "Followee_id",
-// });
+db.User.hasMany(db.Comment,{foreignKey: 'user_id'});
+db.Comment.belongsTo(db.User,{foreignKey: 'user_id'});
 
 module.exports = db;

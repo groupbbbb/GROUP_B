@@ -14,6 +14,7 @@
 
 <body>
     <a href="/user/signin">로그인</a>
+    <br><a href="/">홈</a>
     <br><a href="/post">포스트보기</a>
     <br><a href="/post/upload">포스트올리기</a>
     <hr>
@@ -22,7 +23,7 @@
         <div class="posts">
             <hr>
             <div>
-                게시자 : <%= data[i].user_id %>
+                게시자 : <%= data[i].user.userID %>
             </div>
             <div>
                 내용 : <%= data[i].content %>
@@ -49,7 +50,8 @@
             <button onclick="viewComment(this, '<%= data[i].id %>')">댓글보기</button>
             <div class="like like-off">
                 <p class="likes">좋아요 개수 : <%= data[i].likes.length %></p>
-                <button onclick="like(this, '<%= data[i].id %>')">좋아요하기</button>
+                <button onclick="like(this, '<%= data[i].id %>')">좋아요</button>
+                <button onclick="viewLikes(this, '<%= data[i].id %>')">좋아요한유저목록</button>
             </div>
             <form name="uploadComment-form<%= data[i].id %>" class="display-none uploadComment-form">
                 <hr>

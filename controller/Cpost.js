@@ -9,7 +9,10 @@ exports.viewPage = (req,res) => {
     models.Post.findAll({
         include: [
             {
-             model:  models.Likes,
+                model:  models.Likes,
+            },
+            {
+                model: models.User,
             }
         ]
       }).then(result => {
@@ -108,7 +111,12 @@ exports.editPost = (req,res) => {
 // 댓글 전체 보기
 exports.viewComment = (req,res) => {
     models.Comment.findAll({
-        where : {post_id : req.body.id}
+        where : {post_id : req.body.id},
+        include: [
+            {
+                model: models.User,
+            }
+        ]
     }).then(result => {
         res.send(result);
     })
@@ -188,24 +196,19 @@ exports.viewLike = (req,res) => {
 
 // 선택 게시글 좋아요 조회
 exports.viewThisLike = (req,res) => {
-    const user_id = req.session.user_id;
-    if(user_id){
-        models.Post.findOne({
-            where : {id : req.body.id},
-            include: [
-                {
-                    model:  models.Likes,
-                },
-                {
-                    model : models.User,
-                }
-            ]
-          }).then((result)=>{
-            res.send(result);
-        });
-    }else{
-        res.send('로그인 하세요');
-    }
+    models.Post.findOne({
+        where: { id: req.body.id },
+        include: [
+            {
+             model:  models.Likes,
+             include: [{
+                 model: models.User
+             }]
+            }
+        ]
+    }).then((result) => {
+        res.send(result);
+    });
 }
 
 // 선택 게시글 좋아요했는지
@@ -222,7 +225,6 @@ exports.viewThisLiked = (req,res) => {
     }
 }
 
-
 // 좋아요
 exports.addLike = (req,res) => {
     const user_id = req.session.user_id;
@@ -237,6 +239,7 @@ exports.addLike = (req,res) => {
         res.send('로그인 하세요');
     }
 }
+
 // 취소
 exports.removeLike = (req,res) => {
     const user_id = req.session.user_id;
