@@ -28,27 +28,23 @@
     />
   </head>
   <body>
-    <%- include('../common/nav.ejs') %> <% const srcs = [
-    ['dog.jpg','dog2.jpg','dog3.jpg'], ['english1.jpg', 'english2.jpg',
-    'english3.jpg'], ['model.jpg', 'model2.jpg', 'model3.jpg'], ['food.jpg',
-    'food2.jpg', 'food3.jpg'], ['festival2.jpg', 'festival3.jpg',
-    'festival.jpg'], ] %> <% for (let i=0; i < srcs.length; i++) {%> <%# for
-    (let i=0; i < 2 ; i++) {%>
+    <%- include('../common/nav.ejs') %> 
+    <% const srcs = [['dog.jpg','dog2.jpg','dog3.jpg'], ['english1.jpg', 'english2.jpg','english3.jpg'], ['model.jpg', 'model2.jpg', 'model3.jpg'], ['food.jpg','food2.jpg', 'food3.jpg'], ['festival2.jpg', 'festival3.jpg','festival.jpg'], ] %> <% for (let i=0; i < srcs.length; i++) {%> 
+    <%# for
+    (let i=0; i < 7 ; i++) {%>
     <div class="box">
       <div class="card">
         <div class="profile">
           <div class="profileImg"><%= %></div>
-          <div class="profileName">userId <%= %></div>
+          <div class="profileName"><%= data[i].user.userID %></div>
         </div>
+        <% if(data[i].img_src){ %>
         <div class="slideBox">
-          <% for (let k=0; k < srcs[i].length; k++) {%>
-          <div class="slideImg slideImgFile<%=[k]%>">
-            <img src="/static/img/<%= srcs[i][k] %>" alt="" />
+          <div class="slideImg">
+            <img src="../../<%= data[i].img_src %>" alt="" />
           </div>
-          <% } %>
-          <a class="prev btn" onclick="">❮</a>
-          <a class="next btn" onclick="">❯</a>
         </div>
+        <% } %>
         <div class="userWriting">
           <div><i class="heart-icon bi bi-heart"></i> <%= %></div>
 
@@ -66,22 +62,34 @@
               alt="메세지보내기"
               class="sendMessage"
               title="메세지보내기"
-            />
-            <%= %>
+            /> <br>
+            내용 : <%= data[i].content %> <br>
+            등록일 : <%= data[i].createdAt %> <br>
+            수정일 : <%= data[i].updatedAt %> <br>
+          </div>
+          <div>
+            <!-- <img
+              src="/static/img/search.jpg"
+              alt="자세히보기"
+              class="search"
+              title="확대"
+            /> -->
+            <button onclick="deletePost(this, '<%= data[i].id %>')">삭제하기</button>
           </div>
           <br /><br />
         </div>
-
         <div class="commentBox">
           <img src="/static/img/chat.jpg" alt="댓글창" class="comment" />
-          <input
-            type="text"
-            name="content"
-            class="content"
-            onfocus="this.placeholder=''"
-            onblur="this.placeholder='댓글달기'"
-            placeholder="댓글달기"
-          />
+          <form name="uploadComment-form<%= data[i].id %>" class="display-none uploadComment-form">
+            <input
+              type="text"
+              name="content"
+              class="content"
+              onfocus="this.placeholder=''"
+              onblur="this.placeholder='댓글달기'"
+              placeholder="댓글달기"
+            />
+          </form>
         </div>
       </div>
       <div class="filterColor"></div>
@@ -115,7 +123,6 @@
                     title="메세지보내기"
                   />
                 </div>
-
                 <!-- <%= %> -->
                 <div class="inputBox">
                   <img
@@ -142,31 +149,10 @@
     </div>
 
     <% } %>
+
+    <script src="/static/js/postView.js"></script>
   </body>
   <!-- <script src="/static/js/mainpage.js"></script> -->
   <script src="/static/js/test.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script>
-    function mypage() {
-      function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-          results = regex.exec(location.search);
-        return results == null
-          ? ""
-          : decodeURIComponent(results[1].replace(/\+/g, " "));
-      }
-      var id = getParameterByName("id");
-
-      axios({
-        method: "POST",
-        url: "/user/mypage",
-        data: {
-          id,
-        },
-      }).then((data) => {
-        document.location.href = `/user/mypage?isLogin=${data.data.isLogin}?id=${data.data.id}`;
-      });
-    }
-  </script>
 </html>

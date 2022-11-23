@@ -59,7 +59,8 @@
                 <button type="button" onclick="uploadComment(this, '<%= data[i].id %>')">댓글 등록</button><br>
                 <hr>
                 <div class="comment-list<%= data[i].id %>"></div>
-            </form><hr>
+            </form>
+            <hr>
             <form name="editComment-form<%= data[i].id %>" class="editComment-form display-none">
                 <input type="text" id="content" class="edit-content<%= data[i].id %>"/> <br />
                 <button type="button" onclick="commentEditDo(this, '<%= data[i].id %>')">변경</button>

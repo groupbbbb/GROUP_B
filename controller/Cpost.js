@@ -3,6 +3,37 @@ const models = require('../models');
 
 
 // =========================================  포스트  =========================================
+exports.main = (req, res) => {
+    const user = req.session.user;
+    if (user !== undefined) {
+        models.Post.findAll({
+            include: [
+                {
+                    model: models.Likes,
+                },
+                {
+                    model: models.User,
+                }
+            ]
+        }).then(result => {
+            res.render("pages/mainpage", { data:result, isLogin: true, user: user });
+        })
+    } else {
+        models.Post.findAll({
+            include: [
+                {
+                    model: models.Likes,
+                },
+                {
+                    model: models.User,
+                }
+            ]
+        }).then(result => {
+            res.render("pages/mainpage", { data:result, isLogin: false });
+        })
+    }
+}
+
 
 // 전체 포스트 보기
 exports.viewPage = (req,res) => {
