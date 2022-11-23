@@ -1,0 +1,66 @@
+.chatRightTop {
+  border-bottom: 1px solid #dbdbdb;
+  height: 3vw;
+  line-height: 3vw;
+  display: flex;
+  justify-content: center;
+}
+
+.chatRightTopEmpty {
+  width: 25%;
+}
+
+.chatRightTopUserid {
+  width: 50%;
+  text-align: center;
+}
+
+.chatRightTopSet {
+  width: 25%;
+  text-align: right;
+}
+
+.setting {
+  width: 3vw;
+  padding-right: 2vw;
+}
+
+.chatRightBottom {
+  height: 32vw;
+}
+
+.chatView {
+  height: 90%;
+}
+
+.chatInput {
+  height: 10%;
+  width: 100%;
+  display: flex;
+}
+
+#message {
+  width: 75%;
+}
+
+.filebox label {
+  padding: 0.1vw 0.2vw;
+  font-size: 2.5vw;
+  vertical-align: middle;
+  background-color: #fdfdfd;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-radius: 0.25em;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+#send {
+}

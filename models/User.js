@@ -40,4 +40,10 @@ const User = function (Sequelize, DataTypes) {
   return user;
 };
 
+// User.belongsToMany(Follow, {
+//   through: "user_id",
+//   as: "follow",
+//   foreignKey: "id",
+// });
+
 module.exports = User;

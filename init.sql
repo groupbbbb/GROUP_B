@@ -78,6 +78,7 @@ CREATE TABLE IF NOT EXISTS `pocogram`.`follow` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `followee_id` INT NOT NULL,
   `follower_id` INT NOT NULL,
+  TIMESTAMP : false,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_follow_user1`
     FOREIGN KEY (`followee_id`)

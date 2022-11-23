@@ -1,0 +1,25 @@
+<div>
+  <link rel="stylesheet" href="/static/css/chatting.css" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <div class="chatRightTop">
+    <div class="chatRightTopEmpty"></div>
+    <div class="chatRightTopUserid">상대방 이름</div>
+    <div class="chatRightTopSet">
+      <img class="setting" src="/static/img/three-dots.svg" alt="setting" />
+    </div>
+  </div>
+  <div class="chatRightBottom">
+    <div class="chatView"></div>
+    <div class="chatInput">
+      <input type="text" id="message" autocomplete="off" />
+      <div class="filebox">
+        <label for="sendFile">업로드</label>
+        <input type="file" id="sendFile" name="sendFile" />
+      </div>
+      <button type="button" onclick="send();" id="send">전송</button>
+    </div>
+  </div>
+</div>
+
+<script src="/static/js/chatting.js"></script>

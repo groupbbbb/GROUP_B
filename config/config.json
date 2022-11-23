@@ -4,7 +4,10 @@
     "password": "kang8798",
     "database": "pocogram",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "define": {
+      "timestamps": false
+    }
   },
   "test": {},
   "production": {}
