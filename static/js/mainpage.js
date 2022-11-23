@@ -20,7 +20,24 @@ function mypage() {
     });
 }
 
-// ===========================================================================
+const searchAll = document.querySelectorAll(".search");
+const closeAll = document.querySelectorAll(".close");
+const hiddenBox = document.querySelectorAll(".hiddenBox");
+const box = document.querySelectorAll(".box");
+const contentBox = document.querySelectorAll(".contentBox");
+
+for (let k = 0; k < hiddenBox.length; k++) {
+  searchAll[k].addEventListener("click", function () {
+    hiddenBox[k].style.display = "block";
+  });
+}
+
+for (let l = 0; l < box.length; l++) {
+  closeAll[l].addEventListener("click", () => {
+    for (let j = 0; j < box.length; j++) hiddenBox[j].style.display = "none";
+  });
+}
+
 
 // =========================================  포스트  =========================================
 
@@ -121,6 +138,7 @@ function editPostCancel(obj, id) {
 }
 
 
+
 // =========================================  댓글  =========================================
 
 // 선택 포스트 댓글보기
@@ -180,47 +198,37 @@ async function deleteComment(obj, id){
 
 // 수정할 댓글 선택
 const editCommentSelected = {};
-async function editComment(obj, id){
+async function editComment(obj, post_id, comment_id) {
     let data =
         await axios({
             method: 'POST',
             url: '/post/viewThisComment',
-            data: { id: id },
+            data: { id: comment_id },
         }).then((res) => {
             return res.data;
         })
-    
-    axios({
-        method: 'POST',
-        url: '/post/editCommentSessionCheck',
-        data: { user_id : data.user_id },
-    }).then((res) => {
-        return res.data;
-    }).then((res)=>{
-        if(res===true){
-            const form = document.forms[`editComment-form${data.post_id}`];
-            if(form.classList.contains('display-none')){
-                form.classList.toggle('display-none');
-            }
-            form.content.value=data.content;
-            editCommentSelected.id=data.id;
-            editCommentSelected.post_id=data.post_id;
-            editCommentSelected.user_id=data.user_id;
-        }else{
-            console.log(res);
-        }
-    })
+
+    const form = document.forms[`editComment-form${post_id}${comment_id}`];
+    console.log(data);
+    if (form.classList.contains('display-none')) {
+        form.classList.toggle('display-none');
+    }
+    form.content.value = data.content;
+    // editCommentSelected.id = data.id;
+    // editCommentSelected.post_id = data.post_id;
+    // editCommentSelected.user_id = data.user_id;
+
 
 }
 
 // 수정 확인
-function commentEditDo(obj, id) {
-    const form = document.forms[`editComment-form${editCommentSelected.post_id}`];
+function commentEditDo(obj, post_id, comment_id) {
+    const form = document.forms[`editComment-form${post_id}${comment_id}`];
     axios({
         method: 'POST',
         url: '/post/editComment',
         data: { 
-            id : editCommentSelected.id, 
+            id : comment_id,
             content : form.content.value }
     }).then((res) => {
         return res.data;
@@ -230,8 +238,8 @@ function commentEditDo(obj, id) {
 }
 
 // 수정 취소
-function commentEditCancel(obj, id) {
-    const form = document.forms[`editComment-form${editCommentSelected.post_id}`];
+function commentEditCancel(obj, post_id, comment_id) {
+    const form = document.forms[`editComment-form${post_id}${comment_id}`];
     form.classList.toggle('display-none');
 }
 
@@ -284,6 +292,7 @@ async function like(obj, id){
             console.log(res.data);
         })
     }
+    // document.querySelector(`.heart-icon${id}`).classList.toggle('heart-color');
 }
 
 async function viewLikes(obj, id){
@@ -295,5 +304,12 @@ async function viewLikes(obj, id){
         }).then((res) => {
             return res.data;
         });
-    console.log(data.likes);
+    let likedPeople = document.querySelector(`.likedPeople${id}`);
+    let html=''
+    for(let i=0; i<data.likes.length;i++){
+        html+=`<div>${data.likes[i].user.userID}</div>`;
+    }
+    likedPeople.innerHTML=html;
+    likedPeople.classList.toggle('display-none');
+    
 }

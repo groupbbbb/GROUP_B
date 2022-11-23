@@ -5,6 +5,7 @@ const models = require('../models');
 // =========================================  포스트  =========================================
 exports.main = (req, res) => {
     const user = req.session.user;
+    const user_id = req.session.user_id;
     if (user !== undefined) {
         models.Post.findAll({
             include: [
@@ -13,10 +14,17 @@ exports.main = (req, res) => {
                 },
                 {
                     model: models.User,
+                },
+                {
+                    model: models.Comment,
+                    include: [{
+                        model: models.User,
+                        attributes : ['userID'],
+                    }]
                 }
             ]
         }).then(result => {
-            res.render("pages/mainpage", { data:result, isLogin: true, user: user });
+            res.render("pages/mainpage", { data:result, isLogin: true, user: user, user_id:user_id });
         })
     } else {
         models.Post.findAll({
@@ -26,6 +34,13 @@ exports.main = (req, res) => {
                 },
                 {
                     model: models.User,
+                },
+                {
+                    model: models.Comment,
+                    include: [{
+                        model: models.User,
+                        attributes : ['userID'],
+                    }]
                 }
             ]
         }).then(result => {
@@ -62,6 +77,13 @@ exports.viewThisPost = (req,res) => {
             },
             {
                 model : models.User,
+            },
+            {
+                model : models.Comment,
+                include: [{
+                    model: models.User,
+                    attributes : ['userID'],
+                }]
             }
         ]
     }).then(result => {
