@@ -21,13 +21,16 @@
             <div class="editCard">
                 <div class="myInformation">
                     <p>내정보 수정</p>
+                        프로필사진: <img src="" alt="profileImg" id="profileImg"><br>
+                        <input type="file" name="profileUpload" id="profileUpload"><br>
+                        <button type="button" onclick="fileUpload();">사진적용하기</button>
+                    <hr>
                     <form name="informForm">
-                      프로필사진: <img src="" alt="profileImg" id="profileImg">
-                      ID: <input type="text" name="userID" id="userID" readonly>
-                      PW: <input type="text"  name="userPW" id="userPW" readonly>
-                      NAME: <input type="text"  name="name" id="name">
-                      BirthDay: <input type="text"  name="birth" id="birth">
-                      <button type="button" onclick="modify();">수정하기</button>
+                      ID: <input type="text" name="userID" id="userID" readonly><br>
+                      PW: <input type="text"  name="userPW" id="userPW" readonly><br>
+                      NAME: <input type="text"  name="name" id="name" onchange="nameChange();"><br>
+                      BirthDay: <input type="text"  name="birth" id="birth" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="birthChange();"><br>
+                      <button type="button" onclick="modify();" disabled class="modifyInformBtn">수정하기</button>
                     </form>
 
                 </div>
@@ -55,10 +58,10 @@
         로그아웃
       </button>
     </div>
-
-    <input type="hidden" name="isLogin" value="<%= isLogin %>" id="isLogin" />
-  </body>
+    <input type="hidden" name="isLogin" value="<%= isLogin %>" id="isLogin">
+</body>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="/static/js/mypageEdit.js"></script>
+  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </html>
