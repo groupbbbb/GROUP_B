@@ -10,8 +10,11 @@
   </head>
   <body>
     <%- include('../common/nav.ejs') %>
-
+    
     <div class="editBox">
+      <button type="button" onclick="signout();" id="logoutBtn">
+        로그아웃
+      </button>
         <div class="profileEdit">
             <div class="infoList">
                 <div class="info" onclick="myinform()">내정보 수정</div>
@@ -21,28 +24,26 @@
             <div class="editCard">
                 <div class="myInformation">
                     <p>내정보 수정</p>
-                        프로필사진: <img src="" alt="profileImg" id="profileImg"><br>
+                    <div class="profileZone">
+                      <span class="word">PROFILE</span><br>
+                        <img src="" alt="profileImg" id="profileImg"><br>
                         <input type="file" name="profileUpload" id="profileUpload"><br>
-                        <button type="button" onclick="fileUpload();">사진적용하기</button>
-                    <hr>
-                    <form name="informForm">
-                      ID: <input type="text" name="userID" id="userID" readonly><br>
-                      PW: <input type="text"  name="userPW" id="userPW" readonly><br>
-                      NAME: <input type="text"  name="name" id="name" onchange="nameChange();"><br>
-                      BirthDay: <input type="text"  name="birth" id="birth" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="birthChange();"><br>
-                      <button type="button" onclick="modify();" disabled class="modifyInformBtn">수정하기</button>
-                    </form>
-
+                        <button type="button" onclick="fileUpload();" id="fileUploadBtn">사진적용</button>
+                      </div>
+                    <div class="informationZone">
+                      <form name="informForm">
+                        <span class="word">ID</span><br>
+                        <input type="text" name="userID" id="userID" class="userInput" readonly><br>
+                        <span class="word">PW</span><br>
+                        <input type="text"  name="userPW" id="userPW" class="userInput" readonly><br>
+                        <span class="word">NAME</span><br>
+                        <input type="text"  name="name" id="name" class="userInput" onchange="nameChange();"><br>
+                        <span class="word">BIRTH</span><br>
+                        <input type="text"  name="birth" id="birth" class="userInput" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="birthChange();"><br>
+                        <button type="button" onclick="modify();" disabled class="modifyInformBtn">수정</button>
+                      </form>
+                  </div>
                 </div>
-                <div class="nameEdit">
-                  <span class="word">NAME</span>
-                  <input type="text" id="name" class="userInput" />
-                </div>
-                <div class="birthEdit">
-                  <span class="word">BirthDay</span>
-                  <input type="text" id="birth" class="userInput" />
-                </div>
-                <button type="button" onclick="modify();" id="editBtn">수정하기</button>
               </div>
             </form>
           </div>
@@ -54,14 +55,10 @@
           </div>
         </div>
       </div>
-      <button type="button" onclick="signout();" id="logoutBtn">
-        로그아웃
-      </button>
     </div>
     <input type="hidden" name="isLogin" value="<%= isLogin %>" id="isLogin">
 </body>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="/static/js/mypageEdit.js"></script>
-  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </html>
