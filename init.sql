@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `pocogram`.`user` (
   `userPW` VARCHAR(100) NOT NULL,
   `name` VARCHAR(10) NOT NULL,
   `birth` DATE NULL,
-  `profile_img` BLOB NULL,
+  `profile_img` VARCHAR(500) NULL,
   PRIMARY KEY (`id`));
 
 

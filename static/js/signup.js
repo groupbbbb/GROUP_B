@@ -111,7 +111,7 @@ pwChecking.onblur = function () {
             title: '회원가입에 성공했습니다.',
             showConfirmButton: false,
           })
-          setTimeout("location.href='/user/signin'",1200)
+          setTimeout("location.href='/user/signin'",1000)
         });
       } else {
         idFocus();

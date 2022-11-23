@@ -75,6 +75,41 @@ exports.getMyInform = (req, res) => {
     birth:result.dataValues.birth, profile_img:result.dataValues.profile_img});
   });
 }
+
+exports.modifyUserInform = (req, res) => {
+  models.User.update(
+    {
+      userID: req.body.userID,
+      userPW: req.body.userPW,
+      name: req.body.name,
+      birth: req.body.birth,
+    },
+    {
+      where: { id: req.body.id },
+    }
+  ).then(() => {
+    res.send(true);
+  });
+}
+
+exports.profileUploads = (req, res) => {
+  console.log(req.body);
+  console.log(req.body.id);
+  console.log(req.file.path);
+  models.User.update(
+    {
+      profile_img: req.file.path,
+    },
+    {
+      where: { id: req.body.id },
+    }
+  ).then((result) => {
+    console.log(result);
+    res.send(result);
+  });
+}
+
+
   
 
 
