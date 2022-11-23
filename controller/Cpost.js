@@ -1,3 +1,4 @@
+// const { AbstractQuery } = require('sequelize/types/dialects/abstract/query');
 const models = require('../models'); 
 
 
@@ -5,16 +6,33 @@ const models = require('../models');
 
 // 전체 포스트 보기
 exports.viewPage = (req,res) => {
-    models.Post.findAll().then(result => {
+    models.Post.findAll({
+        include: [
+            {
+                model:  models.Likes,
+            },
+            {
+                model: models.User,
+            }
+        ]
+      }).then(result => {
         res.render('pages/postView', {data:result});
-    })
+      })
 }
 
 // 선택한 포스트 보기
 exports.viewThisPost = (req,res) => {
     const user_id = req.session.user_id;
     models.Post.findOne({
-        where : {id : req.body.id}
+        where : {id : req.body.id},
+        include: [
+            {
+                model:  models.Likes,
+            },
+            {
+                model : models.User,
+            }
+        ]
     }).then(result => {
         res.send(result);
     })
@@ -93,7 +111,12 @@ exports.editPost = (req,res) => {
 // 댓글 전체 보기
 exports.viewComment = (req,res) => {
     models.Comment.findAll({
-        where : {post_id : req.body.id}
+        where : {post_id : req.body.id},
+        include: [
+            {
+                model: models.User,
+            }
+        ]
     }).then(result => {
         res.send(result);
     })
@@ -166,9 +189,70 @@ exports.editComment = (req,res) => {
 
 // =========================================  좋아요  =========================================
 
-// 좋아요
-exports.like = (req,res) => {
+// 좋아요 조회
+exports.viewLike = (req,res) => {
 }
+
+
+// 선택 게시글 좋아요 조회
+exports.viewThisLike = (req,res) => {
+    models.Post.findOne({
+        where: { id: req.body.id },
+        include: [
+            {
+             model:  models.Likes,
+             include: [{
+                 model: models.User
+             }]
+            }
+        ]
+    }).then((result) => {
+        res.send(result);
+    });
+}
+
+// 선택 게시글 좋아요했는지
+exports.viewThisLiked = (req,res) => {
+    const user_id = req.session.user_id;
+    if(user_id){
+        models.Likes.findOne({
+            where : {post_id : req.body.id, user_id : user_id},
+          }).then((result)=>{
+            res.send(result);
+        });
+    }else{
+        res.send('로그인 하세요');
+    }
+}
+
+// 좋아요
+exports.addLike = (req,res) => {
+    const user_id = req.session.user_id;
+    if(user_id){
+        models.Likes.create({
+            post_id : req.body.id, 
+            user_id : user_id
+        }).then((result)=>{
+            res.send('좋아요 성공');
+        })
+    }else{
+        res.send('로그인 하세요');
+    }
+}
+
 // 취소
-exports.cancelLike = (req,res) => {
+exports.removeLike = (req,res) => {
+    const user_id = req.session.user_id;
+    if(user_id){
+        models.Likes.destroy({
+            where : {
+                post_id : req.body.id, 
+                user_id : user_id
+            }
+        }).then((result)=>{
+            res.send('좋아요 취소 성공');
+        })
+    }else{
+        res.send('로그인 하세요');
+    }
 }

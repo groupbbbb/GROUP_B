@@ -35,4 +35,10 @@ router.post('/editComment',controller.editComment);
 router.post('/editCommentSessionCheck',controller.editCommentSessionCheck);
 router.post('/viewThisComment',controller.viewThisComment);
 
+router.post('/viewLike',controller.viewLike);
+router.post('/viewThisLike',controller.viewThisLike);
+router.post('/viewThisLiked',controller.viewThisLiked);
+router.post('/addLike',controller.addLike);
+router.post('/removeLike',controller.removeLike);
+
 module.exports = router;
