@@ -1,6 +1,5 @@
 const express = require("express");
 const session = require("express-session");
-
 const app = express();
 const PORT = 8080;
 
@@ -21,23 +20,23 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
-  const user = req.session.user;
-  if (user !== undefined) {
-    res.render("pages/mainpage", { isLogin: true, user: user });
-  } else {
-    res.render("pages/mainpage", { isLogin: false });
-  }
-});
+// 메인이 post 컨트롤러를 사용하기 때문에 Cpost.js에 코드 옮김
+// app.get("/", (req, res) => {
+//   const user = req.session.user;
+//   if (user !== undefined) {
+//     res.render("pages/mainpage", { isLogin: true, user: user });
+//   } else {
+//     res.render("pages/mainpage", { isLogin: false });
+//   }
+// });
 
 const userRouter = require("./routes/user");
 // const chatRouter = require('./routes/chat');
 const postRouter = require("./routes/post");
 
 app.use("/user", userRouter);
-
 // app.use('/chat', chatRouter);
-app.use("/post", postRouter);
+app.use("/", postRouter);   // 메인이 post 컨트롤러 사용
 
 app.get("/upload", (req, res) => {
   return res.render("pages/upload");

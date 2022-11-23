@@ -131,12 +131,16 @@ input:focus {
 } */
 .heart-icon {
   position: absolute;
-  color: rgb(241, 135, 144);
   font-size: 30px;
   cursor: pointer;
   margin-left: 10px;
   margin-top: 10px;
 }
+
+.heart-color{
+  color: rgb(241, 135, 144);
+}
+
 
 .search {
   margin-left: 45px;
@@ -380,4 +384,8 @@ input:focus {
   .send {
     font-size: 200px;
   } */
+}
+
+.display-none{
+  display:none;
 }

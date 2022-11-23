@@ -3,6 +3,52 @@ const models = require('../models');
 
 
 // =========================================  포스트  =========================================
+exports.main = (req, res) => {
+    const user = req.session.user;
+    const user_id = req.session.user_id;
+    if (user !== undefined) {
+        models.Post.findAll({
+            include: [
+                {
+                    model: models.Likes,
+                },
+                {
+                    model: models.User,
+                },
+                {
+                    model: models.Comment,
+                    include: [{
+                        model: models.User,
+                        attributes : ['userID'],
+                    }]
+                }
+            ]
+        }).then(result => {
+            res.render("pages/mainpage", { data:result, isLogin: true, user: user, user_id:user_id });
+        })
+    } else {
+        models.Post.findAll({
+            include: [
+                {
+                    model: models.Likes,
+                },
+                {
+                    model: models.User,
+                },
+                {
+                    model: models.Comment,
+                    include: [{
+                        model: models.User,
+                        attributes : ['userID'],
+                    }]
+                }
+            ]
+        }).then(result => {
+            res.render("pages/mainpage", { data:result, isLogin: false });
+        })
+    }
+}
+
 
 // 전체 포스트 보기
 exports.viewPage = (req,res) => {
@@ -31,6 +77,13 @@ exports.viewThisPost = (req,res) => {
             },
             {
                 model : models.User,
+            },
+            {
+                model : models.Comment,
+                include: [{
+                    model: models.User,
+                    attributes : ['userID'],
+                }]
             }
         ]
     }).then(result => {
