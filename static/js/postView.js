@@ -1,5 +1,7 @@
 // =========================================  포스트  =========================================
 
+// const { default: axios } = require("axios");
+
 // 선택 포스트 보기
 function viewThisPost(obj, id) {
     axios({
@@ -111,7 +113,7 @@ async function viewComment(obj, id){
         })
         let str=""
         for(let i=0; i<data.length; i++){
-            str+=`작성자 : ${data[i].user_id}, 내용 : ${data[i].content} <br>등록시간 : ${data[i].createdAt}, 수정시간 : ${data[i].updatedAt}<br>
+            str+=`작성자 : ${data[i].user.userID}, 내용 : ${data[i].content} <br>등록시간 : ${data[i].createdAt}, 수정시간 : ${data[i].updatedAt}<br>
             <button type="button" onclick="deleteComment(this, ${data[i].id})">댓글 삭제</button>
             <button type="button" onclick="editComment(this, ${data[i].id})">댓글 수정</button><br>`;
         }
@@ -211,3 +213,63 @@ function commentEditCancel(obj, id) {
 
 
 // =========================================  좋아요  =========================================
+
+// 좋아요 조회
+async function viewThisLike(obj, id) {
+    let data =
+        await axios({
+            method: 'POST',
+            url: '/post/viewThisLike',
+            data: { id: id },
+        }).then((res) => {
+            return res.data;
+        });
+    console.log(data);
+}
+
+// 선택 게시글 좋아요 했는지 조회
+// -> 했으면 : 좋아요 취소
+// -> 안했으면 : 좋아요 하기
+async function like(obj, id){
+    let data =
+        await axios({
+            method: 'POST',
+            url: '/post/viewThisLiked',
+            data: { id: id },
+        }).then((res) => {
+            return res.data;
+        });
+    if(data=='로그인 하세요'){
+        console.log(data);
+    }else if(data){
+        console.log('좋아요 기록이 있어서 좋아요를 취소합니다.');
+        axios({
+            method: 'POST',
+            url: '/post/removeLike',
+            data: { id: id },
+        }).then((res) => {
+            console.log(res.data);
+        })
+    }else{
+        console.log('좋아요 기록이 없어서 좋아요를 진행합니다.');
+        axios({
+            method: 'POST',
+            url: '/post/addLike',
+            data: { id: id },
+        }).then((res) => {
+            console.log(res.data);
+        })
+    }
+}
+
+async function viewLikes(obj, id){
+    let data =
+        await axios({
+            method: 'POST',
+            url: '/post/viewThisLike',
+            data: { id: id },
+        }).then((res) => {
+            return res.data;
+        });
+    console.log(data.likes);
+}

@@ -10,7 +10,6 @@ body {
   height: 100vh;
   position: relative;
   width: 100%;
-
 }
 
 .card {
@@ -18,7 +17,6 @@ body {
   height: 700px;
   margin: 80px auto;
   border: solid 1px black;
-  
 }
 
 .slideBox {
@@ -54,9 +52,13 @@ body {
 }
 
 .slideImg {
-
   width: 100%;
   display: none;
+}
+
+/* 첫번째 슬라이드 이미지는 보이기 */
+.slideBox .slideImg:first-of-type {
+  display: block;
 }
 
 .slideImg img {
@@ -121,6 +123,12 @@ input:focus {
   background: rgba(0, 0, 0, 0.3);
 }
 
+/* .filterColor {
+  position: absolute;
+  background-color: brown;
+  width: 100%;
+  height: 100%;
+} */
 .heart-icon {
   position: absolute;
   color: rgb(241, 135, 144);
@@ -140,8 +148,6 @@ input:focus {
 }
 
 .hiddenBox {
-
-
   width: 60vw;
   height: 750px;
   background-color: pink;
@@ -151,7 +157,7 @@ input:focus {
 
   transform: translate(-50%, -65%);
   animation: box 0.5s ease;
-  display: none; 
+  display: none;
 }
 
 /* .hiddenBox:nth-of-type(1) {

@@ -12,12 +12,18 @@
           </a>
         </li>
         <li>
+          <a href="/post/upload">
+            post upload
+          </a>
+        </li>
+        <li>
           <div onclick="chat();">
             <img
               src="/static/img/message.jpg"
               alt="전체 페이지"
               title="메세지"
               />
+              <div class="messageAlarm counting"><%= %></div>
             </div>
           </li>
         <% if (isLogin) { %>
