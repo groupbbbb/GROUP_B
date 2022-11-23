@@ -47,6 +47,10 @@
             <button onclick="deletePost(this, '<%= data[i].id %>')">삭제하기</button>
             <button onclick="editPost(this, '<%= data[i].id %>')">수정하기</button>
             <button onclick="viewComment(this, '<%= data[i].id %>')">댓글보기</button>
+            <div class="like like-off">
+                <p class="likes">좋아요 개수 : <%= data[i].likes.length %></p>
+                <button onclick="like(this, '<%= data[i].id %>')">좋아요하기</button>
+            </div>
             <form name="uploadComment-form<%= data[i].id %>" class="display-none uploadComment-form">
                 <hr>
                 <input type="text" id="content" placeholder="댓글내용"/> <br />
