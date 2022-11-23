@@ -48,9 +48,6 @@
           <% } %>
           <a class="prev btn" onclick="">❮</a>
           <a class="next btn" onclick="">❯</a>
-
-          <!-- <a class="prev btn" onclick="plusSlides(-1)">❮</a>
-        <a class="next btn" onclick="plusSlides(1)">❯</a> -->
         </div>
         <div class="userWriting">
           <div><i class="heart-icon bi bi-heart"></i> <%= %></div>
@@ -87,7 +84,7 @@
           />
         </div>
       </div>
-
+      <div class="filterColor"></div>
       <div class="hiddenBox">
         <div class="hiddenImg">
           <div class="halfImg">
@@ -146,27 +143,30 @@
 
     <% } %>
   </body>
-  <script src="/static/js/mainpage.js"></script>
+  <!-- <script src="/static/js/mainpage.js"></script> -->
+  <script src="/static/js/test.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
     function mypage() {
       function getParameterByName(name) {
-          name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
           results = regex.exec(location.search);
-          return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        return results == null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
       }
-      var id = getParameterByName('id');
+      var id = getParameterByName("id");
 
       axios({
-        method: 'POST',
-        url: '/user/mypage',
+        method: "POST",
+        url: "/user/mypage",
         data: {
-          id
+          id,
         },
       }).then((data) => {
         document.location.href = `/user/mypage?isLogin=${data.data.isLogin}?id=${data.data.id}`;
-      })
+      });
     }
   </script>
 </html>

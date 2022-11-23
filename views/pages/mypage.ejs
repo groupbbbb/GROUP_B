@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link rel="stylesheet" href="/static/css/mypageEdit.css" />
-        <%- include('../common/include.ejs') %>
-      </head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/mypageEdit.css" />
+    <%- include('../common/include.ejs') %>
+  </head>
+  <body>
     <%- include('../common/nav.ejs') %>
 
     <div class="editBox">
@@ -29,20 +29,35 @@
                       BirthDay: <input type="text"  name="birth" id="birth">
                       <button type="button" onclick="modify();">수정하기</button>
                     </form>
+
                 </div>
-                <div class="likeList">
-                    <p>좋아요 목록</p>
+                <div class="nameEdit">
+                  <span class="word">NAME</span>
+                  <input type="text" id="name" class="userInput" />
                 </div>
-                <div class="postEdit">
-                    <p>게시글 수정</p>
+                <div class="birthEdit">
+                  <span class="word">BirthDay</span>
+                  <input type="text" id="birth" class="userInput" />
                 </div>
-            </div>
+                <button type="button" onclick="modify();" id="editBtn">수정하기</button>
+              </div>
+            </form>
+          </div>
+          <div class="likeList">
+            <p>좋아요 목록</p>
+          </div>
+          <div class="postEdit">
+            <p>게시글 수정</p>
+          </div>
         </div>
-        <button type="button" onclick="signout();" id="logoutBtn">로그아웃</button>
+      </div>
+      <button type="button" onclick="signout();" id="logoutBtn">
+        로그아웃
+      </button>
     </div>
 
-    <input type="hidden" name="isLogin" value="<%= isLogin %>" id="isLogin">
-</body>
+    <input type="hidden" name="isLogin" value="<%= isLogin %>" id="isLogin" />
+  </body>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="/static/js/mypageEdit.js"></script>
