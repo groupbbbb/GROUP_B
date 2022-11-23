@@ -113,7 +113,7 @@ async function viewComment(obj, id){
         })
         let str=""
         for(let i=0; i<data.length; i++){
-            str+=`작성자 : ${data[i].user_id}, 내용 : ${data[i].content} <br>등록시간 : ${data[i].createdAt}, 수정시간 : ${data[i].updatedAt}<br>
+            str+=`작성자 : ${data[i].user.userID}, 내용 : ${data[i].content} <br>등록시간 : ${data[i].createdAt}, 수정시간 : ${data[i].updatedAt}<br>
             <button type="button" onclick="deleteComment(this, ${data[i].id})">댓글 삭제</button>
             <button type="button" onclick="editComment(this, ${data[i].id})">댓글 수정</button><br>`;
         }
@@ -231,8 +231,6 @@ async function viewThisLike(obj, id) {
 // -> 했으면 : 좋아요 취소
 // -> 안했으면 : 좋아요 하기
 async function like(obj, id){
-    // let like=document.querySelector('.like');
-    // let likeButton=document.querySelector('.like > button');
     let data =
         await axios({
             method: 'POST',
@@ -245,8 +243,6 @@ async function like(obj, id){
         console.log(data);
     }else if(data){
         console.log('좋아요 기록이 있어서 좋아요를 취소합니다.');
-        // likeButton.innerText='좋아요하기';
-        // 좋아요 취소
         axios({
             method: 'POST',
             url: '/post/removeLike',
@@ -256,8 +252,6 @@ async function like(obj, id){
         })
     }else{
         console.log('좋아요 기록이 없어서 좋아요를 진행합니다.');
-        // likeButton.innerText='좋아요취소';
-        // 좋아요 하기
         axios({
             method: 'POST',
             url: '/post/addLike',
@@ -266,5 +260,16 @@ async function like(obj, id){
             console.log(res.data);
         })
     }
-    // like.classList.toggle('like-off');
+}
+
+async function viewLikes(obj, id){
+    let data =
+        await axios({
+            method: 'POST',
+            url: '/post/viewThisLike',
+            data: { id: id },
+        }).then((res) => {
+            return res.data;
+        });
+    console.log(data.likes);
 }
