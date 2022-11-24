@@ -292,7 +292,9 @@ async function like(obj, id){
             console.log(res.data);
         })
     }
-    // document.querySelector(`.heart-icon${id}`).classList.toggle('heart-color');
+    // location.reload();
+    // location.replace(location.href);
+    // location.href = location.href;
 }
 
 async function viewLikes(obj, id){
@@ -312,4 +314,14 @@ async function viewLikes(obj, id){
     likedPeople.innerHTML=html;
     likedPeople.classList.toggle('display-none');
     
+}
+
+
+let heart = document.querySelectorAll(".heart-icon");
+
+for (let i = 0; i < heart.length; i++) {
+  heart[i].addEventListener("click", () => {
+    heart[i].classList.toggle("bi-heart");
+    heart[i].classList.toggle("bi-heart-fill");
+  });
 }
