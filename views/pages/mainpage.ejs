@@ -21,12 +21,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 </head>
+
 <body>
+  <!-- 임시 이미지 -->
+  <% img=["../../static/img/dog.jpg","../../static/img/dog2.jpg","../../static/img/dog3.jpg",]%>
   <% console.log(data)%>
   <%- include('../common/nav.ejs') %>
     <% for(let i=0; i < data.length ; i++) {%>
       <div class="box">
         <div class="card">
+
           <div class="profile">
             <div class="profileImg">
               <%= %>
@@ -35,13 +39,18 @@
               <%= data[i].user.userID %>
             </div>
           </div>
-          <% if(data[i].img_src){ %>
-            <div class="slideBox">
-              <div class="slideImg">
-                <img src="../../<%= data[i].img_src %>" alt="" />
+
+          <!-- 슬라이드 -->
+          <div class="slideBox">
+            <% for (let k=0; k < img.length; k++) {%>
+              <div class="slideImg slideImgFile<%=[k]%>">
+                <!-- 임시이미지 -->
+                <img src=<%=img[k]%> alt="" />
               </div>
-            </div>
-            <% } %>
+              <% } %>
+                <a class="prev btn" onclick="">❮</a>
+                <a class="next btn" onclick="">❯</a>
+          </div>
               <div class="userWriting">
                 <div>
                   <% let isHeart=false; %>
@@ -111,7 +120,16 @@
         <div class="hiddenBox">
           <div class="hiddenImg">
             <div class="halfImg">
-              <img src="../../<%= data[i].img_src %>" alt="" />
+              <div class="slideBox">
+                <% for (let k=0; k < img.length; k++) {%>
+                <div class="slideImg slideImgFile<%=[k]%>">
+                  <!-- 임시 이미지 -->
+                  <img src=<%= img[k]%> alt="" />
+                </div>
+                <% } %>
+                <a class="prev btn" onclick="">❮</a>
+                <a class="next btn" onclick="">❯</a>
+              </div>
             </div>
             <div class="hiddenComment">
               <div class="profile">
@@ -207,35 +225,13 @@
         </div>
       </div>
 
-    </div>
 
-    <% } %>
-  </body>
-  <!-- <script src="/static/js/mainpage.js"></script> -->
-  <script src="/static/js/mainpage.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script>
-    function mypage() {
-      function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-          results = regex.exec(location.search);
-        return results == null
-          ? ""
-          : decodeURIComponent(results[1].replace(/\+/g, " "));
-      }
-      var id = getParameterByName("id");
+      <% } %>
 
-      axios({
-        method: "POST",
-        url: "/user/mypage",
-        data: {
-          id,
-        },
-      }).then((data) => {
-        document.location.href = `/user/mypage?isLogin=${data.data.isLogin}?id=${data.data.id}`;
-      });
-    }
-  </script>
+        <script src="/static/js/mainpage.js"></script>
+</body>
+
+<!-- <script src="/static/js/test.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </html>
-
