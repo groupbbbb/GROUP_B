@@ -40,12 +40,13 @@
             <% }  %>
         <li>
             <% if (isLogin) { %>
+            <a href="/user/mypage?isLogin=<%= isLogin %>">
             <img
               src="/static/img/mypage.jpg"
               alt="마이페이지"
               title="마이페이지"
-              onclick="mypage();"
             />
+            </a>
             <%} else {  %>
             <a href="/user/signin">
             <img

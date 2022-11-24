@@ -16,7 +16,7 @@ const uploadDetail = multer({
       done(null, path.basename(file.originalname, ext) + Date.now() + ext);
     },
   }),
-  limits: { fileSize: 5 * 1024 * 1024 },
+  limits: { fileSize: 8 * 1024 * 1024 },
 });
 
 router.get('/signup', controller.signup);
@@ -28,12 +28,12 @@ router.post('/signin', controller.post_signin);
 
 
 router.get('/mypage', controller.mypage);
-router.post('/mypage', controller.post_mypage);
 router.post('/signout', controller.signout);
 
 router.post('/getMyInform', controller.getMyInform);
 router.post('/modifyUserInform', controller.modifyUserInform);
 router.post('/profileUpload',uploadDetail.single('profileUpload'),controller.profileUploads);
+router.post('/modifyPW', controller.modifyPW);
 
 
 module.exports = router;

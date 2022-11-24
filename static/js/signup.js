@@ -1,15 +1,3 @@
-// function join() {
-//   const form = document.forms["information"];
-
-//   const data = {
-//     email: information.userid.value,
-//     userName: information.userName.value,
-//     birthday: information.birthday.value,
-//     pw: information.pw.value,
-//     pwCheck: information.pwCheck.value,
-//   };
-// }
-
 document.querySelector(".closeEyePw").addEventListener("click", function () {
   const password = document.querySelector("#pw");
   const closeEyePw = document.querySelector(".closeEyePw");
@@ -35,7 +23,7 @@ document
       password.setAttribute("type", "password");
     }
   });
-
+//======아이디중복체크======
   const overlapChecking = document.querySelector('#userID');
   overlapChecking.onblur = function () {
     const form = document.forms['information'];
@@ -59,6 +47,7 @@ document
       }
       });
   }
+  //======비밀번호체크======
 let pwChecking = document.querySelector('#pwCheck');
 const form = document.forms['information'];
 pwChecking.onblur = function () {

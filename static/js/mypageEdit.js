@@ -22,7 +22,7 @@ fix.addEventListener("click", function () {
   likeList.style.display = "none";
   myInformation.style.display = "none";
 });
-
+//======로그아웃======
 function signout() {
   isLogin = document.querySelector('#isLogin').value;
 axios({
@@ -40,26 +40,25 @@ axios({
     setTimeout("location.href=`/?isLogin=${false}`",1000)
 })
 }
-//user 정보가져오기
+//======user 정보가져오기======
 let profileImg = document.querySelector('#profileImg'); 
 let userID = document.querySelector('#userID');
 let userPW = document.querySelector('#userPW'); 
 let userName = document.querySelector('#name'); 
 let birth = document.querySelector('#birth');
-function myinform() {
+function myInform() {
   function getParameterByName(name) {
       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
       var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
       results = regex.exec(location.search);
       return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
-  var id = getParameterByName('id');
-
+  var isLogin = getParameterByName('isLogin');
   axios({
     method: 'POST',
     url: '/user/getMyInform',
     data: {
-        id
+      isLogin
     },
   }).then((data) => {
     if (data.data.profile_img === null) {
@@ -75,49 +74,54 @@ function myinform() {
   });
 }
 
-//user 정보 수정
+//======user 정보 수정======
 function nameChange() {
   document.querySelector('.modifyInformBtn').disabled = false;
 }
 function birthChange() {
   document.querySelector('.modifyInformBtn').disabled = false;
 }
-const form = document.forms['informForm'];
-function modify() {
+const informForm = document.forms['informForm'];
+function modifyInform() {
   function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
     results = regex.exec(location.search);
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-var id = getParameterByName('id');
-  axios({
-    method: 'POST',
-    url: '/user/modifyUserInform',
-    data: {
-      id: id,
-      userPW: form.userPW.value,
-      name: form.name.value,
-      birth: form.birth.value,
-    },
-  }).then((data) => {
-    if(data.data) {
-      Swal.fire({
-        icon: 'success',
-        title: '수정되었습니다.',
-        showConfirmButton: false,
-      })
-      setTimeout(function(){
-        location.reload();
-        },800);
+  }
 
-    } else {
-      alert('수정에 실패하였습니다.')
-    }
-    
-    });
-}
-//user 사진 수정
+  var isLogin = getParameterByName('isLogin');
+
+  if (!informForm.checkValidity()) {
+    informForm.reportValidity();
+    return;
+  }
+    axios({
+      method: 'POST',
+      url: '/user/modifyUserInform',
+      data: {
+        isLogin: isLogin,
+        name: informForm.name.value,
+        birth: informForm.birth.value,
+      },
+    }).then((data) => {
+      if(data.data) {
+        Swal.fire({
+          icon: 'success',
+          title: '수정되었습니다.',
+          showConfirmButton: false,
+        })
+        setTimeout(function(){
+          location.reload();
+          },800);
+
+      } else {
+        alert('수정에 실패하였습니다.')
+      }
+      });
+  }
+
+//======user 사진 수정======
 function fileUpload() {
   function getParameterByName(name) {
       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -125,12 +129,12 @@ function fileUpload() {
       results = regex.exec(location.search);
       return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
-  var id = getParameterByName('id');
+  var isLogin = getParameterByName('isLogin');
 
 const formData = new FormData();
 const file = document.getElementById('profileUpload'); 
 formData.append('profileUpload', file.files[0]);
-formData.append('id', id);
+formData.append('isLogin', isLogin);
 
 axios({
   method: 'POST',
@@ -150,5 +154,64 @@ axios({
     location.reload();
     },800);
 });
+}
+//======user 비밀번호 수정======
+let pwChecking = document.querySelector('#newPW_check');
+const modifyPW_form = document.forms['modifyPW_form'];
+pwChecking.onblur = function () {
+    const pwMsg= document.querySelector('#pwMsg');
+    if (modifyPW_form.newPW.value !== modifyPW_form.newPW_check.value) {
+      pwMsg.innerHTML = '비밀번호가 일치하지않습니다.';
+      pwMsg.style.color = 'red';
+      return;
+    } else {
+      pwMsg.innerHTML = ''
+      pwMsg.style.color = '';
+    }
+}
+function modifyPW() {
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  var isLogin = getParameterByName('isLogin');
+  
+  if (!modifyPW_form.checkValidity()) {
+    modifyPW_form.reportValidity();
+    return;
+  }
+  
+if (modifyPW_form.newPW.value !== modifyPW_form.newPW_check.value) {
+  pwMsg.innerHTML = '비밀번호가 일치하지않습니다.';
+  pwMsg.style.color = 'red';
+  return;
+} else {
+  pwMsg.innerHTML = ''
+  pwMsg.style.color = '';
+}
 
+if (pwMsg.style.color === 'red') {
+  Swal.fire('비밀번호를 확인해주세요.');
+  return;
+} else  {
+  axios({
+    method: 'POST',
+    url: '/user/modifyPW',
+    data: {
+      isLogin: isLogin,
+      newPW: modifyPW_form.newPW.value,
+    },
+  }).then((data) => {
+      Swal.fire({
+        icon: 'success',
+        title: '비밀번호를 변경했습니다.',
+        showConfirmButton: false,
+      })
+      setTimeout(function () {
+        signout();
+      },1000);
+    });
+}
 }
