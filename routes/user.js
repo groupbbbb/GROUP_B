@@ -1,6 +1,23 @@
 const express = require('express');
 const controller = require('../controller/Cuser');
 const router = express.Router();
+const multer = require('multer');
+const path = require('path');
+const upload = multer({
+  dest: 'static/img/userprofileUploads/',
+});
+const uploadDetail = multer({
+  storage: multer.diskStorage({
+    destination(req, file, done) {
+      done(null, 'static/img/userprofileUploads/');
+    },
+    filename(req, file, done) {
+      const ext = path.extname(file.originalname);
+      done(null, path.basename(file.originalname, ext) + Date.now() + ext);
+    },
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 },
+});
 
 router.get('/signup', controller.signup);
 router.post('/signup', controller.post_signup);
@@ -15,6 +32,8 @@ router.post('/mypage', controller.post_mypage);
 router.post('/signout', controller.signout);
 
 router.post('/getMyInform', controller.getMyInform);
+router.post('/modifyUserInform', controller.modifyUserInform);
+router.post('/profileUpload',uploadDetail.single('profileUpload'),controller.profileUploads);
 
 
 module.exports = router;

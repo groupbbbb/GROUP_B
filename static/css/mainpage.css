@@ -126,11 +126,29 @@ input:focus {
 
 .heart-icon {
   position: absolute;
-  color: rgb(241, 135, 144);
   font-size: 30px;
   cursor: pointer;
   margin-left: 10px;
   margin-top: 10px;
+  color: rgb(241, 135, 144);
+}
+
+.heart-icon-hidden{
+  position: absolute;
+  font-size: 30px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: rgb(241, 135, 144);
+}
+
+.heart-icon-isNotLogin {
+  position: absolute;
+  font-size: 30px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: rgb(241, 135, 144);
 }
 
 .search {
@@ -318,4 +336,8 @@ input:focus {
   .hiddenContent {
     width: 70%;
   }
+}
+
+.display-none{
+  display:none;
 }

@@ -15,7 +15,7 @@ body {
   width: 25%;
   height: 500px;
   background-color: black;
-  margin-top: 100px;
+  margin-top: 50px;
   text-align: center;
   border-radius: 0 20px 20px 0;
 }
@@ -116,7 +116,6 @@ body {
   height: 200px;
   border: 1px solid grey;
   border-radius: 50%;
-  margin-left: -20%;
 }
 
 .userInput {
@@ -129,18 +128,48 @@ body {
   background-color: rgb(231, 231, 231);
 }
 
-#userID {
-  margin-left: 60px;
+.profileZone {
+  margin-bottom: 50px;
 }
 
-#userPW {
-  margin-left: 50px;
+#fileUploadBtn {
+  background-color: black;
+  color: white;
+  border-radius: 4px;
+  margin-left: 50%;
+  margin-top: 50px;
 }
 
-#name {
-  margin-left: 32px;
+.profileZone {
+  position: absolute; 
+  top: 40%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+}
+.informationZone {
+  position: absolute; 
+  top: 40%;
+  left: 60%;
+  transform: translate(-50%, -50%);
 }
 
-#birth {
-  margin-left: 15px;
+input {
+  margin: 7px;
 }
+
+#profileUpload {
+  margin: 10px;
+}
+
+.modifyInformBtn:disabled {
+  background-color: rgb(142, 142, 142);
+}
+
+.modifyInformBtn {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  border-radius: 4px;
+  margin-top: 50px;
+  margin-left: 140px;
+}
+
