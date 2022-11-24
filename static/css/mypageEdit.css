@@ -1,0 +1,175 @@
+body {
+  box-sizing: border-box;
+  font-family: "GmarketSansMedium";
+}
+
+.editBox {
+  position: relative;
+  width: 80%;
+  height: 800px;
+  margin: 30px auto;
+}
+
+.infoList {
+  position: absolute;
+  width: 25%;
+  height: 500px;
+  background-color: black;
+  margin-top: 50px;
+  text-align: center;
+  border-radius: 0 20px 20px 0;
+}
+
+.infoList > div {
+  font-weight: 500;
+  font-size: 20px;
+  color: white;
+  padding-bottom: 10%;
+}
+
+.infoList > div:first-child {
+  margin-top: 100px;
+}
+
+.infoList > div:hover {
+  background-color: white;
+  color: black;
+  border-radius: 30px 0 0 30px;
+  margin-left: 10px;
+}
+
+/* .profileEdit {
+
+} */
+.myInformation,
+.likeList,
+.postEdit {
+  position: absolute;
+  width: 900px;
+  height: 800px;
+  right: 0;
+  display: none;
+}
+
+.myInformation > p,
+.likeList > p,
+.postEdit > p {
+  font-weight: 550;
+  font-size: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid black;
+}
+
+#logoutBtn,
+#editBtn {
+  background-color: black;
+  color: white;
+}
+#logoutBtn {
+  margin-top: 25px;
+  border-radius: 0 20px 20px 0;
+  width: 10%;
+  height: 5%;
+}
+
+#editBtn {
+  margin-left: 32.5%;
+  width: 19%;
+  height: 9%;
+  border-radius: 20px 0 0 20px;
+  margin-top: 5%;
+}
+/* 내정보 수정 css */
+
+.myinfoBox {
+  position: absolute;
+  width: 90%;
+  height: 55%;
+}
+
+.myinfoBox > div {
+  margin-left: 20%;
+}
+
+.myinfoBox > div:not(:first-of-type) {
+  padding-top: 50px;
+}
+
+.word {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.photoWord {
+  font-size: 15px;
+  font-weight: 600;
+  margin-left: 10%;
+}
+
+.photo {
+  float: right;
+  margin-top: 65px;
+}
+
+#profileImg {
+  width: 200px;
+  height: 200px;
+  border: 1px solid grey;
+  border-radius: 50%;
+}
+
+.userInput {
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid grey;
+}
+
+.userInput:hover {
+  background-color: rgb(231, 231, 231);
+}
+
+.profileZone {
+  margin-bottom: 50px;
+}
+
+#fileUploadBtn {
+  background-color: black;
+  color: white;
+  border-radius: 4px;
+  margin-left: 50%;
+  margin-top: 50px;
+}
+
+.profileZone {
+  position: absolute; 
+  top: 40%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+}
+.informationZone {
+  position: absolute; 
+  top: 40%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
+
+input {
+  margin: 7px;
+}
+
+#profileUpload {
+  margin: 10px;
+}
+
+.modifyInformBtn:disabled {
+  background-color: rgb(142, 142, 142);
+}
+
+.modifyInformBtn {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  border-radius: 4px;
+  margin-top: 50px;
+  margin-left: 140px;
+}
+

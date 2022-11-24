@@ -1,0 +1,399 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "GmarketSansMedium";
+}
+
+.box {
+  height: 100vh;
+  position: relative;
+  width: 100%;
+}
+
+.card {
+  width: 500px;
+  height: 800px;
+  margin: 80px auto;
+  border: solid 1px black;
+  background-color: white;
+}
+
+.slideBox {
+  position: relative;
+  width: 100%;
+  height: 60%;
+  border-bottom: solid 1px black;
+  display: flex;
+}
+
+.profile {
+  width: 100%;
+  border-bottom: solid 1px black;
+  display: flex;
+  align-items: center;
+  padding: 1px;
+  height: 6vh;
+}
+
+.profileImg {
+  border: solid 1px black;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-left: 5px;
+}
+
+.profileName {
+  border: solid 1px black;
+  width: 120px;
+  height: 40px;
+  margin-left: 5px;
+}
+
+.slideImg {
+  width: 100%;
+  display: none;
+}
+
+/* 첫번째 슬라이드 이미지는 보이기 */
+.slideBox .slideImg:first-of-type {
+  display: block;
+}
+
+.slideImg img {
+  width: 100%;
+  height: 100%;
+}
+
+.userWriting {
+  display: flex;
+  border-bottom: solid 1px black;
+  height: 25%;
+}
+
+input:focus {
+  outline: none;
+}
+
+.commentBox {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  height: 8%;
+}
+
+.commentBox img {
+  width: 8%;
+}
+.content {
+  width: 150%;
+  margin-top: 50%;
+  border: 0;
+}
+.uploadComment-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.commentContent {
+  width: 80%;
+  height: 30px;
+}
+.commentUp {
+  margin-left: 5px;
+  background-color: black;
+  color: white;
+  width: 80px;
+  height: 30px;
+  border-radius: 20px;
+}
+
+.prev,
+.next,
+.hiddenPrev,
+.hiddenNext {
+  cursor: pointer;
+  position: absolute;
+
+  padding: 12px;
+  /* color: white; */
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.next,
+.hiddenNext {
+  position: absolute;
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.btn {
+  top: 40%;
+  color: rgb(26, 25, 25);
+}
+
+.btn:hover {
+  background: rgba(114, 113, 113, 0.3);
+}
+
+/* .likeCount {
+  width: 30px
+/* } 
+
+.heart-num {
+  margin-top: 10%;
+}
+.management {
+  height: 100%;
+}
+
+.btnFirst,
+.btnSecond {
+  float: right;
+
+  background-color: white;
+  border: 1.5px solid black;
+
+  font-weight: 700;
+  border-radius: 10px;
+  width: 120px;
+  height: 30px;
+}
+
+.btnFirst {
+  margin-bottom: 5%;
+  margin-top: 5%;
+} */
+
+.heart-icon {
+  position: absolute;
+  font-size: 30px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: rgb(241, 135, 144);
+}
+
+.heart-icon-hidden {
+  position: absolute;
+  font-size: 30px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: rgb(241, 135, 144);
+}
+
+.heart-icon-isNotLogin {
+  position: absolute;
+  font-size: 30px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: rgb(241, 135, 144);
+}
+
+.search {
+  margin-top: 5px;
+  margin-left: -70px;
+}
+
+.sendMessage {
+  margin-top: 5px;
+  margin-left: -30px;
+}
+
+.hiddenBox {
+  width: 1050px;
+  height: 750px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -65%);
+  animation: box 0.5s ease;
+  display: none;
+}
+
+.hiddenImg {
+  position: absolute;
+
+  background-color: white;
+
+  border: solid 1px black;
+  /* border-radius: 10px; */
+  width: 100%;
+  height: 100%;
+  /* margin: auto; */
+}
+
+.halfImg {
+  overflow: hidden;
+  position: absolute;
+  width: 65%;
+  height: 100%;
+  border-right: solid 1px black;
+}
+
+.halfSlide {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(44, 44, 44);
+  /* display: none; */
+}
+
+.halfSlide img {
+  width: 100%;
+  height: 90%;
+  margin-top: 5.5%;
+}
+
+.hiddenComment {
+  position: absolute;
+
+  width: 35%;
+  height: 100%;
+  background-color: white;
+
+  right: 0;
+}
+
+.slideWriting {
+  height: 30%;
+}
+.slidecommentView {
+  height: 46%;
+  overflow: auto;
+  border-bottom: solid 1px black;
+}
+.close {
+  top: 1%;
+  position: absolute;
+  right: 0;
+}
+
+.slideComment {
+  height: 10%;
+}
+
+.send {
+  margin-left: 45px;
+  margin-top: 5px;
+}
+
+.inputBox {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+/* .inputComment {
+  width: 35px;
+  
+} */
+
+.hiddenContent {
+  border: solid 1px black;
+  width: 80%;
+  margin-left: 5px;
+}
+
+.likeCount {
+  width: 23%;
+}
+
+.heartCount {
+  margin-top: 40px;
+}
+
+@keyframes box {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 599px) {
+  .card {
+    width: 80%;
+  }
+
+  .hiddenBox {
+    width: 90%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    top: 40%;
+    display: none;
+  }
+  .halfImg {
+    display: none;
+  }
+  .hiddenComment {
+    width: 100%;
+  }
+  .slideWriting {
+    height: 23%;
+
+    width: 95%;
+    margin: auto;
+  }
+  .slidecommentView {
+    width: 95%;
+    margin: auto;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 699px) {
+  .card {
+    width: 400px;
+  }
+
+  .hiddenBox {
+    width: 90%;
+    height: 60%;
+    animation: box 0.5s ease;
+    top: 40%;
+    display: none;
+  }
+
+  .hiddenContent {
+    width: 70%;
+  }
+
+  .slideWriting {
+    height: 25%;
+  }
+  .close {
+    top: -7.5%;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1100px) {
+  .hiddenBox {
+    width: 90%;
+    height: 70%;
+    animation: box 0.5s ease;
+    display: none;
+    top: 45%;
+  }
+
+  .slideWriting {
+    height: 28%;
+  }
+
+  .hiddenContent {
+    width: 70%;
+  }
+}
+
+.display-none {
+  display: none;
+}

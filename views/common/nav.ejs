@@ -1,55 +1,58 @@
-<div>
-  <link rel="stylesheet" href="/static/css/nav.css" />
-
-  <link
-    href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet"
-  />
-
+<div class="headerBox">
   <header class="header">
-    <img src="/static/image/logo.jpg" alt="logo" class="logo" />
+    <a href="/">
+      <img src="/static/img/navlogo.jpg" alt="logo" class="logo" />
+    </a>
 
     <nav class="navBar">
       <ul>
         <li>
-          <div onclick="home();">
-            <img src="/static/image/home.jpg" alt="홈" title="홈" />
-          </div>
+          <a href="/">
+            <img src="/static/img/home.jpg" alt="홈" title="홈" />
+          </a>
         </li>
         <li>
-          <div onclick="message();">
+          <a href="/post/upload"> <div class="postUp">post upload</div></a>
+        </li>
+        <li>
+          <div onclick="chat();">
             <img
-              src="/static/image/message.jpg"
+              src="/static/img/message.jpg"
               alt="전체 페이지"
               title="메세지"
             />
           </div>
         </li>
+        <% if (isLogin) { %> <%} else { %>
         <li>
-          <div onclick="login();">
+          <a href="/user/signin">
             <img
-              src="/static/image/login.jpg"
+              src="/static/img/login.jpg"
               alt="로그인 페이지"
               title="로그인"
             />
-          </div>
+          </a>
         </li>
+        <% } %>
         <li>
-          <div onclick="myPage();">
+          <% if (isLogin) { %>
+          <img
+            src="/static/img/mypage.jpg"
+            alt="마이페이지"
+            title="마이페이지"
+            onclick="mypage();"
+          />
+          <%} else { %>
+          <a href="/user/signin">
             <img
-              src="/static/image/mypage.jpg"
+              src="/static/img/mypage.jpg"
               alt="마이페이지"
               title="마이페이지"
             />
-          </div>
-        </li>
-        <li>
-          <div onclick="alarm()">
-            <img src="/static/image/alarm.jpg" alt="알림" title="알림" />
-          </div>
+          </a>
+          <% } %>
         </li>
       </ul>
     </nav>
   </header>
-  <hr />
 </div>

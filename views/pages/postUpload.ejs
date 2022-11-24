@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/static/css/postUpload.css" />
+    <style>
+      @font-face {
+        font-family: "GmarketSansMedium";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+    <%- include('../common/include.ejs') %>
+  </head>
+
+  <body>
+    <!-- <h3>Naver Smart Editor 2.0</h3>
+        <a href="https://beforb.tistory.com/m/53">참고링크</a>
+        
+        <form action="insertStudentInfoForm" method="post">
+            <div id="smarteditor">
+                <textarea name="editorTxt" id="editorTxt" rows="20" cols="10" placeholder="내용을 입력해주세요"
+                style="width: 500px"></textarea>
+            </div>
+            <button type="button" onclick="submitPost()">제출</button>
+        </form> -->
+    <%- include('../common/nav2.ejs') %>
+
+    <br /><br />
+    <form name="form_upload">
+      <div class="box">
+        <div class="postBox">
+          <i class="bi bi-cloud-arrow-up"></i>
+          <input type="file" name="img" id="img" class="fileInput" />
+          <input
+            type="text"
+            name="content"
+            class="textInput"
+            onfocus="this.placeholder=''"
+            onblur="this.placeholder='게시글 입력'"
+            placeholder="게시글 입력"
+          />
+          <button type="button" onclick="upload()" class="btn">업로드</button>
+        </div>
+      </div>
+
+      <!-- 업로드 하고 나서 mypage에 게시글 목록으로 넘어가게  -->
+    </form>
+
+    <script src="/static/js/postUpload.js"></script>
+  </body>
+</html>

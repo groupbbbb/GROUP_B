@@ -5,7 +5,9 @@
   font-weight: normal;
   font-style: normal;
 }
-
+* {
+  box-sizing: border-box;
+}
 body {
   background-color: #fafafa;
   font-family: "GmarketSansMedium";
@@ -68,7 +70,7 @@ body {
 
 .join {
   width: 17.1vw;
-  margin-top: 1.5vw;
+  margin-top: 10px;
   border-radius: 3px;
   border: none;
   background-color: #b2dffc;
@@ -79,7 +81,6 @@ body {
 
 .join:hover {
   cursor: pointer;
-  background-color: #0095f6;
 }
 
 .signinMove {
@@ -96,6 +97,26 @@ body {
   color: #0095f6;
 }
 
+#idMsg {
+  font-size: 12px;
+  margin: 2px;
+}
+
+#pwMsg {
+  font-size: 12px;
+  margin: 2px 0 0 0 ;
+}
+
+.checkBtn {
+  background-color: #b2dffc;
+  color: white;
+  border-radius: 3px;
+  border: none;
+}
+
+#closeEye {
+  width: 16px !important;
+}
 input[type="date"]::-webkit-datetime-edit-text,
 input[type="date"]::-webkit-datetime-edit-month-field,
 input[type="date"]::-webkit-datetime-edit-day-field,
