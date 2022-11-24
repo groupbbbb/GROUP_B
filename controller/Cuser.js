@@ -3,7 +3,7 @@ const models = require('../models');
 exports.signup = (req, res) => {
   res.render('pages/signup', {isLogin: req.session.user});
 };
-
+//======회원가입======
 exports.post_signup = (req, res) => {
   models.User.create({
     userID: req.body.userID,
@@ -14,7 +14,7 @@ exports.post_signup = (req, res) => {
     res.send(true);
   });
 };
-
+//======아이디중복체크======
 exports.idCheck = (req, res) => {
   models.User.findOne({
     where: {
@@ -33,7 +33,7 @@ exports.idCheck = (req, res) => {
 exports.signin = (req, res) => {
   res.render('pages/signin', {isLogin: req.session.user});
 };
-
+//======로그인======
 exports.post_signin = (req, res) => {
   models.User.findOne({
     where: {
@@ -52,63 +52,67 @@ exports.post_signin = (req, res) => {
 };
 
 exports.mypage = (req, res) => {
-  res.render('pages/mypage', {isLogin: true});
+  res.render('pages/mypage', {isLogin: req.session.user});
 };
-
-exports.post_mypage = (req, res) => {
-  res.send({isLogin : true, id : req.body.id});
-};
-
+//======로그아웃======
 exports.signout = (req, res) => {
   req.session.destroy(function(){
   });
   res.render('pages/mypage', {isLogin:false});
 };
-
+//======user정보받아오기======
 exports.getMyInform = (req, res) => {
   models.User.findOne({
     where: {
-      id: req.body.id
+      userID: req.body.isLogin
     },
   }).then((result) => {
    res.send({userID:result.dataValues.userID, userPW:result.dataValues.userPW, name:result.dataValues.name,
     birth:result.dataValues.birth, profile_img:result.dataValues.profile_img});
   });
 }
-
+//======user정보변경======
 exports.modifyUserInform = (req, res) => {
   models.User.update(
     {
-      userID: req.body.userID,
       userPW: req.body.userPW,
       name: req.body.name,
       birth: req.body.birth,
     },
     {
-      where: { id: req.body.id },
+      where: { userID: req.body.isLogin },
     }
   ).then(() => {
     res.send(true);
   });
 }
-
+//======프로필사진변경======
 exports.profileUploads = (req, res) => {
-  console.log(req.body);
-  console.log(req.body.id);
-  console.log(req.file.path);
   models.User.update(
     {
       profile_img: req.file.path,
     },
     {
-      where: { id: req.body.id },
+      where: { userID: req.body.isLogin },
     }
   ).then((result) => {
     console.log(result);
     res.send(result);
   });
 }
-
+//======user비밀번호변경======
+exports.modifyPW = (req, res) => {
+  models.User.update(
+    {
+      userPW: req.body.newPW,
+    },
+    {
+      where: { userID: req.body.isLogin },
+    }
+  ).then(() => {
+    res.send(true);
+  });
+}
 
   
 

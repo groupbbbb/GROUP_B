@@ -35,11 +35,9 @@ const nextIndexs = {
 
 function buttonClick(cardIdx, arrow) {
   if (arrow > 0) {
-    console.log("다음 버튼 클릭");
     imageAll[cardIdx][currentIndexs[cardIdx]].style.display = "none";
     imageAll[cardIdx][nextIndexs[cardIdx]].style.display = "block";
 
-    console.log(nextIndexs[cardIdx], imageAll[cardIdx].length - 1);
     if (nextIndexs[cardIdx] === imageAll[cardIdx].length - 1) {
       nextBtn[cardIdx].style.display = "none";
     } else {
@@ -49,11 +47,8 @@ function buttonClick(cardIdx, arrow) {
     currentIndexs[cardIdx]++;
     nextIndexs[cardIdx]++;
   } else {
-    console.log("이전 버튼 클릭");
     currentIndexs[cardIdx]--;
     nextIndexs[cardIdx]--;
-
-    console.log(currentIndexs[cardIdx], imageAll[cardIdx].length - 1);
     if (currentIndexs[cardIdx] === 0) {
       prevBtn[cardIdx].style.display = "none";
     } else {
@@ -64,8 +59,6 @@ function buttonClick(cardIdx, arrow) {
     imageAll[cardIdx][nextIndexs[cardIdx]].style.display = "none";
   }
 
-  console.log("currentIndexs[cardIdx]", currentIndexs[cardIdx]);
-  console.log("nextIndexs[cardIdx]", nextIndexs[cardIdx]);
 }
 
 for (let i = 0; i < nextBtn.length; i++) {

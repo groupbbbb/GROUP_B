@@ -24,7 +24,7 @@ exports.main = (req, res) => {
                 }
             ]
         }).then(result => {
-            res.render("pages/mainpage", { data:result, isLogin: true, user: user, user_id:user_id });
+            res.render("pages/mainpage", { data:result, isLogin: req.session.user, user: user, user_id:user_id });
         })
     } else {
         models.Post.findAll({

@@ -17,7 +17,7 @@
       </button>
         <div class="profileEdit">
             <div class="infoList">
-                <div class="info" onclick="myinform()">내정보 수정</div>
+                <div class="info" onclick="myInform()">내정보 수정</div>
                 <div class="like">좋아요 목록</div>
                 <div class="fix">게시글 수정</div>
             </div>
@@ -25,22 +25,32 @@
                 <div class="myInformation">
                     <p>내정보 수정</p>
                     <div class="profileZone">
-                      <span class="word">PROFILE</span><br>
+                      <span class="word profilePhoto">📷 프로필사진</span><br>
                         <img src="" alt="profileImg" id="profileImg"><br>
                         <input type="file" name="profileUpload" id="profileUpload"><br>
                         <button type="button" onclick="fileUpload();" id="fileUploadBtn">사진적용</button>
                       </div>
                     <div class="informationZone">
                       <form name="informForm">
-                        <span class="word">ID</span><br>
+                        <span class="word">✔ 아이디</span><br>
                         <input type="text" name="userID" id="userID" class="userInput" readonly><br>
-                        <span class="word">PW</span><br>
-                        <input type="text"  name="userPW" id="userPW" class="userInput" readonly><br>
-                        <span class="word">NAME</span><br>
-                        <input type="text"  name="name" id="name" class="userInput" onchange="nameChange();"><br>
-                        <span class="word">BIRTH</span><br>
-                        <input type="text"  name="birth" id="birth" class="userInput" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="birthChange();"><br>
-                        <button type="button" onclick="modify();" disabled class="modifyInformBtn">수정</button>
+                        <span class="word">✔ 이름</span><br>
+                        <input type="text"  name="name" id="name" class="userInput" onchange="nameChange();" required><br>
+                        <span class="word">✔ 생일</span><br>
+                        <input type="text"  name="birth" id="birth" class="userInput" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="birthChange();" required><br>
+                        <button type="button" onclick="modifyInform();" disabled class="modifyInformBtn">수정</button>
+                      </form>
+                    </div>
+                    <div class="passwordZone">
+                      <form name="modifyPW_form">
+                        <div class="word">✔ 기존 비밀번호</div>
+                        <input type="password"  name="userPW" id="userPW" class="userInput" readonly>
+                        <div class="word">✔ 새 비밀번호</div>
+                          <input type="password"  name="newPW" id="newPW" class="userInput" minlength="8" maxlength="20" required>
+                        <div class="word">✔ 비밀번호 확인</div>
+                          <input type="password"  name="newPW_check" id="newPW_check" class="userInput" minlength="8" maxlength="20" required>
+                        <div id="pwMsg"></div>
+                        <button type="button" onclick="modifyPW();" class="modifyPWBtn">수정</button>
                       </form>
                   </div>
                 </div>
@@ -54,8 +64,6 @@
             <p>게시글 수정</p>
           </div>
         </div>
-      </div>
-    </div>
     <input type="hidden" name="isLogin" value="<%= isLogin %>" id="isLogin">
 </body>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
