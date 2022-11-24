@@ -5,7 +5,9 @@
   font-weight: normal;
   font-style: normal;
 }
-
+* {
+  box-sizing: border-box;
+}
 body {
   background-color: #fafafa;
   font-family: "GmarketSansMedium";
