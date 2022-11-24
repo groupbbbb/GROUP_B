@@ -1,31 +1,11 @@
-// 메인페이지 슬라이드
-const slideBoxAll = document.querySelectorAll(".slideBox"); // 5
-const nextBtn = document.querySelectorAll(".next"); // 5
-const prevBtn = document.querySelectorAll(".prev"); // 5
+const slideBoxAll = document.querySelectorAll(".slideBox");
+const nextBtn = document.querySelectorAll(".next");
+const prevBtn = document.querySelectorAll(".prev");
 
-console.log(slideBoxAll)
-const imageAll = {
-  0: Array.from(slideBoxAll[0].children).slice(
-    0,
-    slideBoxAll[0].children.length - 2
-  ),
-  1: Array.from(slideBoxAll[1].children).slice(
-    0,
-    slideBoxAll[0].children.length - 2
-  ),
-  2: Array.from(slideBoxAll[2].children).slice(
-    0,
-    slideBoxAll[0].children.length - 2
-  ),
-  3: Array.from(slideBoxAll[3].children).slice(
-    0,
-    slideBoxAll[0].children.length - 2
-  ),
-  4: Array.from(slideBoxAll[4].children).slice(
-    0,
-    slideBoxAll[0].children.length - 2
-  ),
-};
+const imageAll=[];
+for(let i=0;i<slideBoxAll.length;i++){
+  imageAll.push(Array.from(slideBoxAll[i].children).slice(0,slideBoxAll[i].children.length - 2))
+}
 
 const currentIndexs = {
   0: 0,
@@ -33,6 +13,11 @@ const currentIndexs = {
   2: 0,
   3: 0,
   4: 0,
+  5: 0,
+  6: 0,
+  7: 0,
+  8: 0,
+  9: 0,
 };
 
 const nextIndexs = {
@@ -41,6 +26,11 @@ const nextIndexs = {
   2: 1,
   3: 1,
   4: 1,
+  5: 1,
+  6: 1,
+  7: 1,
+  8: 1,
+  9: 1,
 };
 
 function buttonClick(cardIdx, arrow) {
@@ -90,8 +80,8 @@ for (let z = 0; z < prevBtn.length; z++) {
   });
 }
 
-// 팝업 슬라이드
 
+// 팝업 슬라이드
 const searchAll = document.querySelectorAll(".search");
 const closeAll = document.querySelectorAll(".close");
 const hiddenBox = document.querySelectorAll(".hiddenBox");
@@ -100,9 +90,6 @@ const contentBox = document.querySelectorAll(".contentBox");
 
 for (let k = 0; k < hiddenBox.length; k++) {
   searchAll[k].addEventListener("click", function () {
-    console.log(k);
-    console.log(hiddenBox.length);
-    console.log(this);
 
     hiddenBox[k].style.display = "block";
   });
@@ -114,35 +101,16 @@ for (let l = 0; l < box.length; l++) {
   });
 }
 
-// //확대 슬라이드
 
+// 확대 슬라이드
 const halfImgAll = document.querySelectorAll(".halfImg"); // 5
 const hiddenNext = document.querySelectorAll(".hiddenNext"); // 5
 const hiddenPrev = document.querySelectorAll(".hiddenPrev"); // 5
 
-console.log(halfImgAll[0].children);
-const hiddenImgAll = {
-  0: Array.from(halfImgAll[0].children).slice(
-    0,
-    halfImgAll[0].children.length - 2
-  ),
-  1: Array.from(halfImgAll[1].children).slice(
-    0,
-    halfImgAll[0].children.length - 2
-  ),
-  2: Array.from(halfImgAll[2].children).slice(
-    0,
-    halfImgAll[0].children.length - 2
-  ),
-  3: Array.from(halfImgAll[3].children).slice(
-    0,
-    halfImgAll[0].children.length - 2
-  ),
-  4: Array.from(halfImgAll[4].children).slice(
-    0,
-    halfImgAll[0].children.length - 2
-  ),
-};
+const hiddenImageAll=[];
+for(let i=0;i<halfImgAll.length;i++){
+  hiddenImageAll.push(Array.from(halfImgAll[i].children).slice(0,halfImgAll[i].children.length - 2))
+}
 
 const currentHiddenIndexs = {
   0: 0,
@@ -150,6 +118,11 @@ const currentHiddenIndexs = {
   2: 0,
   3: 0,
   4: 0,
+  5: 0,
+  6: 0,
+  7: 0,
+  8: 0,
+  9: 0,
 };
 
 const nextHiddenIndexs = {
@@ -158,19 +131,16 @@ const nextHiddenIndexs = {
   2: 1,
   3: 1,
   4: 1,
+  5: 1,
+  6: 1,
+  7: 1,
+  8: 1,
+  9: 1,
 };
-// };
 
 function slideButtonClick(cardIdx, arrow) {
   if (arrow > 0) {
     console.log("다음 버튼 클릭");
-    console.log(halfImgAll[cardIdx][currentHiddenIndexs[cardIdx]]);
-    console.log(halfImgAll[cardIdx]);
-    console.log(halfImgAll);
-    console.log("currentHiddenIndexs[cardIdx]", currentHiddenIndexs[cardIdx]);
-    console.log("nextHiddenIndexs[cardIdx]", nextHiddenIndexs[cardIdx]);
-
-   
     halfImgAll[cardIdx][currentHiddenIndexs[cardIdx]].style.display = "none";
     halfImgAll[cardIdx][nextHiddenIndexs[cardIdx]].style.display = "block";
 
@@ -198,9 +168,6 @@ function slideButtonClick(cardIdx, arrow) {
     halfImgAll[cardIdx][currentHiddenIndexs[cardIdx]].style.display = "block";
     halfImgAll[cardIdx][nextHiddenIndexs[cardIdx]].style.display = "none";
   }
-
-  console.log("currentHiddenIndexs[cardIdx]", currentHiddenIndexs[cardIdx]);
-  console.log("nextHiddenIndexs[cardIdx]", nextHiddenIndexs[cardIdx]);
 }
 
 for (let i = 0; i < hiddenNext.length; i++) {
@@ -216,9 +183,31 @@ for (let z = 0; z < hiddenPrev.length; z++) {
 }
 
 
-// =========================================  포스트  =========================================
 
-// const { default: axios } = require("axios");
+function mypage() {
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+    return results == null
+      ? ""
+      : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  var id = getParameterByName("id");
+
+  axios({
+    method: "POST",
+    url: "/user/mypage",
+    data: {
+      id,
+    },
+  }).then((data) => {
+    document.location.href = `/user/mypage?isLogin=${data.data.isLogin}?id=${data.data.id}`;
+  });
+}
+
+
+// =========================================  포스트  =========================================
 
 // 선택 포스트 보기
 function viewThisPost(obj, id) {
@@ -259,7 +248,6 @@ async function deletePost(obj, id){
 const editPostSelected = {};
 let formName;
 async function editPost(obj, id, isHidden){
-    // let formName;
     let data =
         await axios({
             method: 'POST',
@@ -481,9 +469,6 @@ async function like(obj, id){
             console.log(res.data);
         })
     }
-    // location.reload();
-    // location.replace(location.href);
-    // location.href = location.href;
 }
 
 async function viewLikes(obj, id){
@@ -545,4 +530,3 @@ for (let i = 0; i < heart.length; i++) {
     });
   }
   
-
