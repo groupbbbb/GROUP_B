@@ -99,24 +99,21 @@ exports.uploadPage = (req,res) => {
 // 포스트 업로드
 exports.uploadPost = (req,res) => {
     const user_id = req.session.user_id;
-    if(user_id){
-        if(req.file){
-            models.Post.create({
-                user_id : user_id,
-                content : req.body.content,
-                img_src : req.file.path,
-            }).then(result => {
-                res.send('게시글 업로드 성공');
-            })
-        }else{
-            models.Post.create({
-                user_id : user_id,
-                content : req.body.content,
-            }).then(result => {
-                res.send('게시글 업로드 성공');
-            })
-        }
-    }else{
+
+    let imgSrc='';
+    for (let i = 0; i < req.files.length; i++) {
+        imgSrc += (req.files[i].path + "~!@#");
+    }
+
+    if (user_id) {
+        models.Post.create({
+            user_id: user_id,
+            content: req.body.content,
+            img_src: imgSrc,
+        }).then(result => {
+            res.send('게시글 업로드 성공');
+        })
+    } else {
         res.send('로그인 하세요');
     }
 }
