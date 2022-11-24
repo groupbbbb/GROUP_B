@@ -17,6 +17,7 @@ body {
   height: 700px;
   margin: 80px auto;
   border: solid 1px black;
+  background-color: white;
 }
 
 .slideBox {
@@ -120,15 +121,9 @@ input:focus {
 }
 
 .btn:hover {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(114, 113, 113, 0.3);
 }
 
-/* .filterColor {
-  position: absolute;
-  background-color: brown;
-  width: 100%;
-  height: 100%;
-} */
 .heart-icon {
   position: absolute;
   font-size: 30px;
@@ -166,9 +161,8 @@ input:focus {
 }
 
 .hiddenBox {
-  width: 60vw;
+  width: 1050px;
   height: 750px;
-  background-color: pink;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -178,28 +172,12 @@ input:focus {
   display: none;
 }
 
-/* .hiddenBox:nth-of-type(1) {
-  border: 2px solid red;
-}
-.hiddenBox:nth-of-type(2) {
-  border: 2px solid orange;
-}
-.hiddenBox:nth-of-type(3) {
-  border: 2px solid yellow;
-}
-.hiddenBox:nth-of-type(4) {
-  border: 2px solid green;
-}
-.hiddenBox:nth-of-type(5) {
-  border: 2px solid blue;
-} */
-
 .hiddenImg {
   position: absolute;
 
   background-color: white;
 
-  border: solid 2px black;
+  border: solid 1px black;
   /* border-radius: 10px; */
   width: 100%;
   height: 100%;
@@ -211,14 +189,14 @@ input:focus {
   position: absolute;
   width: 65%;
   height: 100%;
-  border-right: solid 2px black;
+  border-right: solid 1px black;
 }
 
 .halfSlide {
   width: 100%;
   height: 100%;
   background-color: rgb(44, 44, 44);
-  display: none;
+  /* display: none; */
 }
 
 .halfSlide img {
@@ -238,12 +216,15 @@ input:focus {
 }
 
 .slideWriting {
-  height: 76%;
-  overflow: auto;
-  border-bottom: solid 2px black;
+  height: 30%;
 }
-
+.slidecommentView {
+  height: 46%;
+  overflow: auto;
+  border-bottom: solid 1px black;
+}
 .close {
+  top: 1%;
   position: absolute;
   right: 0;
 }
@@ -283,121 +264,78 @@ input:focus {
   }
 }
 
-@media (max-width: 420px) {
-  .card {
-    width: 80%;
-  }
-  ul {
-    text-align: center;
-  }
-}
-
-@media (min-width: 421px) and (max-width: 580px) {
+@media (max-width: 599px) {
   .card {
     width: 80%;
   }
 
-  ul {
-    text-align: center;
-  }
-}
-
-@media (max-width: 699px) {
   .hiddenBox {
-    /* display: flex;
-    flex-direction: column; */
-
     width: 90%;
-    height: 120%;
-    /* display: none; */
-
-    margin-left: 5%;
-    margin-top: -140%;
-  }
-  /* .hiddenComment {
+    height: 60%;
+    display: flex;
     flex-direction: column;
-  } */
-
-  .hiddenImg {
-    width: 100%;
-    height: 80%;
+    top: 40%;
+    display: none;
   }
   .halfImg {
-    width: 100%;
-    height: 85%;
-    border: none;
-  }
-
-  .halfSlide {
-    width: 100%;
-    height: 90%;
-    margin-top: 10%;
+    display: none;
   }
   .hiddenComment {
     width: 100%;
-    height: 10%;
   }
   .slideWriting {
-    border: none;
-  }
+    height: 23%;
 
-  .slideComment {
-    margin-top: 100%;
+    width: 95%;
+    margin: auto;
+  }
+  .slidecommentView {
+    width: 95%;
+    margin: auto;
   }
 }
 
-@media (min-width: 700px) and (max-width: 849px) {
-  .hiddenBox {
-    width: 150%;
-    height: 70%;
-    animation: box 0.5s ease;
-    /* display: none; */
-
-    margin-left: -25%;
-    margin-top: -120%;
+@media (min-width: 600px) and (max-width: 699px) {
+  .card {
+    width: 400px;
   }
 
-  .slideWriting {
+  .hiddenBox {
+    width: 90%;
     height: 60%;
+    animation: box 0.5s ease;
+    top: 40%;
+    display: none;
   }
 
   .hiddenContent {
     width: 70%;
   }
-  /* .heart-icon {
-    font-size: 20px;
+
+  .slideWriting {
+    height: 25%;
   }
-  .send {
-    font-size: 20px;
-  } */
+  .close {
+    top: -7.5%;
+  }
 }
 
-@media (min-width: 850px) and (max-width: 1150px) {
+@media (min-width: 700px) and (max-width: 1100px) {
   .hiddenBox {
-    width: 180%;
-    height: 90%;
+    width: 90%;
+    height: 70%;
     animation: box 0.5s ease;
     display: none;
-
-    margin-left: -40%;
-    margin-top: -140%;
+    top: 45%;
   }
 
   .slideWriting {
-    height: 70%;
+    height: 28%;
   }
 
   .hiddenContent {
-    width: 75%;
+    width: 70%;
   }
-
-  /* .heart-icon {
-    font-size: 25px;
-  }
-
-  .send {
-    font-size: 200px;
-  } */
 }
 
 .display-none{

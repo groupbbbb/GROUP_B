@@ -12,9 +12,7 @@
           </a>
         </li>
         <li>
-          <a href="/post/upload">
-            post upload
-          </a>
+          <a href="/post/upload"> <div class="postUp">post upload</div></a>
         </li>
         <li>
           <div onclick="chat();">
@@ -22,45 +20,37 @@
               src="/static/img/message.jpg"
               alt="전체 페이지"
               title="메세지"
-              />
-              <div class="messageAlarm counting"><%= %></div>
-            </div>
-          </li>
-        <% if (isLogin) { %>
-          <%} else {  %>
-            <li>
-              <a href="/user/signin">
-              <img
-                src="/static/img/login.jpg"
-                alt="로그인 페이지"
-                title="로그인"
-                />
-              </a>
-            </li>
-            <% }  %>
-        <li>
-            <% if (isLogin) { %>
-            <img
-              src="/static/img/mypage.jpg"
-              alt="마이페이지"
-              title="마이페이지"
-              onclick="mypage();"
             />
-            <%} else {  %>
-            <a href="/user/signin">
-            <img
-              src="/static/img/mypage.jpg"
-              alt="마이페이지"
-              title="마이페이지"
-            />
-            </a>
-            <% }  %>
-        </li>
-        <li>
-          <div onclick="alarm()">
-            <img src="/static/img/alarm.jpg" alt="알림" title="알림" />
-            <div class="countAlarm counting"> <%= %> </div>
           </div>
+        </li>
+        <% if (isLogin) { %> <%} else { %>
+        <li>
+          <a href="/user/signin">
+            <img
+              src="/static/img/login.jpg"
+              alt="로그인 페이지"
+              title="로그인"
+            />
+          </a>
+        </li>
+        <% } %>
+        <li>
+          <% if (isLogin) { %>
+          <img
+            src="/static/img/mypage.jpg"
+            alt="마이페이지"
+            title="마이페이지"
+            onclick="mypage();"
+          />
+          <%} else { %>
+          <a href="/user/signin">
+            <img
+              src="/static/img/mypage.jpg"
+              alt="마이페이지"
+              title="마이페이지"
+            />
+          </a>
+          <% } %>
         </li>
       </ul>
     </nav>

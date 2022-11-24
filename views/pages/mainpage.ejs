@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 </head>
-
 <body>
   <% console.log(data)%>
   <%- include('../common/nav.ejs') %>
@@ -208,13 +207,35 @@
         </div>
       </div>
 
+    </div>
 
-      <% } %>
+    <% } %>
+  </body>
+  <!-- <script src="/static/js/mainpage.js"></script> -->
+  <script src="/static/js/mainpage.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    function mypage() {
+      function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+        return results == null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+      var id = getParameterByName("id");
 
-        <script src="/static/js/mainpage.js"></script>
-</body>
-
-<!-- <script src="/static/js/test.js"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+      axios({
+        method: "POST",
+        url: "/user/mypage",
+        data: {
+          id,
+        },
+      }).then((data) => {
+        document.location.href = `/user/mypage?isLogin=${data.data.isLogin}?id=${data.data.id}`;
+      });
+    }
+  </script>
 </html>
+
