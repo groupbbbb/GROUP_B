@@ -1,4 +1,3 @@
-
 const slideBoxAll = document.querySelectorAll(".slideBox");
 const nextBtn = document.querySelectorAll(".next");
 const prevBtn = document.querySelectorAll(".prev");

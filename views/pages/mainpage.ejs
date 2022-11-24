@@ -52,7 +52,7 @@
                 <a class="next btn" onclick="">❯</a>
           </div>
               <div class="userWriting">
-                <div>
+                <div class="likeCount">
                   <% let isHeart=false; %>
                   <% if(isLogin){ %>
                   <%  for(let j=0;j<data[i].likes.length; j++){ %>
@@ -67,7 +67,10 @@
                   <% }else{ %>
                     <i class="heart-icon<%= data[i].id%> bi bi-heart heart-icon-isNotLogin" onclick="like(this, '<%= data[i].id %>')"></i>
                   <% }%>
-                  좋아요 <span class="heart-num"><%= data[i].likes.length %></span>개
+                  <div class="heartCount">
+                   좋아요 <span class="heart-num"><%= data[i].likes.length %></span>개
+                  </div>
+                
                 </div>
                 <div>
                   <img src="/static/img/search.jpg" alt="자세히보기" class="search" title="확대" />
@@ -95,9 +98,10 @@
                 <div>
                   <% if(isLogin){if(user==data[i].user.userID){ %>
                   <div class="management-btn">
-                    <button onclick="editPost(this, '<%= data[i].id %>',true)">게시글수정하기</button>
-                    <button onclick="deletePost(this, '<%= data[i].id %>')">게시글삭제하기</button>
-                  </div>
+                    <button onclick="editPost(this, '<%= data[i].id %>',true)"  class="btnFirst">게시글수정하기</button>
+                    <button onclick="deletePost(this, '<%= data[i].id %>')" class="btnSecond">게시글삭제하기</button>
+               
+                </div>
                   <% }} %>
                 </div>
                 <br /><br />
@@ -105,10 +109,10 @@
               <div class="commentBox">
                 <img src="/static/img/chat.jpg" alt="댓글창" class="comment" />
                 <form name="uploadComment-form<%= data[i].id %>" class="uploadComment-form">
-                  <input type="text" name="content" class="content" onfocus="this.placeholder=''"
+                  <input type="text" name="content" class="commentContent" onfocus="this.placeholder=''"
                     onblur="this.placeholder='댓글달기'" placeholder="댓글달기" />
-                  <button type="button" onclick="uploadComment(this, '<%= data[i].id %>',true)">댓글 등록</button><br>
-                </form>
+                    <button type="button" onclick="uploadComment(this, '<%= data[i].id %>',true)" class="commentUp">댓글 등록</button><br>
+                  </form>
               </div>
         </div>
         <div class="filterColor"></div>
