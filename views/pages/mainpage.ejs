@@ -42,14 +42,14 @@
 
           <!-- 슬라이드 -->
           <div class="slideBox">
-            <% for (let k=0; k < img.length; k++) {%>
-              <div class="slideImg slideImgFile<%=[k]%>">
-                <!-- 임시이미지 -->
-                <img src=<%=img[k]%> alt="" />
-              </div>
-              <% } %>
-                <a class="prev btn" onclick="">❮</a>
-                <a class="next btn" onclick="">❯</a>
+            <% let imgArray = data[i].img_src.slice(0,-4).split("~!@#") %>
+            <% for (let k=0; k < imgArray.length; k++) {%>
+            <div class="slideImg slideImgFile<%=[k]%>">
+              <img src="../../<%= imgArray[k] %>" alt="" />
+            </div>
+            <% } %>
+            <a class="prev btn" onclick="">❮</a>
+            <a class="next btn" onclick="">❯</a>
           </div>
               <div class="userWriting">
                 <div class="likeCount">
@@ -125,10 +125,9 @@
           <div class="hiddenImg">
             <div class="halfImg">
               <div class="slideBox">
-                <% for (let k=0; k < img.length; k++) {%>
+                <% for (let k=0; k < imgArray.length; k++) {%>
                 <div class="slideImg slideImgFile<%=[k]%>">
-                  <!-- 임시 이미지 -->
-                  <img src=<%= img[k]%> alt="" />
+                  <img src="../../<%= imgArray[k] %>" alt="" />
                 </div>
                 <% } %>
                 <a class="prev btn" onclick="">❮</a>

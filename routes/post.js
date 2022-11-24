@@ -32,7 +32,7 @@ router.get('/',controller.main);
 router.get('/post/post',controller.viewPage);
 router.get('/post/upload',controller.uploadPage);
 
-router.post('/post/upload',uploadDetail.single('img'),controller.uploadPost);
+router.post('/post/upload',uploadDetail.array('img'),controller.uploadPost);
 router.post('/post/delete',controller.deletePost);
 router.post('/post/edit',controller.editPost);
 router.post('/post/editSessionCheck',controller.editPostSessionCheck);
