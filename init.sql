@@ -247,25 +247,25 @@ INSERT INTO msg (content,createdAt,updatedAt,participant_id) VALUES
 -- join
 -- post,comment
 SELECT
-	post.id,
-	comment.id as comment_id,
-	comment.user_id as comment_user_id,
-	comment.content as comment_content
+   post.id,
+   comment.id as comment_id,
+   comment.user_id as comment_user_id,
+   comment.content as comment_content
 FROM post
 LEFT JOIN comment
-	ON post.id=comment.post_id
+   ON post.id=comment.post_id
 ORDER BY post.id;
 
 
 
 -- post,like
 SELECT
-	post.id,
-	likes.id as likes_id,
-	likes.user_id as likes_user_id
-	FROM post
+   post.id,
+   likes.id as likes_id,
+   likes.user_id as likes_user_id
+   FROM post
 INNER JOIN likes
-	ON post.id=likes.post_id
+   ON post.id=likes.post_id
 WHERE post.id=1;
 
 

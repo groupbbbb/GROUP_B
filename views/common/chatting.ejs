@@ -1,0 +1,42 @@
+<div>
+  <link rel="stylesheet" href="/static/css/chatting.css" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script
+    src="https://cdn.socket.io/4.5.3/socket.io.min.js"
+    integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+  <div class="chatRightTop">
+    <div class="chatRightTopEmpty"></div>
+    <div class="chatRightTopUserid">d</div>
+    <div class="chatRightTopSet">
+      <img
+        class="setting"
+        src="/static/img/three-dots.svg"
+        alt="setting"
+      /><br />
+      <button class="roomDelete hidden">삭제하기</button>
+    </div>
+  </div>
+  <div class="chatRightBottom">
+    <div class="chatView">
+      <div class="wrapper">
+        <div class="displayContainer">
+          <ul class="chattingList"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="chatInput">
+      <input type="text" id="chatInput" autocomplete="off" />
+      <div class="filebox">
+        <label for="sendFile">업로드</label>
+        <input type="file" id="sendFile" name="sendFile" />
+      </div>
+      <button type="button" onclick="send();" id="send">전송</button>
+    </div>
+  </div>
+</div>
+
+<script src="/static/js/chatting.js"></script>
