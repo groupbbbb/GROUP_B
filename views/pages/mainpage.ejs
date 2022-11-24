@@ -52,9 +52,9 @@
                   <%      isHeart=true; %>
                   <% }}} %>
                   <% if(isHeart){ %>
-                    <i class="heart-icon<%= data[i].id%> bi bi-heart heart-color" onclick="like(this, '<%= data[i].id %>')"></i>
+                    <i class="heart-icon<%= data[i].id%> bi bi-heart-fill heart-icon" onclick="like(this, '<%= data[i].id %>')"></i>
                   <% }else{ %>
-                    <i class="heart-icon<%= data[i].id%> bi bi-heart" onclick="like(this, '<%= data[i].id %>')"></i>
+                    <i class="heart-icon<%= data[i].id%> bi bi-heart heart-icon" onclick="like(this, '<%= data[i].id %>')"></i>
                   <% } %>
                   좋아요 <%= data[i].likes.length %>개
                 </div>
@@ -136,13 +136,13 @@
                     <%= data[i].comments[j].createdAt %>
                     <%= data[i].comments[j].updatedAt %>
                     <% if(isLogin){if(user==data[i].comments[j].user.userID){ %>
-                      <button type="button" onclick="deleteComment(this, '<%= data[i].comments[j].id %>')">댓글 삭제</button>
                       <button type="button" onclick="editComment(this, '<%= data[i].id %>', '<%= data[i].comments[j].id %>')">댓글 수정</button><br>
                       <form name="editComment-form<%= data[i].id %><%= data[i].comments[j].id %>" class="editComment-form display-none">
                         <input type="text" id="content" class="edit-content<%= data[i].id %><%= data[i].comments[j].id %>"/> <br />
                         <button type="button" onclick="commentEditDo(this,  '<%= data[i].id %>', '<%= data[i].comments[j].id %>')">변경</button>
                         <button type="button" onclick="commentEditCancel(this,  '<%= data[i].id %>', '<%= data[i].comments[j].id %>')">취소</button>
                       </form>
+                      <button type="button" onclick="deleteComment(this, '<%= data[i].comments[j].id %>')">댓글 삭제</button>
                     <% }}%>
                     <hr>
                   <% } %>
