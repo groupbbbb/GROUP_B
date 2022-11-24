@@ -133,6 +133,9 @@ body {
     .loginImg2 {
         visibility: hidden;
     }
+    .loginImg3{
+        visibility: hidden;
+    }
     
 }
 @font-face {

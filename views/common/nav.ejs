@@ -12,9 +12,25 @@
           </a>
         </li>
         <li>
-          <a href="/post/upload">
-            post upload
-          </a>
+          <% if (isLogin) { %>
+            <a href="/post/upload">
+              <img
+                src="/static/img/postImg.png"
+                alt="전체 페이지"
+                title="게시글쓰기"
+                />
+            </a>
+            </a>
+            <%} else {  %>
+            <a href="/user/signin">
+              <img
+              src="/static/img/postImg.png"
+              alt="전체 페이지"
+              title="게시글쓰기"
+              />
+            </a>
+            <% }  %>
+          
         </li>
         <li>
           <div onclick="chat();">
@@ -56,12 +72,6 @@
             />
             </a>
             <% }  %>
-        </li>
-        <li>
-          <div onclick="alarm()">
-            <img src="/static/img/alarm.jpg" alt="알림" title="알림" />
-            <div class="countAlarm counting"> <%= %> </div>
-          </div>
         </li>
       </ul>
     </nav>

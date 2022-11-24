@@ -1,10 +1,6 @@
-
-* {
-  box-sizing: border-box;
-}
 body {
+  box-sizing: border-box;
   margin: 0;
-  font-family: "GmarketSansMedium";
 }
 
 .headerBox {
@@ -30,13 +26,21 @@ ul {
   display: flex;
   list-style: none;
   flex-direction: row;
-  text-align: center;
-  padding: 0;
 }
 
 ul > li {
   height: auto;
   width: 100%;
+}
+.counting {
+  position: absolute;
+  border: 1px solid red;
+  background-color: red;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  margin-top: -27px;
+  margin-left: 20px;
 }
 
 ul > li:not(:first-of-type) {
@@ -46,13 +50,6 @@ ul > li:not(:first-of-type) {
 img {
   cursor: pointer;
   width: 40px;
-}
-
-.postUp {
-  font-size: 15px;
-  text-decoration: none;
-  color: black;
-
 }
 
 @media (max-width: 420px) {
@@ -66,6 +63,7 @@ img {
   ul {
     width: 100vw;
     justify-content: center;
+    padding-left: 0;
   }
 
   li img {
@@ -85,6 +83,7 @@ img {
   ul {
     width: 100vw;
     justify-content: center;
+    padding-left: 0;
   }
 
   .icon {
