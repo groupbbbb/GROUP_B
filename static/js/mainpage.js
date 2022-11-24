@@ -80,16 +80,22 @@ async function deletePost(obj, id){
 
 // 수정할 포스트 선택
 const editPostSelected = {};
-async function editPost(obj, id){
+let formName;
+async function editPost(obj, id, isHidden){
+    // let formName;
     let data =
         await axios({
             method: 'POST',
             url: '/post/viewThis',
             data: { id: id },
         }).then((res) => {
+            if(isHidden){
+                formName='editPost-form'+id.toString();
+            }else{
+                formName='editPost-form-hidden'+id.toString();
+            }
             return res.data;
         })
-
     axios({
         method: 'POST',
         url: '/post/editSessionCheck',
@@ -98,7 +104,7 @@ async function editPost(obj, id){
         return res.data;
     }).then((res)=>{
         if(res===true){
-            const form = document.forms[`editPost-form${id}`];
+            const form = document.forms[formName];
             form.classList.toggle('display-none');
             form.content.value=data.content;
             editPostSelected.post_id=data.id;
@@ -110,8 +116,8 @@ async function editPost(obj, id){
 }
 
 // 수정 확인
-function editPostDo(obj, id) {
-    const form = document.forms[`editPost-form${id}`];
+async function editPostDo(obj, id, isHidden) {
+    const form = document.forms[formName];
     axios({
         method: 'POST',
         url: '/post/edit',
@@ -163,18 +169,32 @@ async function viewComment(obj, id){
 }
 
 // 댓글 달기
-function uploadComment(obj, id){
-    const form = document.forms[`uploadComment-form${id}`];
-    axios({
-        method: 'POST',
-        url : '/post/uploadComment',
-        data : {
-            content : form.content.value,
-            post_id : id,
-        }
-    }).then((res)=>{
-        console.log(res.data);
-    })
+function uploadComment(obj, id, isHidden){
+    if(isHidden){
+        const form = document.forms[`uploadComment-form${id}`];
+        axios({
+            method: 'POST',
+            url : '/post/uploadComment',
+            data : {
+                content : form.content.value,
+                post_id : id,
+            }
+        }).then((res)=>{
+            console.log(res.data);
+        })
+    }else{
+        const form = document.forms[`uploadComment-form-hidden${id}`];
+        axios({
+            method: 'POST',
+            url : '/post/uploadComment',
+            data : {
+                content : form.content.value,
+                post_id : id,
+            }
+        }).then((res)=>{
+            console.log(res.data);
+        })
+    }
 }
 
 // 선택 댓글 삭제
@@ -197,7 +217,6 @@ async function deleteComment(obj, id){
 }
 
 // 수정할 댓글 선택
-const editCommentSelected = {};
 async function editComment(obj, post_id, comment_id) {
     let data =
         await axios({
@@ -207,18 +226,11 @@ async function editComment(obj, post_id, comment_id) {
         }).then((res) => {
             return res.data;
         })
-
     const form = document.forms[`editComment-form${post_id}${comment_id}`];
-    console.log(data);
     if (form.classList.contains('display-none')) {
         form.classList.toggle('display-none');
     }
     form.content.value = data.content;
-    // editCommentSelected.id = data.id;
-    // editCommentSelected.post_id = data.post_id;
-    // editCommentSelected.user_id = data.user_id;
-
-
 }
 
 // 수정 확인
@@ -282,7 +294,7 @@ async function like(obj, id){
         }).then((res) => {
             console.log(res.data);
         })
-    }else{
+    } else {
         console.log('좋아요 기록이 없어서 좋아요를 진행합니다.');
         axios({
             method: 'POST',
@@ -318,10 +330,41 @@ async function viewLikes(obj, id){
 
 
 let heart = document.querySelectorAll(".heart-icon");
+let heartHidden = document.querySelectorAll(".heart-icon-hidden");
+let heartNum = document.querySelectorAll(".heart-num");
+let heartNumHidden = document.querySelectorAll(".heart-num-hidden");
+
 
 for (let i = 0; i < heart.length; i++) {
   heart[i].addEventListener("click", () => {
     heart[i].classList.toggle("bi-heart");
     heart[i].classList.toggle("bi-heart-fill");
+    heartHidden[i].classList.toggle("bi-heart");
+    heartHidden[i].classList.toggle("bi-heart-fill");
+    if(heart[i].classList.contains('bi-heart')){
+        heartNum[i].innerText=Number(heartNum[i].innerText)-1;
+        heartNumHidden[i].innerText=Number(heartNumHidden[i].innerText)-1;
+    }else{
+        heartNum[i].innerText=Number(heartNum[i].innerText)+1;
+        heartNumHidden[i].innerText=Number(heartNumHidden[i].innerText)+1;
+    }
   });
 }
+
+
+for (let i = 0; i < heart.length; i++) {
+    heartHidden[i].addEventListener("click", () => {
+      heart[i].classList.toggle("bi-heart");
+      heart[i].classList.toggle("bi-heart-fill");
+      heartHidden[i].classList.toggle("bi-heart");
+      heartHidden[i].classList.toggle("bi-heart-fill");
+      if(heart[i].classList.contains('bi-heart')){
+        heartNum[i].innerText=Number(heartNum[i].innerText)-1;
+        heartNumHidden[i].innerText=Number(heartNumHidden[i].innerText)-1;
+    }else{
+        heartNum[i].innerText=Number(heartNum[i].innerText)+1;
+        heartNumHidden[i].innerText=Number(heartNumHidden[i].innerText)+1;
+    }
+    });
+  }
+  
