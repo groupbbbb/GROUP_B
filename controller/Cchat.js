@@ -26,7 +26,16 @@ exports.search = (req, res) => {
       userID: { [Op.like]: `%${req.body.userID}%` },
     },
   }).then((result) => {
-    console.log("data3 >>>>>>>>>>>>>> ", result);
+    res.send(result);
+  });
+};
+
+exports.check = (req, res) => {
+  models.User.findOne({
+    where: {
+      userID: req.body.checkID,
+    },
+  }).then((result) => {
     res.send(result);
   });
 };

@@ -9,5 +9,6 @@ const router = express.Router();
 router.get("/", controller.chat);
 // POST /chat/search
 router.post("/search", controller.search);
+router.post("/check", controller.check);
 
 module.exports = router;

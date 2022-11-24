@@ -9,6 +9,7 @@ const path = require("path");
 const upload = multer({
   dest: "uploads/",
 });
+const moment = require("moment");
 
 // multer 적용
 const fileFilter = (req, file, cb) => {
@@ -46,6 +47,17 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+io.on("connection", (socket) => {
+  socket.on("chatting", (data) => {
+    const { name, msg } = data;
+    io.emit("chatting", {
+      name: name,
+      msg: msg,
+      time: moment(new Date()).format("h:ss A"),
+    });
+  });
+});
 
 app.get("/", (req, res) => {
   res.render("pages/main");

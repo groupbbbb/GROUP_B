@@ -68,28 +68,14 @@
         <div class="addMessageSearch">
           <p>받는 사람 :</p>
           <input
-            type="text"
+            type="search"
             name="useridSearchs"
             id="useridSearch"
             placeholder="검색"
+            autocomplete="off"
           />
-          <!-- <button class="search" onclick="search();">조회</button> -->
         </div>
-        <div class="followeeList">
-          팔로우 목록 <% for (let i = 0; i < data2.length; i++) { %>
-          <div class="follower">
-            <%= data2[i]['Followee_id.userID'] %>
-            <div class="radioBtn">
-              <input
-                type="radio"
-                class="radioBtns"
-                name="radioBtn"
-                id="i"
-              />선택
-            </div>
-          </div>
-          <% } %>
-        </div>
+        <div class="list"></div>
       </div>
     </div>
     <script src="/static/js/chats.js"></script>

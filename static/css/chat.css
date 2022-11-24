@@ -171,6 +171,7 @@ body {
   height: 2vw;
   line-height: 2vw;
   margin-left: 1vw;
+  font-size: 1rem;
 }
 
 .search {
@@ -182,7 +183,11 @@ body {
   cursor: pointer;
 }
 
-.followeeList {
+.list {
+  overflow: auto;
+}
+
+/* .followeeList {
   padding: 1vw;
 }
 
@@ -190,4 +195,4 @@ body {
   display: flex;
   justify-content: space-between;
   margin-top: 1vw;
-}
+} */
