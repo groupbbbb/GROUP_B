@@ -3,6 +3,7 @@ const slideBoxAll = document.querySelectorAll(".slideBox"); // 5
 const nextBtn = document.querySelectorAll(".next"); // 5
 const prevBtn = document.querySelectorAll(".prev"); // 5
 
+console.log(slideBoxAll)
 const imageAll = {
   0: Array.from(slideBoxAll[0].children).slice(
     0,
