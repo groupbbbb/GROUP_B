@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>채팅</title>
+
+    <script
+      src="https://cdn.socket.io/4.5.3/socket.io.min.js"
+      integrity="sha384-WPFUvHkB1aHA5TDSZi6xtDgkF0wXJcIIxXhC6h8OT8EH3fC5PWro5pWJ1THjcfEi"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script></script>
+
+    <link rel="stylesheet" href="/static/css/chat.css" />
+  </head>
+  <body>
+    <main class="chat">
+      <div class="chatBoard">
+        <div class="chatLeft">
+          <div class="chatLeftTop">
+            <div class="chatLeftTopEmpty"></div>
+            <div class="chatLeftTopUserid"><%= data1.userID %></div>
+            <div class="chatLeftTopWrite">
+              <img
+                class="messageAddImg"
+                src="/static/img/envelope-plus.svg"
+                alt="messageAddImg"
+              />
+            </div>
+          </div>
+          <div class="chatLeftBottom">ㅎㅇ</div>
+        </div>
+        <div class="chatRight">
+          <div class="chatRightBegin">
+            <div class="chatRightBeginDomain">
+              <p>내 메시지</p>
+              <p>친구에게 사진과 메시지를 보내보세요.</p>
+              <button class="sendBtn">메시지 보내기</button>
+            </div>
+          </div>
+          <div class="chatRightMessage">
+            <%- include('../common/chatting.ejs') %>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="popup hidden">
+      <div class="addMessage">
+        <div class="addMessageTop">
+          <div class="addMessageTopClose">
+            <img class="close" src="/static/img/x.svg" alt="close" />
+          </div>
+          <div class="addMessageTopUserid">새 메시지</div>
+          <button class="addMessageTopSend">대화하기</button>
+        </div>
+        <div class="addMessageSearch">
+          <p>받는 사람 :</p>
+          <input
+            type="search"
+            name="useridSearchs"
+            id="useridSearch"
+            placeholder="검색"
+            autocomplete="off"
+          />
+        </div>
+        <div class="list"></div>
+      </div>
+    </div>
+    <script src="/static/js/chats.js"></script>
+  </body>
+</html>

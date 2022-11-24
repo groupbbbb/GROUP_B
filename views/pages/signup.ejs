@@ -6,23 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원가입</title>
     <link rel="stylesheet" href="/static/css/signup.css" />
-    <%- include('../common/include.ejs') %>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
     />
+    <%- include('../common/include.ejs') %>
     <script type="text/javascript">
       window.history.forward();
-      function noBack() {
-        window.history.forward();
-      }
-    </script>
+      function noBack(){window.history.forward();}
+     </script>
   </head>
-  <body
-    onload="noBack();"
-    onpageshow="if(event.persisted) noBack();"
-    onunload=""
-  >
+  <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
     <%- include('../common/nav.ejs') %>
     <main class="signup">
       <div class="signupBoard">
@@ -69,7 +63,7 @@
               placeholder="비밀번호"
               required
               minlength="8"
-              maxlength="16"
+              maxlength="20"
             />
             <img
               class="closeEyePw"
@@ -87,7 +81,7 @@
               placeholder="비밀번호 확인"
               required
               minlength="8"
-              maxlength="16"
+              maxlength="20"
             />
             <img
               class="closeEyePwCheck"
@@ -108,5 +102,7 @@
     <script src="/static/js/signup.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   </body>
+  
 </html>
