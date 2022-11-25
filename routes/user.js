@@ -35,5 +35,7 @@ router.post('/modifyUserInform', controller.modifyUserInform);
 router.post('/profileUpload',uploadDetail.single('profileUpload'),controller.profileUploads);
 router.post('/modifyPW', controller.modifyPW);
 
+router.post('/mylike', controller.getMyLike);
+router.post('/mypost', controller.getMyPost);
 
 module.exports = router;

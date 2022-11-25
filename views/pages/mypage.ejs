@@ -18,8 +18,8 @@
         <div class="profileEdit">
             <div class="infoList">
                 <div class="info" onclick="myInform()">내정보 수정</div>
-                <div class="like">좋아요 목록</div>
-                <div class="fix">게시글 수정</div>
+                <div class="like" onclick="myLike()">좋아요 목록</div>
+                <div class="fix" onclick="myPost()">내 게시글</div>
             </div>
             <div class="editCard">
                 <div class="myInformation">
@@ -59,9 +59,13 @@
           </div>
           <div class="likeList">
             <p>좋아요 목록</p>
+            <div class="like-container">
+
+            </div>
           </div>
           <div class="postEdit">
-            <p>게시글 수정</p>
+            <p>내 게시글</p>
+            <div class="post-container"></div>
           </div>
         </div>
     <input type="hidden" name="isLogin" value="<%= isLogin %>" id="isLogin">
