@@ -8,6 +8,7 @@ exports.main = (req, res) => {
     const user_id = req.session.user_id;
     if (user !== undefined) {
         models.Post.findAll({
+            order: [['id', 'DESC']],
             include: [
                 {
                     model: models.Likes,
@@ -28,6 +29,7 @@ exports.main = (req, res) => {
         })
     } else {
         models.Post.findAll({
+            order: [['id', 'DESC']],
             include: [
                 {
                     model: models.Likes,
@@ -42,7 +44,7 @@ exports.main = (req, res) => {
                         attributes : ['userID'],
                     }]
                 }
-            ]
+            ],
         }).then(result => {
             res.render("pages/mainpage", { data:result, isLogin: false });
         })
@@ -53,6 +55,7 @@ exports.main = (req, res) => {
 // 전체 포스트 보기
 exports.viewPage = (req,res) => {
     models.Post.findAll({
+        order: [['id', 'DESC']],
         include: [
             {
                 model:  models.Likes,
