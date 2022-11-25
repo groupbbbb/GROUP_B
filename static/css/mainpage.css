@@ -14,7 +14,7 @@ body {
 
 .card {
   width: 500px;
-  height: 800px;
+  height: 850px;
   margin: 80px auto;
   border: solid 1px black;
   background-color: white;
@@ -28,6 +28,58 @@ body {
   display: flex;
 }
 
+#hiddenSlideImg > img {
+  margin-top: 42px;
+  height: 660px;
+}
+
+.hiddenContent {
+  width: 100%;
+  position: relative;
+  padding-top: 0;
+  height: 200px;
+  border-bottom: 1px solid grey;
+  word-break: break-all;
+}
+
+.contentChild {
+  position: absolute;
+}
+.hiddenUsersComment {
+  overflow: auto;
+  height: 330px;
+}
+
+.hiddenCommentEdit {
+  background-color: rgb(194, 81, 100);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.hiddenCommentDelete {
+  background-color: rgb(194, 81, 100);
+  color: white;
+  border: none;
+  margin-left: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.editDeletBtn {
+  display: flex;
+}
+
+.likeUsers {
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.hiddenpro {
+  display: flex;
+}
 .profile {
   width: 100%;
   border-bottom: solid 1px black;
@@ -67,40 +119,79 @@ body {
   height: 100%;
 }
 
+.profileBox {
+  justify-content: space-between;
+  width: 100%;
+}
+
 .userWriting {
-  display: flex;
   border-bottom: solid 1px black;
-  height: 25%;
+  height: 230px;
+}
+
+.boxIcon {
+  height: 30%;
+  display: flex;
+  justify-content: space-between;
 }
 
 input:focus {
   outline: none;
 }
 
+.heartList {
+  display: flex;
+}
 .commentBox {
   display: flex;
   align-items: center;
   padding: 5px;
-  height: 8%;
+}
+.content-container {
+  height: 280px;
+}
+.commentBox img {
+  width: 40px;
 }
 
-.commentBox img {
-  width: 8%;
-}
 .content {
-  width: 150%;
-  margin-top: 50%;
+  width: 98%;
+  height: 50%;
   border: 0;
+  margin-left: 5px;
+  border: 1px solid black;
 }
+
+.commentUpBtn {
+  background-color: black;
+  color: white;
+  height: 40px;
+  width: 90px;
+  border-radius: 20px;
+  margin-left: 5px;
+}
+
+.contentWrite {
+  width: 98%;
+  height: 160px;
+  border: 0;
+  margin-left: 5px;
+  word-break: break-all;
+}
+
 .uploadComment-form {
   display: flex;
   align-items: center;
   width: 100%;
 }
-.commentContent {
-  width: 80%;
-  height: 30px;
+.imgicons {
+  margin-left: -37px;
 }
+.good {
+  margin-left: 5px;
+  margin-top: 38px;
+}
+
 .commentUp {
   margin-left: 5px;
   background-color: black;
@@ -109,16 +200,23 @@ input:focus {
   height: 30px;
   border-radius: 20px;
 }
+.commentUpLoad {
+  width: 60px;
+  height: 40px;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+}
 
 .prev,
-.next,
-.hiddenPrev,
-.hiddenNext {
+.next {
   cursor: pointer;
   position: absolute;
 
   padding: 12px;
-  /* color: white; */
   font-weight: bold;
   font-size: 20px;
   border-radius: 0 3px 3px 0;
@@ -126,11 +224,14 @@ input:focus {
   -webkit-user-select: none;
 }
 
-.next,
-.hiddenNext {
+.next {
   position: absolute;
   right: 0;
   border-radius: 3px 0 0 3px;
+}
+
+.prev {
+  display: none;
 }
 
 .btn {
@@ -142,42 +243,53 @@ input:focus {
   background: rgba(114, 113, 113, 0.3);
 }
 
-/* .likeCount {
-  width: 30px
-/* } 
-
-.heart-num {
-  margin-top: 10%;
-}
-.management {
-  height: 100%;
+.likeCount {
+  display: flex;
 }
 
-.btnFirst,
-.btnSecond {
-  float: right;
-
+.btns {
+  border: none;
   background-color: white;
-  border: 1.5px solid black;
-
-  font-weight: 700;
-  border-radius: 10px;
-  width: 120px;
-  height: 30px;
+  font-size: 30px;
 }
-
-.btnFirst {
-  margin-bottom: 5%;
-  margin-top: 5%;
-} */
 
 .heart-icon {
   position: absolute;
   font-size: 30px;
   cursor: pointer;
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 5px;
+  margin-top: 5px;
+
   color: rgb(241, 135, 144);
+}
+.management-btn {
+  height: 30px;
+  display: flex;
+  padding: 1px;
+  margin-right: 5px;
+}
+
+.postFormEdit {
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.editPostDelete {
+  margin-left: 5px;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.manageEdit,
+.manageDelete {
+  background-color: black;
+  color: white;
+  height: 40px;
+  margin-top: 5px;
+  margin-left: 5px;
+  border-radius: 10px;
 }
 
 .heart-icon-hidden {
@@ -185,7 +297,7 @@ input:focus {
   font-size: 30px;
   cursor: pointer;
   margin-left: 10px;
-  margin-top: 10px;
+  margin-top: 5px;
   color: rgb(241, 135, 144);
 }
 
@@ -194,25 +306,24 @@ input:focus {
   font-size: 30px;
   cursor: pointer;
   margin-left: 10px;
-  margin-top: 10px;
+  margin-top: 5px;
   color: rgb(241, 135, 144);
 }
 
-.search {
-  margin-top: 5px;
-  margin-left: -70px;
-}
-
+.search,
 .sendMessage {
-  margin-top: 5px;
-  margin-left: -30px;
+  width: 40px;
+  height: 40px;
 }
 
+.heart-num {
+  display: inline-block;
+}
 .hiddenBox {
   width: 1050px;
   height: 750px;
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
 
   transform: translate(-50%, -65%);
@@ -222,14 +333,10 @@ input:focus {
 
 .hiddenImg {
   position: absolute;
-
   background-color: white;
-
   border: solid 1px black;
-  /* border-radius: 10px; */
   width: 100%;
   height: 100%;
-  /* margin: auto; */
 }
 
 .halfImg {
@@ -238,13 +345,13 @@ input:focus {
   width: 65%;
   height: 100%;
   border-right: solid 1px black;
+  background-color: black;
 }
 
 .halfSlide {
   width: 100%;
   height: 100%;
   background-color: rgb(44, 44, 44);
-  /* display: none; */
 }
 
 .halfSlide img {
@@ -255,22 +362,16 @@ input:focus {
 
 .hiddenComment {
   position: absolute;
-
   width: 35%;
   height: 100%;
   background-color: white;
-
   right: 0;
 }
 
 .slideWriting {
   height: 30%;
 }
-.slidecommentView {
-  height: 46%;
-  overflow: auto;
-  border-bottom: solid 1px black;
-}
+
 .close {
   top: 1%;
   position: absolute;
@@ -284,6 +385,7 @@ input:focus {
 .send {
   margin-left: 45px;
   margin-top: 5px;
+  font-size: 30px;
 }
 
 .inputBox {
@@ -292,23 +394,98 @@ input:focus {
   margin-left: 10px;
 }
 
-/* .inputComment {
-  width: 35px;
-  
-} */
+.slideContent {
+  height: 30px;
+  border: 1px solid black;
+}
 
-.hiddenContent {
-  border: solid 1px black;
-  width: 80%;
+.commentLike {
+  position: relative;
+  margin-top: 310px;
+  height: 130px;
+  z-index: 1;
+}
+
+.heart-hidden-hiddenSlide {
+  margin-top: 35px;
+}
+
+.heart-hidden-isNotLogin {
+  margin-top: 35px;
+}
+
+#postEdit > input {
+  background-color: white;
+  height: 200px;
+  width: 350px;
+  border: 1px solid black;
+  border-radius: 30px;
+  z-index: 2;
+  margin-top: 400px;
+}
+
+.close {
+  top: -6%;
+}
+
+.userLists {
+  position: absolute;
+  width: 150px;
+  text-align: center;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(248, 182, 182);
+  display: none;
+
+  border-radius: 10px;
+  background-color: rgb(247, 221, 225);
+  margin-top: -120px;
+  z-index: 1;
+}
+.active {
+  position: absolute;
+  display: block;
+  overflow: auto;
+  right: 0;
+}
+
+.likedPeople {
+  display: block;
+}
+
+#content {
+  width: 205%;
+  height: 170px;
+  background-color: rgb(247, 221, 225);
+  border-radius: 15px;
+  border: 1px solid rgb(248, 182, 182);
+  word-break: break-all;
+  margin-left: 2px;
+  margin-top: -55%;
+}
+.chagneCancleBtn {
   margin-left: 5px;
+  margin-top: 5px;
 }
 
-.likeCount {
-  width: 23%;
+.buttonChild {
+  margin-top: 2px;
+  margin-left: 1px;
 }
-
-.heartCount {
-  margin-top: 40px;
+.change {
+  background-color: black;
+  border-radius: 10px;
+  height: 30px;
+  color: white;
+  cursor: pointer;
+}
+.cancel {
+  background-color: black;
+  border-radius: 10px;
+  height: 30px;
+  color: white;
+  cursor: pointer;
 }
 
 @keyframes box {
@@ -320,18 +497,20 @@ input:focus {
   }
 }
 
-@media (max-width: 599px) {
+@media (max-width: 580px) {
   .card {
     width: 80%;
   }
 
   .hiddenBox {
-    width: 90%;
-    height: 60%;
+    height: 80%;
+    width: 80%;
     display: flex;
     flex-direction: column;
-    top: 40%;
+    top: 50%;
     display: none;
+    margin-top: 20%;
+    font-size: 14px;
   }
   .halfImg {
     display: none;
@@ -339,58 +518,134 @@ input:focus {
   .hiddenComment {
     width: 100%;
   }
-  .slideWriting {
-    height: 23%;
 
-    width: 95%;
-    margin: auto;
+  .commentBox img {
+    width: 30px;
   }
-  .slidecommentView {
-    width: 95%;
-    margin: auto;
+  .hiddenUsersComment {
+    height: 340px;
+  }
+
+  .commentLike {
+    margin-top: 310px;
+    height: 150px;
+    font-size: 14px;
   }
 }
 
-@media (min-width: 600px) and (max-width: 699px) {
+@media (min-width: 581px) and (max-width: 699px) {
   .card {
     width: 400px;
   }
 
+  .hiddenContent {
+    font-size: 13px;
+    height: 160px;
+  }
+
   .hiddenBox {
-    width: 90%;
-    height: 60%;
+    margin-top: 10%;
+    height: 70%;
+    width: 95%;
     animation: box 0.5s ease;
-    top: 40%;
+    top: 50%;
     display: none;
   }
 
-  .hiddenContent {
-    width: 70%;
+  .slideWriting {
+    height: 24%;
   }
 
-  .slideWriting {
-    height: 25%;
+  .commentLike {
+    margin-top: 310px;
+    height: 120px;
+    font-size: 13px;
   }
+  #hiddenSlideImg > img {
+    height: 590px;
+  }
+  .hiddenUsersComment {
+    height: 310px;
+    font-size: 13px;
+  }
+  .heart-hidden-hiddenSlide {
+    margin-top: 36px;
+  }
+
+  .commentUpBtn {
+    height: 30px;
+    width: 70px;
+    font-size: 10px;
+  }
+  .contentWrite {
+    font-size: 15px;
+  }
+
   .close {
-    top: -7.5%;
+    top: -6.5%;
+  }
+  .efeff {
+    font-size: 13px;
+  }
+  .commentBox img {
+    width: 37px;
+  }
+  .inputComment {
+    width: 25px;
+  }
+  .ommentUpLoad {
+    width: 50px;
+    height: 30px;
+    font-size: 13px;
+  }
+  .imgicons {
+    margin-left: -26px;
+  }
+  .hiddenCommentEdit {
+    font-size: 10px;
+  }
+  .hiddenCommentEdit {
+    font-size: 10px;
+  }
+  .likeUsers {
+    font-size: 10px;
   }
 }
 
 @media (min-width: 700px) and (max-width: 1100px) {
+  #content {
+    width: 150%;
+  }
+
   .hiddenBox {
     width: 90%;
     height: 70%;
     animation: box 0.5s ease;
     display: none;
-    top: 45%;
+    top: 55%;
   }
 
   .slideWriting {
     height: 28%;
+    font-size: 14px;
   }
 
-  .hiddenContent {
-    width: 70%;
+  .commentLike {
+    margin-top: 285px;
+    height: 120px;
+    font-size: 14px;
+  }
+
+  #hiddenSlideImg > img {
+    height: 590px;
+  }
+  .hiddenUsersComment {
+    height: 270px;
+    font-size: 14px;
+  }
+
+  .close {
+    top: -6.5%;
   }
 }
 

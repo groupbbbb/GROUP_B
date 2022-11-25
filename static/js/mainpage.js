@@ -2,9 +2,14 @@ const slideBoxAll = document.querySelectorAll(".slideBox");
 const nextBtn = document.querySelectorAll(".next");
 const prevBtn = document.querySelectorAll(".prev");
 
-const imageAll=[];
-for(let i=0;i<slideBoxAll.length;i++){
-  imageAll.push(Array.from(slideBoxAll[i].children).slice(0,slideBoxAll[i].children.length - 2))
+const imageAll = [];
+for (let i = 0; i < slideBoxAll.length; i++) {
+  imageAll.push(
+    Array.from(slideBoxAll[i].children).slice(
+      0,
+      slideBoxAll[i].children.length - 2
+    )
+  );
 }
 
 const currentIndexs = {
@@ -37,7 +42,7 @@ function buttonClick(cardIdx, arrow) {
   if (arrow > 0) {
     imageAll[cardIdx][currentIndexs[cardIdx]].style.display = "none";
     imageAll[cardIdx][nextIndexs[cardIdx]].style.display = "block";
-
+    prevBtn[cardIdx].style.display="block"
     if (nextIndexs[cardIdx] === imageAll[cardIdx].length - 1) {
       nextBtn[cardIdx].style.display = "none";
     } else {
@@ -49,6 +54,7 @@ function buttonClick(cardIdx, arrow) {
   } else {
     currentIndexs[cardIdx]--;
     nextIndexs[cardIdx]--;
+
     if (currentIndexs[cardIdx] === 0) {
       prevBtn[cardIdx].style.display = "none";
     } else {
@@ -58,7 +64,6 @@ function buttonClick(cardIdx, arrow) {
     imageAll[cardIdx][currentIndexs[cardIdx]].style.display = "block";
     imageAll[cardIdx][nextIndexs[cardIdx]].style.display = "none";
   }
-
 }
 
 for (let i = 0; i < nextBtn.length; i++) {
@@ -73,27 +78,46 @@ for (let z = 0; z < prevBtn.length; z++) {
   });
 }
 
-
-// 팝업 슬라이드
+// 슬라이드 확대 취소 버튼 기능
 const searchAll = document.querySelectorAll(".search");
 const closeAll = document.querySelectorAll(".close");
 const hiddenBox = document.querySelectorAll(".hiddenBox");
 const box = document.querySelectorAll(".box");
 const contentBox = document.querySelectorAll(".contentBox");
+const card = document.querySelectorAll(".card");
+const body = document.querySelector("body");
 
 for (let k = 0; k < hiddenBox.length; k++) {
   searchAll[k].addEventListener("click", function () {
-
     hiddenBox[k].style.display = "block";
+    body.style.backgroundColor = "rgba(0, 0, 0, 0.66)";
   });
 }
 
 for (let l = 0; l < box.length; l++) {
   closeAll[l].addEventListener("click", () => {
     for (let j = 0; j < box.length; j++) hiddenBox[j].style.display = "none";
+    card[l].style.display = "block";
+    body.style.backgroundColor = "transparent";
   });
 }
 
+for (let i = 0; i < hiddenBox.length; i++) {
+  searchAll[i].addEventListener("click", function () {
+    card[i].style.display = "none";
+  });
+}
+
+// 확대 슬라이드 좋아요한 유저 보기
+const userListsAll = document.querySelectorAll(".userLists");
+const likeUsersAll = document.querySelectorAll(".likeUsers");
+
+for (let i = 0; i < hiddenBox.length; i++) {
+  likeUsersAll[i].addEventListener("click", function () {
+    console.log(userListsAll);
+    userListsAll[i].classList.toggle("active");
+  });
+}
 
 // 확대 슬라이드
 const halfImgAll = document.querySelectorAll(".halfImg"); // 5
@@ -133,11 +157,8 @@ const nextHiddenIndexs = {
 
 function slideButtonClick(cardIdx, arrow) {
   if (arrow > 0) {
-    console.log("다음 버튼 클릭");
     halfImgAll[cardIdx][currentHiddenIndexs[cardIdx]].style.display = "none";
     halfImgAll[cardIdx][nextHiddenIndexs[cardIdx]].style.display = "block";
-
-    console.log(nextHiddenIndexs[cardIdx], halfImgAll[cardIdx].length - 1);
     if (nextHiddenIndexs[cardIdx] === halfImgAll[cardIdx].length - 1) {
       hiddenNext[cardIdx].style.display = "none";
     } else {
@@ -147,11 +168,9 @@ function slideButtonClick(cardIdx, arrow) {
     currentHiddenIndexs[cardIdx]++;
     nextHiddenIndexs[cardIdx]++;
   } else {
-    console.log("이전 버튼 클릭");
     currentHiddenIndexs[cardIdx]--;
     nextHiddenIndexs[cardIdx]--;
 
-    console.log(currentHiddenIndexs[cardIdx], halfImgAll[cardIdx].length - 1);
     if (currentHiddenIndexs[cardIdx] === 0) {
       hiddenPrev[cardIdx].style.display = "none";
     } else {
