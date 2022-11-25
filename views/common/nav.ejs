@@ -14,65 +14,43 @@
         <li>
           <% if (isLogin) { %>
             <a href="/post/upload">
-              <img
-                src="/static/img/postImg.png"
-                alt="전체 페이지"
-                title="게시글쓰기"
-                />
+              <img src="/static/img/postImg.png" alt="전체 페이지" title="게시글쓰기" />
             </a>
             </a>
-            <%} else {  %>
-            <a href="/user/signin">
-              <img
-              src="/static/img/postImg.png"
-              alt="전체 페이지"
-              title="게시글쓰기"
-              />
-            </a>
-            <% }  %>
-          
+            <%} else { %>
+              <a href="/user/signin">
+                <img src="/static/img/postImg.png" alt="전체 페이지" title="게시글쓰기" />
+              </a>
+              <% } %>
+
         </li>
         <li>
           <div onclick="chat();">
-            <img
-              src="/static/img/message.jpg"
-              alt="전체 페이지"
-              title="메세지"
-              />
-              <div class="messageAlarm counting"><%= %></div>
+            <img src="/static/img/message.jpg" alt="전체 페이지" title="메세지" />
+            <div class="messageAlarm counting">
+              <%= %>
             </div>
-          </li>
+          </div>
+        </li>
         <% if (isLogin) { %>
-          <%} else {  %>
+          <%} else { %>
             <li>
               <a href="/user/signin">
-              <img
-                src="/static/img/login.jpg"
-                alt="로그인 페이지"
-                title="로그인"
-                />
+                <img src="/static/img/login.jpg" alt="로그인 페이지" title="로그인" />
               </a>
             </li>
-            <% }  %>
-        <li>
-            <% if (isLogin) { %>
-            <a href="/user/mypage?isLogin=<%= isLogin %>">
-            <img
-              src="/static/img/mypage.jpg"
-              alt="마이페이지"
-              title="마이페이지"
-            />
-            </a>
-            <%} else {  %>
-            <a href="/user/signin">
-            <img
-              src="/static/img/mypage.jpg"
-              alt="마이페이지"
-              title="마이페이지"
-            />
-            </a>
-            <% }  %>
-        </li>
+            <% } %>
+              <li>
+                <% if (isLogin) { %>
+                  <a href="/user/mypage?isLogin=<%= isLogin %>">
+                    <img src="/static/img/mypage.jpg" alt="마이페이지" title="마이페이지" />
+                  </a>
+                  <%} else { %>
+                    <a href="/user/signin">
+                      <img src="/static/img/mypage.jpg" alt="마이페이지" title="마이페이지" />
+                    </a>
+                    <% } %>
+              </li>
       </ul>
     </nav>
   </header>

@@ -44,8 +44,10 @@ axios({
 let profileImg = document.querySelector('#profileImg'); 
 let userID = document.querySelector('#userID');
 let userPW = document.querySelector('#userPW'); 
-let userName = document.querySelector('#name'); 
+let userName = document.querySelector('#name');
+let userNameHidden = document.querySelector('#nameHidden');
 let birth = document.querySelector('#birth');
+let birthHidden = document.querySelector('#birthHidden');
 function myInform() {
   function getParameterByName(name) {
       name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -70,7 +72,9 @@ function myInform() {
     userID.value = data.data.userID;
     userPW.value = data.data.userPW;
     userName.value = data.data.name;
+    userNameHidden.value = data.data.name;
     birth.value = data.data.birth;
+    birthHidden.value = data.data.birth;
   });
 }
 
@@ -94,6 +98,11 @@ function modifyInform() {
 
   if (!informForm.checkValidity()) {
     informForm.reportValidity();
+    return;
+  }
+  if (userNameHidden.value===informForm.name.value && birthHidden.value===informForm.birth.value) {
+    document.querySelector('.modifyInformBtn').disabled = true;
+    document.querySelector('.modifyInformBtn').disabled = true;
     return;
   }
     axios({
@@ -215,8 +224,6 @@ if (pwMsg.style.color === 'red') {
     });
 }
 }
-
-
 
 //============================================================================================
 // 좋아요 목록 보기
