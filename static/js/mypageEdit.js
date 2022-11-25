@@ -238,18 +238,11 @@ async function myLike() {
   });
   console.log(data);
 
-  document.querySelector('.like-container').innerHTML='';
-  let html = '';
-  for (let i = 0; i < data.length; i++) {
-    html += `<br>게시자 : ${data[i].post.user.userID}, 내용 : ${data[i].post.content}<br>`;
-    for(let j=0; j<data[i].post.likes.length; j++){
-      html += `  좋아요) ${data[i].post.likes[j].user.userID}<br>`;
-    }
-    for(let j=0; j<data[i].post.comments.length; j++){
-      html += `  댓글) ${data[i].post.comments[j].user.userID} : ${data[i].post.comments[j].content}<br>`;
-    }
-  }
-  document.querySelector('.like-container').insertAdjacentHTML('beforeend', html);
+  // 내용 ${data[i].post.content}
+  // 게시자 ${data[i].post.user.userID}
+  // 좋아요 ${data[i].post.likes[j].user.userID}
+  // 댓글단사람 ${data[i].post.comments[j].user.userID}
+  // 댓글내용 ${data[i].post.comments[j].content}
 }
 
 // 내 게시글
@@ -264,16 +257,9 @@ async function myPost() {
   });
   console.log(data);
 
-  document.querySelector('.post-container').innerHTML='';
-  let html = '';
-  for (let i = 0; i < data.length; i++) {
-    html += `<br>내용 : ${data[i].content}, 댓글${data[i].comments.length}개, 좋아요${data[i].likes.length}개<br>`;
-    for(let j=0; j<data[i].likes.length; j++){
-      html += `  좋아요) ${data[i].likes[j].user.userID}<br>`;
-    }
-    for(let j=0; j<data[i].comments.length; j++){
-      html += `  댓글) ${data[i].comments[j].user.userID} : ${data[i].comments[j].content}<br>`;
-    }
-  }
-  document.querySelector('.post-container').insertAdjacentHTML('beforeend', html);
+  // 내용 ${data[i].content
+  // 좋아요 ${data[i].likes.length}
+  // 댓글단사람 ${data[i].comments[j].user.userID}
+  // 댓글내용 ${data[i].comments[j].content}
+
 }

@@ -52,8 +52,61 @@ exports.post_signin = (req, res) => {
 };
 
 exports.mypage = (req, res) => {
-  res.render('pages/mypage', {isLogin: req.session.user});
+  const user_id = req.session.user_id;
+  let likeData;
+  let postData;
+  
+  models.Likes.findAll({
+    where:{user_id:user_id},
+    order: [['id', 'DESC']],
+    include: [
+      {
+        model: models.Post,
+        include :[
+          { model : models.User, attributes:['userID']},
+          {
+            model: models.Likes, attributes:['user_id'],
+            include : [{model:models.User, attributes:['userID']}]
+          },
+          {
+            model: models.Comment, attributes:['user_id','content','createdAt'],
+            include : [{model:models.User, attributes:['userID']}]
+          }
+        ]
+      }
+    ]
+  }).then(result => {
+    post_info=result;
+    models.Likes.findAll({
+      where:{user_id:user_id},
+      order: [['id', 'DESC']],
+      include: [
+        {
+          model: models.Post,
+          include :[
+            { model : models.User, attributes:['userID']},
+            {
+              model: models.Likes, attributes:['user_id'],
+              include : [{model:models.User, attributes:['userID']}]
+            },
+            {
+              model: models.Comment, attributes:['user_id','content','createdAt'],
+              include : [{model:models.User, attributes:['userID']}]
+            }
+          ]
+        }
+      ]
+    }).then(result => {
+      res.render('pages/mypage', { isLogin: req.session.user, post_Data:postData, like_Data:result });
+    })
+  })
+
+
+  // res.render('pages/mypage', {isLogin: req.session.user});
 };
+
+
+
 //======로그아웃======
 exports.signout = (req, res) => {
   req.session.destroy(function(){
