@@ -55,7 +55,7 @@ body {
 }
 
 .inputBox input {
-  width: 12vw;
+  width: 13vw;
   background-color: #fafafa;
   border: none;
 }
@@ -91,10 +91,14 @@ body {
   margin-top: 1vw;
   text-align: center;
 }
-
-.signinMove a {
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.signinMove span {
   text-decoration: none;
   color: #0095f6;
+  font-weight: 600;
 }
 
 #idMsg {

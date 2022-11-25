@@ -177,27 +177,27 @@ for (let z = 0; z < hiddenPrev.length; z++) {
 
 
 
-function mypage() {
-  function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-      results = regex.exec(location.search);
-    return results == null
-      ? ""
-      : decodeURIComponent(results[1].replace(/\+/g, " "));
-  }
-  var id = getParameterByName("id");
+// function mypage() {
+//   function getParameterByName(name) {
+//     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+//     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+//       results = regex.exec(location.search);
+//     return results == null
+//       ? ""
+//       : decodeURIComponent(results[1].replace(/\+/g, " "));
+//   }
+//   var id = getParameterByName("id");
 
-  axios({
-    method: "POST",
-    url: "/user/mypage",
-    data: {
-      id,
-    },
-  }).then((data) => {
-    document.location.href = `/user/mypage?isLogin=${data.data.isLogin}?id=${data.data.id}`;
-  });
-}
+//   axios({
+//     method: "POST",
+//     url: "/user/mypage",
+//     data: {
+//       id,
+//     },
+//   }).then((data) => {
+//     document.location.href = `/user/mypage?isLogin=${data.data.isLogin}?id=${data.data.id}`;
+//   });
+// }
 
 
 // =========================================  포스트  =========================================
