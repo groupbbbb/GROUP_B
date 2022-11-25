@@ -17,7 +17,7 @@ const Post = function(Sequelize, DataTypes){
                     allowNull : false,
                 },
                 img_src:{
-                    type : DataTypes.STRING(500),
+                    type : DataTypes.STRING(5000),
                     allowNull : true,
                 },
                 

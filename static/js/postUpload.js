@@ -6,6 +6,8 @@ function upload(){
 
     if(file.files[0]==null || form.content.value==""){
         alert('모든 값을 입력하세요');
+    }else if(file.files.length>10){
+        alert('10장 이하로 선택해주세요');
     }else{
         formData.append('content',form.content.value);
         for(let i=0;i<file.files.length;i++){
