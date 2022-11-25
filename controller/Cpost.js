@@ -93,7 +93,7 @@ exports.viewThisPost = (req,res) => {
 
 // 포스트 업로드 페이지
 exports.uploadPage = (req,res) => {
-    res.render('pages/postUpload');
+    res.render('pages/postUpload', {isLogin: req.session.user});
 };
 
 // 포스트 업로드
