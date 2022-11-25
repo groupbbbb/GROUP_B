@@ -124,6 +124,7 @@ exports.getMyLike=(req,res)=>{
   if(user_id){
     models.Likes.findAll({
       where:{user_id:user_id},
+      order: [['id', 'DESC']],
       include: [
         {
           model: models.Post,
@@ -152,6 +153,7 @@ exports.getMyPost = (req, res) => {
   if(user_id){
     models.Post.findAll({
       where:{user_id:user_id},
+      order: [['id', 'DESC']],
       include: [
         {
           model: models.Likes, attributes:['user_id'],

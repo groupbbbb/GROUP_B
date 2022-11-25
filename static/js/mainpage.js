@@ -234,6 +234,10 @@ async function deletePost(obj, id){
         return res.data;
     }).then((res)=>{
         console.log(res);
+        alert(res);
+        location.reload();
+        location.replace(location.href);
+        location.href = location.href;
     })
 }
 
@@ -288,9 +292,13 @@ async function editPostDo(obj, id, isHidden) {
         return res.data;
     }).then((res)=>{
         console.log(res);
+        alert(res);
         editPostSelected.post_id="";
         editPostSelected.user_id="";
     })
+    location.reload();
+    location.replace(location.href);
+    location.href = location.href;
 }
 
 // 수정 취소
@@ -351,6 +359,10 @@ function uploadComment(obj, id, isHidden){
             }
         }).then((res)=>{
             console.log(res.data);
+            alert(res.data);
+            location.reload();
+            location.replace(location.href);
+            location.href = location.href;
         })
     }
 }
@@ -371,6 +383,10 @@ async function deleteComment(obj, id){
         data: { id: id, user_id : data.user_id },
     }).then((res) => {
         console.log(res.data);
+        alert(res.data);
+        location.reload();
+        location.replace(location.href);
+        location.href = location.href;
     });
 }
 
@@ -404,6 +420,10 @@ function commentEditDo(obj, post_id, comment_id) {
         return res.data;
     }).then((res)=>{
         console.log(res);
+        alert(res);
+        location.reload();
+        location.replace(location.href);
+        location.href = location.href;
     })
 }
 

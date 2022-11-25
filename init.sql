@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `pocogram`.`post` (
   `content` VARCHAR(5000) NOT NULL,
   `createdAt` DATETIME NOT NULL,
   `updatedAt` DATETIME NOT NULL,
-  `img_src` VARCHAR(500) NULL,
+  `img_src` VARCHAR(2000) NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_post_user`
     FOREIGN KEY (`user_id`)
@@ -179,99 +179,65 @@ CREATE TABLE IF NOT EXISTS `pocogram`.`msg` (
 -- ##############################################################################
 
 
--- user
-INSERT INTO user (userID,userPW,name) VALUES 
-  ('user1','1234','유저1'),
-  ('user2','1234','유저2'),
-  ('user3','1234','유저3'),
-  ('user4','1234','유저4');
+-- -- user
+-- INSERT INTO user (userID,userPW,name) VALUES 
+--   ('user1','1234','유저1'),
+--   ('user2','1234','유저2'),
+--   ('user3','1234','유저3'),
+--   ('user4','1234','유저4');
 
 
--- post
-INSERT INTO post (user_id, content, createdAt,updatedAt) VALUES 
-  (1,'내용1',NOW(),NOW()),
-  (2,'내용2',NOW(),NOW()),
-  (3,'내용3',NOW(),NOW()),
-  (4,'내용4',NOW(),NOW());
+-- -- post
+-- INSERT INTO post (user_id, content, createdAt,updatedAt) VALUES 
+--   (1,'내용1',NOW(),NOW()),
+--   (2,'내용2',NOW(),NOW()),
+--   (3,'내용3',NOW(),NOW()),
+--   (4,'내용4',NOW(),NOW());
 
 
--- comment
-INSERT INTO comment (user_id,post_id,content,createdAt,updatedAt) VALUES 
-  (1,1,'댓글 내용1',NOW(),NOW()),
-  (2,2,'댓글 내용2',NOW(),NOW()),
-  (3,3,'댓글 내용3',NOW(),NOW()),
-  (4,4,'댓글 내용4',NOW(),NOW()),
-  (4,1,'댓글 내용5',NOW(),NOW());
+-- -- comment
+-- INSERT INTO comment (user_id,post_id,content,createdAt,updatedAt) VALUES 
+--   (1,1,'댓글 내용1',NOW(),NOW()),
+--   (2,2,'댓글 내용2',NOW(),NOW()),
+--   (3,3,'댓글 내용3',NOW(),NOW()),
+--   (4,4,'댓글 내용4',NOW(),NOW()),
+--   (4,1,'댓글 내용5',NOW(),NOW());
 
 
--- likes
-INSERT INTO likes (user_id,post_id) VALUES 
-  (1,1),
-  (2,1),
-  (3,1),
-  (4,1),
-  (4,2),
-  (3,2),
-  (2,2),
-  (2,3);
+-- -- likes
+-- INSERT INTO likes (user_id,post_id) VALUES 
+--   (1,1),
+--   (2,1),
+--   (3,1),
+--   (4,1),
+--   (4,2),
+--   (3,2),
+--   (2,2),
+--   (2,3);
   
 
--- follow
-INSERT INTO follow (followee_id,follower_id) VALUES 
-  (1,2),
-  (2,1),
-  (3,1);
+-- -- follow
+-- INSERT INTO follow (followee_id,follower_id) VALUES 
+--   (1,2),
+--   (2,1),
+--   (3,1);
 
 
--- room
-INSERT INTO room (id) VALUES (1),(2),(3);
+-- -- room
+-- INSERT INTO room (id) VALUES (1),(2),(3);
 
 
--- participant
-INSERT INTO participant (user_id, room_id) VALUES
-  (1,1),
-  (1,2),
-  (2,1),
-  (2,2);
+-- -- participant
+-- INSERT INTO participant (user_id, room_id) VALUES
+--   (1,1),
+--   (1,2),
+--   (2,1),
+--   (2,2);
 
 
--- msg
-INSERT INTO msg (content,createdAt,updatedAt,participant_id) VALUES
-  ('하이1',NOW(),NOW(),1),
-  ('하이2',NOW(),NOW(),2),
-  ('하이3',NOW(),NOW(),3),
-  ('하이4',NOW(),NOW(),4);
-
-
-  
--- join
--- post,comment
-SELECT
-   post.id,
-   comment.id as comment_id,
-   comment.user_id as comment_user_id,
-   comment.content as comment_content
-FROM post
-LEFT JOIN comment
-   ON post.id=comment.post_id
-ORDER BY post.id;
-
-
-
--- post,like
-SELECT
-   post.id,
-   likes.id as likes_id,
-   likes.user_id as likes_user_id
-   FROM post
-INNER JOIN likes
-   ON post.id=likes.post_id
-WHERE post.id=1;
-
-
-
--- post,comment,like
-SELECT post.id, comment.id, comment.user_id, comment.content, likes.id, likes.user_id
-from post
-join comment on post.id=comment.post_id
-join likes on post.id=likes.post_id;
+-- -- msg
+-- INSERT INTO msg (content,createdAt,updatedAt,participant_id) VALUES
+--   ('하이1',NOW(),NOW(),1),
+--   ('하이2',NOW(),NOW(),2),
+--   ('하이3',NOW(),NOW(),3),
+--   ('하이4',NOW(),NOW(),4);
