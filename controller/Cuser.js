@@ -1,13 +1,16 @@
 const models = require('../models');
+const bcrypt = require('bcrypt');
+const salt = 12;
 
 exports.signup = (req, res) => {
   res.render('pages/signup', {isLogin: req.session.user});
 };
 //======회원가입======
 exports.post_signup = (req, res) => {
+  const hashed_userPW = bcrypt.hashSync(req.body.userPW, salt);
   models.User.create({
     userID: req.body.userID,
-    userPW: req.body.userPW,
+    userPW: hashed_userPW,
     name: req.body.name,
     birth: req.body.birth,
   }).then(() => {
@@ -35,13 +38,15 @@ exports.signin = (req, res) => {
 };
 //======로그인======
 exports.post_signin = (req, res) => {
+ 
   models.User.findOne({
     where: {
       userID: req.body.userID,
-      userPW: req.body.userPW,
     },
   }).then((result) => {
-    if (result === null) {
+    const hash = bcrypt.hashSync(req.body.userPW, 12);
+    const match = bcrypt.compareSync(result.userPW, hash);
+    if(match) {
       res.send(false);
     } else {
       req.session.user = req.body.userID;
@@ -67,7 +72,7 @@ exports.getMyInform = (req, res) => {
       userID: req.body.isLogin
     },
   }).then((result) => {
-   res.send({userID:result.dataValues.userID, userPW:result.dataValues.userPW, name:result.dataValues.name,
+   res.send({userID:result.dataValues.userID, name:result.dataValues.name,
     birth:result.dataValues.birth, profile_img:result.dataValues.profile_img});
   });
 }
@@ -102,9 +107,10 @@ exports.profileUploads = (req, res) => {
 }
 //======user비밀번호변경======
 exports.modifyPW = (req, res) => {
+  const hashed_newPW = bcrypt.hashSync(req.body.newPW, salt);
   models.User.update(
     {
-      userPW: req.body.newPW,
+      userPW: hashed_newPW,
     },
     {
       where: { userID: req.body.isLogin },

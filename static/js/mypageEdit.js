@@ -70,7 +70,6 @@ function myInform() {
 
     }
     userID.value = data.data.userID;
-    userPW.value = data.data.userPW;
     userName.value = data.data.name;
     userNameHidden.value = data.data.name;
     birth.value = data.data.birth;
