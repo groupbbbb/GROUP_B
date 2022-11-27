@@ -281,9 +281,9 @@ function deletePost(obj, id){
       return res.data;
   }).then((res)=>{
       alert(res);
-      // location.reload();
-      // location.replace(location.href);
-      // location.href = location.href;
+      location.reload();
+      location.replace(location.href);
+      location.href = location.href;
   })
 }
 
@@ -297,5 +297,24 @@ function editPost(obj, id){
       return res.data;
   }).then((res)=>{
       alert(res);
+      location.reload();
+      location.replace(location.href);
+      location.href = location.href;
   })
+}
+
+
+function deleteLike(obj, id){
+  axios({
+    method: 'POST',
+    url: '/user/deleteMyLike',
+    data: { id: id },
+}).then((res) => {
+    return res.data;
+}).then((res)=>{
+    alert(res);
+    location.reload();
+    location.replace(location.href);
+    location.href = location.href;
+})
 }

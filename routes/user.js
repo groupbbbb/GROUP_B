@@ -41,5 +41,6 @@ router.post('/mypost', controller.getMyPost);
 
 router.post('/deleteMyPost', controller.deleteMyPost);
 router.post('/editMyPost', controller.editMyPost);
+router.post('/deleteMyLike', controller.deleteMyLike);
 
 module.exports = router;

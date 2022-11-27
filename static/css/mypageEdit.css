@@ -370,3 +370,40 @@ input[type=file]::file-selector-button {
   height:10vh;
   background-color: gray;
 }
+
+
+.heart-icon {
+  font-size: 30px;
+  cursor: pointer;
+  color: rgb(241, 135, 144);
+  padding-right:4px;
+}
+
+.left-container{
+  padding-top:15px;
+}
+
+.postEdit input{
+  width:80%;
+  height:5vh;
+  border-style: solid;
+  border-color: gray;
+  border-radius: 10px;
+  border-width: 1px;
+}
+
+.postEdit button{
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 1px;
+  background-color: black;
+  color:white;
+}
+
+.post-edit-form{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left:5%;
+  padding-right:5%;
+}

@@ -232,3 +232,11 @@ exports.editMyPost = (req,res) => {
       res.send('게시글 수정 성공');
   })
 }
+
+exports.deleteMyLike = (req, res) => {
+  models.Likes.destroy({
+    where : {id:req.body.id}
+  }).then(result=>{
+    res.send('좋아요를 취소했습니다.');
+  })
+}
