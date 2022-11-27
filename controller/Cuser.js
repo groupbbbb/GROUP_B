@@ -57,8 +57,53 @@ exports.post_signin = (req, res) => {
 };
 
 exports.mypage = (req, res) => {
-  res.render('pages/mypage', {isLogin: req.session.user});
+  const user_id = req.session.user_id;
+  let likeData;
+  let postData;
+  
+  models.Post.findAll({
+    where:{user_id:user_id},
+    order: [['id', 'DESC']],
+    include: [
+      {
+        model: models.Likes, attributes:['user_id'],
+        include : [{model:models.User, attributes:['userID']}]
+      },
+      {
+        model: models.Comment, attributes:['user_id','content','createdAt'],
+        include : [{model:models.User, attributes:['userID']}]
+      }
+    ]
+  }).then(result => {
+    postData=result;
+    models.Likes.findAll({
+      where:{user_id:user_id},
+      order: [['id', 'DESC']],
+      include: [
+        {
+          model: models.Post,
+          include :[
+            { model : models.User, attributes:['userID']},
+            {
+              model: models.Likes, attributes:['user_id'],
+              include : [{model:models.User, attributes:['userID']}]
+            },
+            {
+              model: models.Comment, attributes:['user_id','content','createdAt'],
+              include : [{model:models.User, attributes:['userID']}]
+            }
+          ]
+        }
+      ]
+    }).then(result => {
+      res.render('pages/mypage', { isLogin: req.session.user, postData:postData, likeData:result, user_id:req.session.user_id });
+    })
+  })
+  // res.render('pages/mypage', {isLogin: req.session.user});
 };
+
+
+
 //======로그아웃======
 exports.signout = (req, res) => {
   req.session.destroy(function(){
@@ -123,55 +168,27 @@ exports.modifyPW = (req, res) => {
 //============================================================================================
 // 좋아요 목록 보기
 
-
-
-exports.getMyLike=(req,res)=>{
-  const user_id = req.session.user_id;
-  if(user_id){
-    models.Likes.findAll({
-      where:{user_id:user_id},
-      order: [['id', 'DESC']],
-      include: [
-        {
-          model: models.Post,
-          include :[
-            { model : models.User, attributes:['userID']},
-            {
-              model: models.Likes, attributes:['user_id'],
-              include : [{model:models.User, attributes:['userID']}]
-            },
-            {
-              model: models.Comment, attributes:['user_id','content','createdAt'],
-              include : [{model:models.User, attributes:['userID']}]
-            }
-          ]
-        }
-      ]
-    }).then(result => {
-      res.send({ data: result });
-    })
-  }
+exports.deleteMyPost = (req, res) => {
+  models.Post.destroy({
+    where : {id:req.body.id}
+  }).then(result=>{
+    res.send('게시글 삭제 성공');
+  })
 }
 
+exports.editMyPost = (req,res) => {
+  models.Post.update(
+      {content : req.body.content},
+      {where : {id : req.body.id}}
+  ).then((result)=>{
+      res.send('게시글 수정 성공');
+  })
+}
 
-exports.getMyPost = (req, res) => {
-  const user_id = req.session.user_id;
-  if(user_id){
-    models.Post.findAll({
-      where:{user_id:user_id},
-      order: [['id', 'DESC']],
-      include: [
-        {
-          model: models.Likes, attributes:['user_id'],
-          include : [{model:models.User, attributes:['userID']}]
-        },
-        {
-          model: models.Comment, attributes:['user_id','content','createdAt'],
-          include : [{model:models.User, attributes:['userID']}]
-        }
-      ]
-    }).then(result => {
-      res.send({ data: result });
-    })
-  }
+exports.deleteMyLike = (req, res) => {
+  models.Likes.destroy({
+    where : {id:req.body.id}
+  }).then(result=>{
+    res.send('좋아요를 취소했습니다.');
+  })
 }

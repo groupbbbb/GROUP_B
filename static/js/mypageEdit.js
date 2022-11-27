@@ -225,54 +225,62 @@ if (pwMsg.style.color === 'red') {
 }
 
 //============================================================================================
-// 좋아요 목록 보기
-async function myLike() {
-  let data = await axios({
-    method: 'POST',
-    url: '/user/mylike',
-  }).then((res) => {
-      return res.data;
-  }).then((res) => {
-      return res.data;
+const postMoreButton = document.querySelectorAll(".post-content-more");
+const postMore = document.querySelectorAll('.post-more');
+for (let i = 0; i < postMore.length; i++) {
+  postMoreButton[i].addEventListener("click", function () {
+    postMore[i].classList.toggle('display-none');
+    if(postMore[i].classList.contains('display-none')){
+      postMoreButton[i].innerText='More';
+    }else{
+      postMoreButton[i].innerText='Close';
+    }
   });
-  console.log(data);
-
-  document.querySelector('.like-container').innerHTML='';
-  let html = '';
-  for (let i = 0; i < data.length; i++) {
-    html += `<br>게시자 : ${data[i].post.user.userID}, 내용 : ${data[i].post.content}<br>`;
-    for(let j=0; j<data[i].post.likes.length; j++){
-      html += `  좋아요) ${data[i].post.likes[j].user.userID}<br>`;
-    }
-    for(let j=0; j<data[i].post.comments.length; j++){
-      html += `  댓글) ${data[i].post.comments[j].user.userID} : ${data[i].post.comments[j].content}<br>`;
-    }
-  }
-  document.querySelector('.like-container').insertAdjacentHTML('beforeend', html);
 }
 
-// 내 게시글
-async function myPost() {
-  let data = await axios({
-    method: 'POST',
-    url: '/user/mypost',
+function deletePost(obj, id){
+  axios({
+      method: 'POST',
+      url: '/user/deleteMyPost',
+      data: { id: id },
   }).then((res) => {
-    return res.data;
-  }).then((res) => {
-    return res.data;
-  });
-  console.log(data);
+      return res.data;
+  }).then((res)=>{
+      alert(res);
+      location.reload();
+      location.replace(location.href);
+      location.href = location.href;
+  })
+}
 
-  document.querySelector('.post-container').innerHTML='';
-  let html = '';
-  for (let i = 0; i < data.length; i++) {
-    html += `<br>내용 : ${data[i].content}, 댓글${data[i].comments.length}개, 좋아요${data[i].likes.length}개<br>`;
-    for(let j=0; j<data[i].likes.length; j++){
-      html += `  좋아요) ${data[i].likes[j].user.userID}<br>`;
-    }
-    for(let j=0; j<data[i].comments.length; j++){
-      html += `  댓글) ${data[i].comments[j].user.userID} : ${data[i].comments[j].content}<br>`;
-    }
-  }
-  document.querySelector('.post-container').insertAdjacentHTML('beforeend', html);
+function editPost(obj, id){
+  const form = document.forms[`post-edit-form${id}`];
+  axios({
+      method: 'POST',
+      url: '/user/editMyPost',
+      data: { id: id, content:form.postContent.value },
+  }).then((res) => {
+      return res.data;
+  }).then((res)=>{
+      alert(res);
+      location.reload();
+      location.replace(location.href);
+      location.href = location.href;
+  })
+}
+
+
+function deleteLike(obj, id){
+  axios({
+    method: 'POST',
+    url: '/user/deleteMyLike',
+    data: { id: id },
+}).then((res) => {
+    return res.data;
+}).then((res)=>{
+    alert(res);
+    location.reload();
+    location.replace(location.href);
+    location.href = location.href;
+})
 }
