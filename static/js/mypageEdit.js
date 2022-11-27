@@ -263,3 +263,39 @@ async function myPost() {
   // 댓글내용 ${data[i].comments[j].content}
 
 }
+
+const postMoreButton = document.querySelectorAll(".post-content-more");
+const postMore = document.querySelectorAll('.post-more');
+for (let i = 0; i < postMore.length; i++) {
+  postMoreButton[i].addEventListener("click", function () {
+    postMore[i].classList.toggle('display-none');
+  });
+}
+
+function deletePost(obj, id){
+  axios({
+      method: 'POST',
+      url: '/user/deleteMyPost',
+      data: { id: id },
+  }).then((res) => {
+      return res.data;
+  }).then((res)=>{
+      alert(res);
+      // location.reload();
+      // location.replace(location.href);
+      // location.href = location.href;
+  })
+}
+
+function editPost(obj, id){
+  const form = document.forms[`post-edit-form${id}`];
+  axios({
+      method: 'POST',
+      url: '/user/editMyPost',
+      data: { id: id, content:form.postContent.value },
+  }).then((res) => {
+      return res.data;
+  }).then((res)=>{
+      alert(res);
+  })
+}

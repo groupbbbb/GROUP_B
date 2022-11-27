@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="/static/css/mypageEdit.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <%- include('../common/include.ejs') %>
   </head>
   <body>
@@ -18,8 +19,8 @@
         <div class="profileEdit">
             <div class="infoList">
                 <div class="info" onclick="myInform()">내정보 수정</div>
+                <div class="fix" onclick="myPost()">내 게시글 관리</div>
                 <div class="like" onclick="myLike()">좋아요 목록</div>
-                <div class="fix" onclick="myPost()">내 게시글</div>
             </div>
             <div class="editCard">
                 <div class="myInformation">
@@ -57,21 +58,76 @@
               </div>
             </form>
           </div>
+          <div class="postEdit">
+            <p>내 게시글</p><br>
+            <% for(let i=0; i < postData.length ; i++) {%>
+            <% let imgArray = postData[i].img_src.slice(0,-4).split("~!@#") %>
+            <% let month = {'Jan':'1','Feb':'2','Mar':'3','Apr':'4','May':'5','Jun':'6','Jul':'7','Aug':'8','Sep':'9','Oct':'10','Nov':'11','Dec':'12'}%>
+            <div class="post-container post">
+              <div class="post-content">
+                <span class="post-content-title">✏<%=postData[i].content%></span>
+                <span class="post-content-more">More</span>
+              </div>
+              <div>
+                <% let postCreatedAt = postData[i].createdAt.toString().split(" ") %>
+                <% let postCreatedAtTime = postCreatedAt[4].split(":") %>
+                <span class="post-date">📅<%= postCreatedAt[3] %>년 <%= month[postCreatedAt[1]] %>월 <%= postCreatedAt[2] %>일 <%= postCreatedAtTime[0] %>시 <%= postCreatedAtTime[1] %>분</span>
+                <span class="post-like">❤<%= postData[i].likes.length%></span>
+                <span class="post-like">💬<%= postData[i].comments.length%></span>
+              </div>
+              <div class="post-more display-none">
+                <hr>
+                <div class="post-more-content">
+                  <div class="post-more-img">img</div>
+                  <br>
+                  <form name="post-edit-form<%= postData[i].id %>">
+                    <input type="text" id="postContent" value="<%= postData[i].content %>">
+                    <button onclick="editPost(this,'<%= postData[i].id %>')">수정</button>
+                    <button onclick="deletePost(this,'<%= postData[i].id %>')">삭제</button>
+                  </form>
+                </div>
+                <br>
+                <div class="post-more-comment-like">
+                  <div class="post-more-comment">
+                    💬
+                    <% if(postData[i].comments.length==0){ %>
+                    <div>댓글 없음</div>
+                    <% } %>
+                    <% for(let j=0; j < postData[i].comments.length ; j++){ %>
+                    <% let commentCreatedAt = postData[i].createdAt.toString().split(" ") %>
+                    <% let commentCreatedAtTime = commentCreatedAt[4].split(":") %>
+                    <div>
+                      <span class="comment-user-name"><%= postData[i].comments[j].user.userID %></span>
+                      <%= postData[i].comments[j].content %> | <%= commentCreatedAt[3] %>년 <%= month[commentCreatedAt[1]] %>월 <%= commentCreatedAt[2] %>일 <%= commentCreatedAtTime[0] %>시 <%= commentCreatedAtTime[1] %>분
+                    </div>
+                    <% } %>
+                  </div>
+                  <div class="post-more-like">
+                    ❤
+                    <% if(postData[i].likes.length==0){ %>
+                      <div>좋아요 없음</div>
+                      <% } %>
+                      <% for(let j=0; j < postData[i].likes.length ; j++){ %>
+                        <div class="like-user-name"><%= postData[i].likes[j].user.userID %></div>
+                      <% } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <% } %>
+
+          </div>
           <div class="likeList">
             <p>좋아요 목록</p>
-            <div class="like-container">
-              <%= like_Data[0].post.user.userID %>
-            </div>
-          </div>
-          <div class="postEdit">
-            <p>내 게시글</p>
-            <div class="post-container"></div>
+            <div class="like-container"></div>
           </div>
         </div>
     <input type="hidden" name="isLogin" value="<%= isLogin %>" id="isLogin">
     <input type="hidden" id="nameHidden">
     <input type="hidden" id="birthHidden"></input>
 </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="/static/js/mypageEdit.js"></script>

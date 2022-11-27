@@ -56,27 +56,21 @@ exports.mypage = (req, res) => {
   let likeData;
   let postData;
   
-  models.Likes.findAll({
+  models.Post.findAll({
     where:{user_id:user_id},
     order: [['id', 'DESC']],
     include: [
       {
-        model: models.Post,
-        include :[
-          { model : models.User, attributes:['userID']},
-          {
-            model: models.Likes, attributes:['user_id'],
-            include : [{model:models.User, attributes:['userID']}]
-          },
-          {
-            model: models.Comment, attributes:['user_id','content','createdAt'],
-            include : [{model:models.User, attributes:['userID']}]
-          }
-        ]
+        model: models.Likes, attributes:['user_id'],
+        include : [{model:models.User, attributes:['userID']}]
+      },
+      {
+        model: models.Comment, attributes:['user_id','content','createdAt'],
+        include : [{model:models.User, attributes:['userID']}]
       }
     ]
   }).then(result => {
-    post_info=result;
+    postData=result;
     models.Likes.findAll({
       where:{user_id:user_id},
       order: [['id', 'DESC']],
@@ -97,11 +91,9 @@ exports.mypage = (req, res) => {
         }
       ]
     }).then(result => {
-      res.render('pages/mypage', { isLogin: req.session.user, post_Data:postData, like_Data:result });
+      res.render('pages/mypage', { isLogin: req.session.user, postData:postData, likeData:result, user_id:req.session.user_id });
     })
   })
-
-
   // res.render('pages/mypage', {isLogin: req.session.user});
 };
 
@@ -221,4 +213,22 @@ exports.getMyPost = (req, res) => {
       res.send({ data: result });
     })
   }
+}
+
+
+exports.deleteMyPost = (req, res) => {
+  models.Post.destroy({
+    where : {id:req.body.id}
+  }).then(result=>{
+    res.send('게시글 삭제 성공');
+  })
+}
+
+exports.editMyPost = (req,res) => {
+  models.Post.update(
+      {content : req.body.content},
+      {where : {id : req.body.id}}
+  ).then((result)=>{
+      res.send('게시글 수정 성공');
+  })
 }

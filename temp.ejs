@@ -1,8 +1,8 @@
-<% let month = {'Jan':'1','Feb':'2','Mar':'3','Apr':'4','May':'5','Jun':'6','Jul':'7','Aug':'8','Sep':'9','Oct':'10','Nov':'11','Dec':'12'}%>
-<% for(let i=0; i < data.length ; i++) {%>
-<% let imgArray = data[i].img_src.slice(0,-4).split("~!@#") %> 
-<div class="box">
-    <div class="hiddenBox">
+<div class="like-container">
+  <% for(let i=0; i < likeData.length ; i++) {%>
+    <% let imgArray = likeData[i].post.img_src.slice(0,-4).split("~!@#") %>
+    <% let month = {'Jan':'1','Feb':'2','Mar':'3','Apr':'4','May':'5','Jun':'6','Jul':'7','Aug':'8','Sep':'9','Oct':'10','Nov':'11','Dec':'12'}%>
+    <div class="Box">
       <div class="hiddenImg">
         <div class="halfImg">
           <div class="slideBox">
@@ -23,47 +23,47 @@
               <%= %>
             </div>
             <div class="profileName">
-              <%= data[i].user.userID %>
+              <%= likeData[i].post.user.userID %>
             </div>
           </div>
-            <% if(isLogin){if(user==data[i].user.userID){ %>
+            <% if(isLogin){if(user_id==likeData[i].post.user.userID){ %>
               <div class="management-btn">
-                <button onclick="editPost(this, '<%= data[i].id %>',false)" class="postFormEdit">수정</button>
-                <button onclick="deletePost(this, '<%= data[i].id %>')" class="editPostDelete">삭제</button>
+                <button onclick="editPost(this, '<%= likeData[i].id %>',false)" class="postFormEdit">수정</button>
+                <button onclick="deletePost(this, '<%= likeData[i].id %>')" class="editPostDelete">삭제</button>
               </div>
               <% }}%>
           </div>
          <br>
           <div class="slideWriting">
             <div class="hiddenContent">  
-              <% let createdAtHidden = data[i].createdAt.toString().split(" ") %>
+              <% let createdAtHidden = likeData[i].post.createdAt.toString().split(" ") %>
                 <% let createdAtTimeHidden = createdAtHidden[4].split(":") %>
-                게시글 내용 : <%= data[i].content %> <br>
+                게시글 내용 : <%= likeData[i].post.content %> <br>
                 게시글 등록일 : <%= createdAtHidden[3] %>년 <%= month[createdAtHidden[1]] %>월 <%= createdAtHidden[2] %>일 <%= createdAtTimeHidden[0] %>시 <%= createdAtTimeHidden[1] %>분<br>                 
              
                 <div class="contentChild">
-                    <form name="editPost-form-hidden<%= data[i].id %>" class="display-none">
-                      <input type="text" id="content" class="edit-content<%= data[i].id %>" /> 
+                    <form name="editPost-form-hidden<%= likeData[i].id %>" class="display-none">
+                      <input type="text" id="content" class="edit-content<%= likeData[i].id %>" /> 
                       <div class="buttonChild">
-                      <button type="button" onclick="editPostDo(this, '<%= data[i].id %>',false)" class="change">변경</button>
-                      <button type="button" onclick="editPostCancel(this, '<%= data[i].id %>')" class="cancel">취소</button>
+                      <button type="button" onclick="editPostDo(this, '<%= likeData[i].id %>',false)" class="change">변경</button>
+                      <button type="button" onclick="editPostCancel(this, '<%= likeData[i].id %>')" class="cancel">취소</button>
                     </div>
                     </form>
                   
                 </div>
             </div>
             <div class="hiddenUsersComment">
-              <% for(let j=0; j<data[i].comments.length; j++){ %>
-                <%= data[i].comments[j].user.userID %> : 
-                <%= data[i].comments[j].content %><br>
-                <% let createdAtHiddenComment = data[i].createdAt.toString().split(" ") %>
+              <% for(let j=0; j<likeData[i].post.comments.length; j++){ %>
+                <%= likeData[i].post.comments[j].user.userID %> : 
+                <%= likeData[i].post.comments[j].content %><br>
+                <% let createdAtHiddenComment = likeData[i].post.createdAt.toString().split(" ") %>
                 <% let createdAtTimeHiddenComment = createdAtHidden[4].split(":") %>
                 등록일 : <%= createdAtHiddenComment[3] %>년 <%= month[createdAtHiddenComment[1]] %>월 <%= createdAtHiddenComment[2] %>일 <%= createdAtTimeHiddenComment[0] %>시 <%= createdAtTimeHiddenComment[1] %>분<br>                 
                   
-                <% if(isLogin){if(user==data[i].comments[j].user.userID){ %>
+                <% if(isLogin){if(user_id==likeData[i].post.comments[j].user.userID){ %>
                   <div class="editDeletBtn">
-                  <button type="button" onclick="editComment(this, '<%= data[i].id %>', '<%= data[i].comments[j].id %>')" class="hiddenCommentEdit">댓글 수정</button><br>
-                  <button type="button" onclick="deleteComment(this, '<%= data[i].comments[j].id %>')" class="hiddenCommentDelete">댓글 삭제</button>
+                  <button type="button" onclick="editComment(this, '<%= likeData[i].post.id %>', '<%= likeData[i].post.comments[j].id %>')" class="hiddenCommentEdit">댓글 수정</button><br>
+                  <button type="button" onclick="deleteComment(this, '<%= likeData[i].post.comments[j].id %>')" class="hiddenCommentDelete">댓글 삭제</button>
                 </div>
                   <% }}%>
                 <hr>
@@ -76,21 +76,21 @@
               <div>
                 <% let isHeartHidden=false; %>
                 <% if(isLogin){ %>
-                <%  for(let j=0;j<data[i].likes.length; j++){ %>
-                <%    if(data[i].likes[j].user_id==user_id){ %>
+                <%  for(let j=0;j<likeData[i].post.likes.length; j++){ %>
+                <%    if(likeData[i].post.likes[j].user_id==user_id){ %>
                 <%      isHeartHidden=true; %>
                 <% }} %>
                 <% if(isHeartHidden){ %>
-                  <i class="heart-icon<%= data[i].id%> bi bi-heart-fill heart-icon-hidden heart-hidden-hiddenSlide" onclick="like(this, '<%= data[i].id %>')"></i>
+                  <i class="heart-icon<%= likeData[i].post.id%> bi bi-heart-fill heart-icon-hidden heart-hidden-hiddenSlide" onclick="like(this, '<%= likeData[i].post.id %>')"></i>
                 <% }else{ %>
-                  <i class="heart-icon<%= data[i].id%> bi bi-heart heart-icon-hidden heart-hidden-hiddenSlide" onclick="like(this, '<%= data[i].id %>')"></i>
+                  <i class="heart-icon<%= likeData[i].post.id%> bi bi-heart heart-icon-hidden heart-hidden-hiddenSlide" onclick="like(this, '<%= likeData[i].post.id %>')"></i>
                 <% } %>
                 <% }else{ %>
-                  <i class="heart-icon<%= data[i].id%> bi bi-heart heart-icon-isNotLogin heart-hidden-isNotLogin" onclick="like(this, '<%= data[i].id %>')"></i>
+                  <i class="heart-icon<%= likeData[i].post.id%> bi bi-heart heart-icon-isNotLogin heart-hidden-isNotLogin" onclick="like(this, '<%= likeData[i].post.id %>')"></i>
                 <% }%>
                 <div hiddenLike>
-                좋아요 <span class="heart-num-hidden"><%= data[i].likes.length %></span>개
-                <button onclick="viewLikes(this, '<%= data[i].id %>')" class="likeUsers">좋아요한유저목록</button>
+                좋아요 <span class="heart-num-hidden"><%= likeData[i].post.likes.length %></span>개
+                <button onclick="viewLikes(this, '<%= likeData[i].post.id %>')" class="likeUsers">좋아요한유저목록</button>
               </div>
               </div>
               <div>
@@ -98,20 +98,19 @@
               </div>
               <div class="inputBox">
                 <img src="/static/img/chat.jpg" alt="댓글창" class="inputComment" />
-                <form name="uploadComment-form-hidden<%= data[i].id %>" class="uploadComment-form">
+                <form name="uploadComment-form-hidden<%= likeData[i].post.id %>" class="uploadComment-form">
                   <input type="text" name="content" class="content" onfocus="this.placeholder=''"
                     onblur="this.placeholder='댓글달기'" placeholder="댓글달기" />
-                  <button type="button" onclick="uploadComment(this, '<%= data[i].id %>',false)" class="commentUpLoad">등록</button><br>
+                  <button type="button" onclick="uploadComment(this, '<%= likeData[i].post.id %>',false)" class="commentUpLoad">등록</button><br>
                 </form>
               </div>
               <div class="userLists">
-                <div class="likedPeople<%= data[i].id %> display-none"></div>
+                <div class="likedPeople<%= likeData[i].post.id %> display-none"></div>
               </div>
             </div>
         
         </div>
-        <img src="/static/img/close.jpg" alt="" class="close" />
       </div>
     </div>
-  </div>
-  <%}%>
+  <% } %>
+</div>
