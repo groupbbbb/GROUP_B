@@ -162,60 +162,6 @@ exports.modifyPW = (req, res) => {
 //============================================================================================
 // 좋아요 목록 보기
 
-
-
-exports.getMyLike=(req,res)=>{
-  const user_id = req.session.user_id;
-  if(user_id){
-    models.Likes.findAll({
-      where:{user_id:user_id},
-      order: [['id', 'DESC']],
-      include: [
-        {
-          model: models.Post,
-          include :[
-            { model : models.User, attributes:['userID']},
-            {
-              model: models.Likes, attributes:['user_id'],
-              include : [{model:models.User, attributes:['userID']}]
-            },
-            {
-              model: models.Comment, attributes:['user_id','content','createdAt'],
-              include : [{model:models.User, attributes:['userID']}]
-            }
-          ]
-        }
-      ]
-    }).then(result => {
-      res.send({ data: result });
-    })
-  }
-}
-
-
-exports.getMyPost = (req, res) => {
-  const user_id = req.session.user_id;
-  if(user_id){
-    models.Post.findAll({
-      where:{user_id:user_id},
-      order: [['id', 'DESC']],
-      include: [
-        {
-          model: models.Likes, attributes:['user_id'],
-          include : [{model:models.User, attributes:['userID']}]
-        },
-        {
-          model: models.Comment, attributes:['user_id','content','createdAt'],
-          include : [{model:models.User, attributes:['userID']}]
-        }
-      ]
-    }).then(result => {
-      res.send({ data: result });
-    })
-  }
-}
-
-
 exports.deleteMyPost = (req, res) => {
   models.Post.destroy({
     where : {id:req.body.id}
