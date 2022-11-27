@@ -226,49 +226,16 @@ if (pwMsg.style.color === 'red') {
 }
 
 //============================================================================================
-// 좋아요 목록 보기
-async function myLike() {
-  let data = await axios({
-    method: 'POST',
-    url: '/user/mylike',
-  }).then((res) => {
-      return res.data;
-  }).then((res) => {
-      return res.data;
-  });
-  console.log(data);
-
-  // 내용 ${data[i].post.content}
-  // 게시자 ${data[i].post.user.userID}
-  // 좋아요 ${data[i].post.likes[j].user.userID}
-  // 댓글단사람 ${data[i].post.comments[j].user.userID}
-  // 댓글내용 ${data[i].post.comments[j].content}
-}
-
-// 내 게시글
-async function myPost() {
-  let data = await axios({
-    method: 'POST',
-    url: '/user/mypost',
-  }).then((res) => {
-    return res.data;
-  }).then((res) => {
-    return res.data;
-  });
-  console.log(data);
-
-  // 내용 ${data[i].content
-  // 좋아요 ${data[i].likes.length}
-  // 댓글단사람 ${data[i].comments[j].user.userID}
-  // 댓글내용 ${data[i].comments[j].content}
-
-}
-
 const postMoreButton = document.querySelectorAll(".post-content-more");
 const postMore = document.querySelectorAll('.post-more');
 for (let i = 0; i < postMore.length; i++) {
   postMoreButton[i].addEventListener("click", function () {
     postMore[i].classList.toggle('display-none');
+    if(postMore[i].classList.contains('display-none')){
+      postMoreButton[i].innerText='More';
+    }else{
+      postMoreButton[i].innerText='Close';
+    }
   });
 }
 

@@ -80,7 +80,11 @@
               <div class="post-more display-none">
                 <hr>
                 <div class="post-more-content">
-                  <div class="post-more-img">img</div>
+                  <div class="post-more-img">
+                    <% for(let j=0; j<imgArray.length; j++){%>
+                      <img src="../../<%= imgArray[j] %>" alt="" />
+                    <% } %>
+                  </div>
                   <br>
                   <form name="post-edit-form<%= postData[i].id %>" class="post-edit-form">
                     <input type="text" id="postContent" value="<%= postData[i].content %>">
@@ -144,7 +148,11 @@
                 <div class="post-more display-none">
                   <hr>
                   <div class="post-more-content">
-                    <div class="post-more-img">img</div>
+                    <div class="post-more-img">
+                      <% for(let j=0; j<imgArray.length; j++){%>
+                        <img src="../../<%= imgArray[j] %>" alt="" />
+                      <% } %>
+                    </div>
                   </div>
                   <br>
                   <div class="post-more-comment-like">
