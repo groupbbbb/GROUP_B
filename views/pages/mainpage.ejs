@@ -32,7 +32,6 @@
     <% for(let i=0; i < data.length ; i++) {%>
       <!-- <div class="aa"></div> -->
       <div class="box">
-        
         <div class="card">
           <div class="profile">
             <div class="profileImg">
@@ -53,6 +52,7 @@
             <a class="prev btn" onclick="">❮</a>
             <a class="next btn" onclick="">❯</a>
           </div>
+
               <div class="userWriting">
                 <div class="heartList">
                   <% let isHeart=false; %>
@@ -76,7 +76,6 @@
                   
                 </div>
                 </div>
-
             
                 <div class="content-container">
                   <div class="contentWrite">
@@ -135,7 +134,6 @@
                   </div>
                   <% }}%>
               </div>
-
               <!-- <form name="editPost-form-hidden<%= data[i].id %>" class="display-none">
                 <input type="text" id="content" class="edit-content<%= data[i].id %>" /> <br />
                 <button type="button" onclick="editPostDo(this, '<%= data[i].id %>',false)">변경</button>
@@ -149,15 +147,13 @@
           </div>
           <% }}%>
           <br /> -->
-
-             
               <div class="slideWriting">
                 <div class="hiddenContent">  
                   <% let createdAtHidden = data[i].createdAt.toString().split(" ") %>
                     <% let createdAtTimeHidden = createdAtHidden[4].split(":") %>
                     게시글 내용 : <%= data[i].content %> <br>
                     게시글 등록일 : <%= createdAtHidden[3] %>년 <%= month[createdAtHidden[1]] %>월 <%= createdAtHidden[2] %>일 <%= createdAtTimeHidden[0] %>시 <%= createdAtTimeHidden[1] %>분<br>                 
-                 
+                
                     <div class="contentChild">
                         <form name="editPost-form-hidden<%= data[i].id %>">
                           <input type="text" id="userPostEdit" class="edit-content<%= data[i].id %>" /> 
@@ -240,8 +236,6 @@
         </div>
       </div>
       <% } %>
-  
-
     
 
         <script src="/static/js/mainpage.js"></script>

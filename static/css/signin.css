@@ -13,12 +13,14 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 1;
 }
 .loginImg1,
 .loginImg2,
 .loginImg3 {
     height: 350px;
     width: 300px;
+    z-index: 0;
 }
 .loginImg1{
     position: absolute; 

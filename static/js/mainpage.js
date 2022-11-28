@@ -300,7 +300,7 @@ async function deletePost(obj, id) {
       return res.data;
     })
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       alert(res);
       location.reload();
       location.replace(location.href);
@@ -361,8 +361,11 @@ async function editPostDo(obj, id, isHidden) {
       return res.data;
     })
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       alert(res);
+      location.reload();
+      location.replace(location.href);
+      location.href = location.href;
       editPostSelected.post_id = "";
       editPostSelected.user_id = "";
     });
@@ -413,7 +416,11 @@ function uploadComment(obj, id, isHidden) {
         post_id: id,
       },
     }).then((res) => {
-      console.log(res.data);
+      alert(res.data);
+      location.reload();
+      location.replace(location.href);
+      location.href = location.href;
+      // console.log(res.data);
     });
   } else {
     const form = document.forms[`uploadComment-form-hidden${id}`];
@@ -425,7 +432,7 @@ function uploadComment(obj, id, isHidden) {
         post_id: id,
       },
     }).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       alert(res.data);
       location.reload();
       location.replace(location.href);
@@ -448,7 +455,7 @@ async function deleteComment(obj, id) {
     url: "/post/deleteComment",
     data: { id: id, user_id: data.user_id },
   }).then((res) => {
-    console.log(res.data);
+    // console.log(res.data);
     alert(res.data);
     location.reload();
     location.replace(location.href);
@@ -487,7 +494,7 @@ function commentEditDo(obj, post_id, comment_id) {
       return res.data;
     })
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       alert(res);
       location.reload();
       location.replace(location.href);
@@ -528,23 +535,24 @@ async function like(obj, id) {
   });
   if (data == "로그인 하세요") {
     console.log(data);
+    alert(data);
   } else if (data) {
-    console.log("좋아요 기록이 있어서 좋아요를 취소합니다.");
+    // console.log('좋아요 기록이 있어서 좋아요를 취소합니다.');
     axios({
       method: "POST",
       url: "/post/removeLike",
       data: { id: id },
     }).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
     });
   } else {
-    console.log("좋아요 기록이 없어서 좋아요를 진행합니다.");
+    // console.log('좋아요 기록이 없어서 좋아요를 진행합니다.');
     axios({
       method: "POST",
       url: "/post/addLike",
       data: { id: id },
     }).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
     });
   }
 }
@@ -602,6 +610,9 @@ for (let i = 0; i < heart.length; i++) {
     }
   });
 }
+
+
+// 검색 기능
 
 const useridSearch = document.querySelector("#useridSearch");
 useridSearch.addEventListener("input", function () {
