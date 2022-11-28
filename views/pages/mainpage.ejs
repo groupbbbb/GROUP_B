@@ -30,8 +30,8 @@
   <% console.log(data)%>
   <%- include('../common/mainnav.ejs') %>
     <% for(let i=0; i < data.length ; i++) {%>
-      <!-- <div class="aa"></div> -->
       <div class="box">
+       
         <div class="card">
           <div class="profile">
             <div class="profileImg">
@@ -105,7 +105,7 @@
               </div>
         </div>
     
-
+        <!-- <div class="backColor"></div> -->
         <!-- ===================================== 확대 ===================================== -->
         
           <div class="hiddenBox">
@@ -143,19 +143,7 @@
                   </div>
                   <% }}%>
               </div>
-              <!-- <form name="editPost-form-hidden<%= data[i].id %>" class="display-none">
-                <input type="text" id="content" class="edit-content<%= data[i].id %>" /> <br />
-                <button type="button" onclick="editPostDo(this, '<%= data[i].id %>',false)">변경</button>
-                <button type="button" onclick="editPostCancel(this, '<%= data[i].id %>')">취소</button>
-            </form>
-          </div>
-          <% if(isLogin){if(user==data[i].user.userID){ %>
-          <div class="management-btn">
-            <button onclick="editPost(this, '<%= data[i].id %>',false)">게시글수정하기</button>
-            <button onclick="deletePost(this, '<%= data[i].id %>')">게시글삭제하기</button>
-          </div>
-          <% }}%>
-          <br /> -->
+            
               <div class="slideWriting">
                 <div class="hiddenContent">  
                   <% let createdAtHidden = data[i].createdAt.toString().split(" ") %>
@@ -174,6 +162,8 @@
                       
                     </div>
                 </div>
+
+                
                 <div class="hiddenUsersComment">
                   <% for(let j=0; j<data[i].comments.length; j++){ %>
                     <div>
@@ -249,7 +239,7 @@
       </div>
       <% } %>
     
-
+      <div class="backColor"></div>
         <script src="/static/js/mainpage.js"></script>
 </body>
 

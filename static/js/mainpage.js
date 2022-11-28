@@ -92,10 +92,12 @@ const box = document.querySelectorAll(".box");
 const contentBox = document.querySelectorAll(".contentBox");
 const card = document.querySelectorAll(".card");
 const cancelAll = document.querySelectorAll(".cancel");
+const body = document.querySelector("body");
 const commentEditBtnAll = document.querySelectorAll(".commentEditBtn");
 const commentBoxesAll = document.querySelectorAll(".commentBoxes");
 const contentChildAll = document.querySelectorAll(".contentChild");
 const hiddenBoxAll = document.querySelectorAll(".hiddenBox");
+const backColor = document.querySelector(".backColor");
 
 for (let k = 0; k < hiddenBox.length; k++) {
   searchAll[k].addEventListener("click", function () {
@@ -113,21 +115,25 @@ for (let k = 0; k < hiddenBox.length; k++) {
   });
 }
 
-
 for (let i = 0; i < hiddenBox.length; i++) {
   searchAll[i].addEventListener("click", function () {
     card[i].style.display = "none";
+    body.style.overflow = "hidden";
+    backColor.style.display="block"
   });
 }
 for (let l = 0; l < box.length; l++) {
   closeAll[l].addEventListener("click", () => {
     for (let j = 0; j < box.length; j++) hiddenBox[j].style.display = "none";
     card[l].style.display = "block";
+    body.style.overflow = "visible";
+    backColor.style.display="none"
+
     for (let boxclose = 0; boxclose < commentBoxesAll.length; boxclose++) {
       commentBoxesAll[boxclose].style.display = "none";
     }
     for (let listclose = 0; listclose < userListsAll.length; listclose++) {
-      userListsAll[listclose].classList.toggle("active");
+      userListsAll[listclose].style.display = "none";
     }
   });
 }
@@ -160,12 +166,6 @@ for (let i = 0; i < hiddenBox.length; i++) {
     userListsAll[i].classList.toggle("active");
   });
 }
-
-// for (let i = 0; i < hiddenBox.length; i++) {
-//   commentEditBtnAll[i].addEventListener("click", function () {
-//     commentBoxes[i].style.display = "block";
-//   });
-// }
 
 // 확대 슬라이드
 const halfImgAll = document.querySelectorAll(".halfImg"); // 5
