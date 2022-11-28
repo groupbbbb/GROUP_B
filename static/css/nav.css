@@ -26,6 +26,7 @@ ul {
   display: flex;
   list-style: none;
   flex-direction: row;
+  margin-top: 10px;
 }
 
 ul > li {

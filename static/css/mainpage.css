@@ -4,6 +4,7 @@
 
 body {
   font-family: "GmarketSansMedium";
+  scroll-behavior: smooth;
 }
 
 /* .aa {
@@ -111,18 +112,20 @@ body {
 }
 
 .profileImg {
-  border: solid 1px black;
+  /* border: solid 1px black; */
   border-radius: 50%;
   width: 40px;
   height: 40px;
   margin-left: 5px;
 }
 
-.profileImg img {
+
+.profileImg img{
+  border-style: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-}
+  width: 41px;
+  height: 41px;
+
 
 .profileName {
   border: solid 1px black;
@@ -374,6 +377,7 @@ input:focus {
   transform: translate(-50%, -65%);
   animation: box 0.5s ease;
   display: none;
+  
 }
 
 .hiddenImg {
@@ -494,6 +498,13 @@ input:focus {
 .active {
   position: absolute;
   display: block;
+  overflow: auto;
+  right: 0;
+}
+
+.noneActive {
+  position: absolute;
+  display: none;
   overflow: auto;
   right: 0;
 }

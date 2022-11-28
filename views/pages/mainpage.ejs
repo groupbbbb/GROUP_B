@@ -35,7 +35,11 @@
         <div class="card">
           <div class="profile">
             <div class="profileImg">
-              <img src="<%= data[i].user.profile_img %>" alt="">
+              <% if(data[i].user.profile_img!=null){ %>
+              <img src="../../<%=data[i].user.profile_img %>">
+              <% }else{ %>
+              <img src="../../static/img/profile_img.PNG %>">
+              <% } %>
             </div>
             <div class="profileName">
               <%= data[i].user.userID %>
@@ -72,7 +76,7 @@
                   <div class="good">좋아요 <span class="heart-num"><%= data[i].likes.length %></span>개</div>
               
                  <div class="imgicons">
-                  <a href="#hiBox"><img src="/static/img/search.jpg" alt="자세히보기" class="search" title="확대" /></a>
+                  <img src="/static/img/search.jpg" alt="자세히보기" class="search" title="확대" />
                   
                 </div>
                 </div>
@@ -103,27 +107,32 @@
     
 
         <!-- ===================================== 확대 ===================================== -->
-        <div class="hiddenBox" id="hiBox">
-          <div class="hiddenImg">
-            <div class="halfImg">
-              <div class="slideBox">
-                <% for (let k=0; k < imgArray.length; k++) {%>
-                <div class="slideImg hiddenSlideBox slideImgFile<%=[k]%>">
-                  <img src="../../<%= imgArray[k] %>" alt="" />
+        
+          <div class="hiddenBox">
+            <div class="hiddenImg">
+              <div class="halfImg">
+                <div class="slideBox">
+                  <% for (let k=0; k < imgArray.length; k++) {%>
+                  <div class="slideImg hiddenSlideBox slideImgFile<%=[k]%>">
+                    <img src="../../<%= imgArray[k] %>" alt="" />
+                  </div>
+                  <% } %>
+                  <a class="prev btn" id="HiddenPrevBtns" onclick="">❮</a>
+                  <a class="next btn" id="HiddenNextBtns" onclick="">❯</a>
                 </div>
-                <% } %>
-                <a class="prev btn" id="HiddenPrevBtns" onclick="">❮</a>
-                <a class="next btn" id="HiddenNextBtns" onclick="">❯</a>
               </div>
-            </div>
-            <div class="hiddenComment">
-              
-              <div class="profile profileBox">
-                <div class="hiddenpro">
-                <div class="profileImg">
-                  <%= %>
-                </div>
-                <div class="profileNames">
+              <div class="hiddenComment">
+                
+                <div class="profile profileBox">
+                  <div class="hiddenpro">
+                    <div class="profileImg">
+                      <% if(data[i].user.profile_img!=null){ %>
+                      <img src="../../<%=data[i].user.profile_img %>">
+                      <% }else{ %>
+                      <img src="../../static/img/profile_img.PNG %>">
+                      <% } %>
+                    </div>
+                  <div class="profileNames">
                   <%= data[i].user.userID %>
                 </div>
               </div>
