@@ -3,6 +3,16 @@
     <a href="/">
       <img src="/static/img/navlogo.jpg" alt="logo" class="logo" />
     </a>
+    <div class="useridSearch">
+      <img src="/static/img/search.jpg" alt="useridSearch" />
+      <input
+        type="search"
+        name="useridSearch"
+        id="useridSearch"
+        placeholder="검색"
+        autocomplete="off"
+      />
+    </div>
 
     <nav class="navBar">
       <ul>
@@ -12,19 +22,25 @@
           </a>
         </li>
         <li>
-          <a href="/post/upload"> post upload </a>
-        </li>
-        <li>
-          <div onclick="chat();">
+          <% if (isLogin) { %>
+          <a href="/post/upload">
             <img
-              src="/static/img/message.jpg"
+              src="/static/img/postImg.png"
               alt="전체 페이지"
-              title="메세지"
+              title="게시글쓰기"
             />
-            <div class="messageAlarm counting"><%= %></div>
-          </div>
+          </a>
+          <% } else { %>
+          <a href="/user/signin">
+            <img
+              src="/static/img/postImg.png"
+              alt="전체 페이지"
+              title="게시글쓰기"
+            />
+          </a>
+          <% } %>
         </li>
-        <% if (isLogin) { %> <%} else { %>
+        <% if (isLogin) { %> <% } else { %>
         <li>
           <a href="/user/signin">
             <img
@@ -53,12 +69,6 @@
             />
           </a>
           <% } %>
-        </li>
-        <li>
-          <div onclick="alarm()">
-            <img src="/static/img/alarm.jpg" alt="알림" title="알림" />
-            <div class="countAlarm counting"><%= %></div>
-          </div>
         </li>
       </ul>
     </nav>

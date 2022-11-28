@@ -570,3 +570,26 @@ for (let i = 0; i < heart.length; i++) {
     });
   }
   
+// 검색 기능
+
+const useridSearch = document.querySelector("#useridSearch");
+useridSearch.addEventListener("input", function () {
+  let profileName = document.querySelectorAll(".profileName");
+  for (let empty = 0; empty < profileName.length; empty++) {
+    if (useridSearch.value == "") {
+      profileName[empty].parentNode.parentNode.parentNode.style.display =
+        "block";
+    }
+  }
+  const useridSearchs = useridSearch.value;
+
+  for (let search = 0; search < profileName.length; search++) {
+    if (profileName[search].innerHTML.includes(useridSearchs)) {
+      profileName[search].parentNode.parentNode.parentNode.style.display =
+        "block";
+    } else {
+      profileName[search].parentNode.parentNode.parentNode.style.display =
+        "none";
+    }
+  }
+});
