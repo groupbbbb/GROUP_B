@@ -491,12 +491,12 @@ input:focus {
   z-index: 1;
   right: 0;
 }
-.active {
+/* .active {
   position: absolute;
   display: block;
   overflow: auto;
   right: 0;
-}
+} */
 
 .likedPeople {
   display: block;
