@@ -162,8 +162,11 @@ const likeUsersAll = document.querySelectorAll(".likeUsers");
 
 for (let i = 0; i < hiddenBox.length; i++) {
   likeUsersAll[i].addEventListener("click", function () {
-    // console.log(userListsAll);
-    userListsAll[i].classList.toggle("active");
+    if (userListsAll[i].style.display != "block") {
+      userListsAll[i].style.display = "block";
+    } else {
+      userListsAll[i].style.display = "none";
+    }
   });
 }
 
@@ -416,11 +419,11 @@ async function viewComment(obj, id) {
 
 // 댓글 달기
 function uploadComment(obj, id, isHidden) {
-  const form = document.forms[`uploadComment-form${id}`];
-  if (form.content.value == "") {
-    alert("댓글란에 댓글을 입력해주세요");
-  } else {
-    if (isHidden) {
+  if (isHidden) {
+    const form = document.forms[`uploadComment-form${id}`];
+    if (form.content.value == "") {
+      alert("댓글란에 댓글을 입력해주세요");
+    } else {
       axios({
         method: "POST",
         url: "/post/uploadComment",
@@ -434,8 +437,12 @@ function uploadComment(obj, id, isHidden) {
         location.replace(location.href);
         location.href = location.href;
       });
+    }
+  } else {
+    const form = document.forms[`uploadComment-form-hidden${id}`];
+    if (form.content.value == "") {
+      alert("댓글란에 댓글을 입력해주세요");
     } else {
-      const form = document.forms[`uploadComment-form-hidden${id}`];
       axios({
         method: "POST",
         url: "/post/uploadComment",
