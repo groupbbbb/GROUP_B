@@ -5,7 +5,6 @@
 body {
   position: relative;
   font-family: "GmarketSansMedium";
-  
 }
 
 .box {
@@ -14,12 +13,12 @@ body {
   width: 100%;
 }
 .backColor {
-  position:absolute;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   display: none;
   z-index: 1;
 }
@@ -58,7 +57,6 @@ body {
   overflow: auto;
   height: 385px;
 }
-
 
 .editDeletBtn {
   display: flex;
@@ -102,7 +100,7 @@ body {
   margin-left: 5px;
 }
 
-.profileImg img{
+.profileImg img {
   border-style: none;
   border-radius: 50%;
   width: 41px;
@@ -112,7 +110,7 @@ body {
 .profileName {
   border: solid 1px black;
   width: 120px;
-  height: 40px;
+  height: 35px;
   margin-left: 5px;
 }
 
@@ -359,7 +357,6 @@ input:focus {
   animation: box 0.5s ease;
   display: none;
   z-index: 9999;
-
 }
 
 .hiddenImg {
@@ -565,7 +562,7 @@ input:focus {
   }
 }
 
-@media (min-width:280px) and (max-width: 599px) {
+@media (min-width: 280px) and (max-width: 599px) {
   .card {
     width: 80%;
     margin-top: 80px;
@@ -595,6 +592,14 @@ input:focus {
 
   .commentBox {
     margin-top: 45px;
+  }
+
+  .profileNames {
+    height: 30px;
+  }
+
+  .profileName {
+    height: 30px;
   }
 
   .commentBox img {
@@ -631,13 +636,11 @@ input:focus {
   .hiddenContent {
     height: 120px;
     font-size: 11px;
-
   }
 
   .close {
     top: -7%;
   }
-
 }
 
 @media (min-width: 600px) and (max-width: 699px) {
@@ -648,7 +651,12 @@ input:focus {
 
   .profileNames {
     width: 60px;
+    height: 30px;
     font-size: 10px;
+  }
+
+  .profileName {
+    height: 30px;
   }
 
   .hiddenContent {
@@ -768,7 +776,7 @@ input:focus {
   }
 }
 
-@media (min-width: 700px) and (max-width: 1100px) {
+@media (min-width: 700px) and (max-width: 1024px) {
   #content {
     width: 300px;
     right: 0;
@@ -778,6 +786,9 @@ input:focus {
     width: 90px;
     height: 30px;
     margin-top: 5px;
+  }
+  .profileName {
+    height: 30px;
   }
   .hiddenBox {
     width: 90%;
@@ -848,6 +859,3 @@ input:focus {
     height: 146px;
   }
 }
-/* .display-none {
-  display: none;
-} */

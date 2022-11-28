@@ -118,7 +118,7 @@ for (let k = 0; k < hiddenBox.length; k++) {
 for (let i = 0; i < hiddenBox.length; i++) {
   searchAll[i].addEventListener("click", function () {
     card[i].style.display = "none";
-    body.style.overflow = "hidden";
+    // body.style.overflow = "hidden";
     backColor.style.display = "block";
   });
 }
@@ -126,7 +126,7 @@ for (let l = 0; l < box.length; l++) {
   closeAll[l].addEventListener("click", () => {
     for (let j = 0; j < box.length; j++) hiddenBox[j].style.display = "none";
     card[l].style.display = "block";
-    body.style.overflow = "visible";
+    // body.style.overflow = "visible";
     backColor.style.display = "none";
 
     for (let boxclose = 0; boxclose < commentBoxesAll.length; boxclose++) {
