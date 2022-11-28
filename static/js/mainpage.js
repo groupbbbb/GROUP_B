@@ -138,13 +138,24 @@ for (let l = 0; l < box.length; l++) {
   });
 }
 
-function commentShow(n) {
-  commentBoxesAll[parseInt(n)].style.display = "block";
+function commentShow(i,j) {
+  // commentBoxesAll[parseInt(n)].style.display = "block";
+  document.querySelector(`.commentBoxes${i}${j}`).style.display="block";
 }
 
-function positingCommentCancle(n) {
-  commentBoxesAll[parseInt(n)].style.display = "none";
+function positingCommentCancle(i,j) {
+  // commentBoxesAll[parseInt(n)].style.display = "none";
+  document.querySelector(`.commentBoxes${i}${j}`).style.display="none";
 }
+
+// 수정 취소
+function commentEditCancel(i,j) {
+  // const form = document.forms[`editComment-form${post_id}${comment_id}`];
+  // form.classList.toggle("display-none");
+  document.querySelector(`.commentBoxes${i}${j}`).style.display="none";
+}
+
+
 function postingFix() {
   for (let i = 0; i < box.length; i++) {
     contentChildAll[i].style.display = "block";
@@ -520,13 +531,6 @@ function commentEditDo(obj, post_id, comment_id) {
       location.replace(location.href);
       location.href = location.href;
     });
-}
-
-// 수정 취소
-function commentEditCancel(n) {
-  // const form = document.forms[`editComment-form${post_id}${comment_id}`];
-  // form.classList.toggle("display-none");
-  commentBoxesAll[parseInt(n)].style.display = "none";
 }
 
 // =========================================  좋아요  =========================================
