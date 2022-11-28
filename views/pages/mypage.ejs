@@ -21,8 +21,8 @@
         <div class="profileEdit">
             <div class="infoList">
                 <div class="info" onclick="myInform()">내정보 수정</div>
-                <div class="fix" onclick="myPost()">게시글 관리</div>
-                <div class="like" onclick="myLike()">좋아요 보기</div>
+                <div class="fix">게시글 관리</div>
+                <div class="like">좋아요 보기</div>
             </div>
             <div class="editCard">
                 <div class="myInformation">
@@ -60,6 +60,7 @@
           </div>
           <div class="postEdit">
             <p>게시글 관리</p><br>
+            <% if(isLogin){ %>
             <% for(let i=0; i < postData.length ; i++) {%>
             <% let imgArray = postData[i].img_src.slice(0,-4).split("~!@#") %>
             <% let month = {'Jan':'1','Feb':'2','Mar':'3','Apr':'4','May':'5','Jun':'6','Jul':'7','Aug':'8','Sep':'9','Oct':'10','Nov':'11','Dec':'12'}%>
@@ -121,10 +122,11 @@
               </div>
             </div>
             <br>
-            <% } %>
+            <% }} %>
           </div>
           <div class="likeList">
             <p>좋아요 보기</p><br>
+            <% if(isLogin){ %>
             <% for(let i=0; i < likeData.length ; i++) {%>
               <% let imgArray = likeData[i].post.img_src.slice(0,-4).split("~!@#") %>
               <% let month = {'Jan':'1','Feb':'2','Mar':'3','Apr':'4','May':'5','Jun':'6','Jul':'7','Aug':'8','Sep':'9','Oct':'10','Nov':'11','Dec':'12'}%>
@@ -181,7 +183,7 @@
                 </div>
               </div>
               <br>
-              <% } %>
+              <% }} %>
             </div>
             
           </div>
