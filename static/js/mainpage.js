@@ -119,7 +119,7 @@ for (let i = 0; i < hiddenBox.length; i++) {
   searchAll[i].addEventListener("click", function () {
     card[i].style.display = "none";
     body.style.overflow = "hidden";
-    backColor.style.display="block"
+    backColor.style.display = "block";
   });
 }
 for (let l = 0; l < box.length; l++) {
@@ -127,7 +127,7 @@ for (let l = 0; l < box.length; l++) {
     for (let j = 0; j < box.length; j++) hiddenBox[j].style.display = "none";
     card[l].style.display = "block";
     body.style.overflow = "visible";
-    backColor.style.display="none"
+    backColor.style.display = "none";
 
     for (let boxclose = 0; boxclose < commentBoxesAll.length; boxclose++) {
       commentBoxesAll[boxclose].style.display = "none";
@@ -163,7 +163,7 @@ const likeUsersAll = document.querySelectorAll(".likeUsers");
 for (let i = 0; i < hiddenBox.length; i++) {
   likeUsersAll[i].addEventListener("click", function () {
     // console.log(userListsAll);
-    userListsAll[i].classList.toggle("active");
+    userListsAll[i].style.display = "block";
   });
 }
 

@@ -410,3 +410,14 @@ input[type="file"]::file-selector-button {
   padding-left: 5%;
   padding-right: 5%;
 }
+
+.likeList,
+.postEdit{
+  width:65vw;
+}
+
+@media (max-width: 500px) {
+.post-more-img{
+  display:none;
+}
+}

@@ -353,7 +353,7 @@ input:focus {
   width: 1050px;
   height: 750px;
   position: absolute;
-  top: 66%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -65%);
   animation: box 0.5s ease;
@@ -409,7 +409,6 @@ input:focus {
 }
 
 .close {
-  top: 1%;
   position: absolute;
   right: 0;
 }
@@ -566,20 +565,20 @@ input:focus {
   }
 }
 
-@media (max-width: 599px) {
+@media (min-width:280px) and (max-width: 599px) {
   .card {
     width: 80%;
     margin-top: 80px;
   }
 
   .hiddenBox {
-    height: 87%;
+    height: 550px;
     width: 83%;
     display: flex;
     flex-direction: column;
     top: 50%;
     display: none;
-    margin-top: 140px;
+    margin-top: -33px;
     font-size: 14px;
   }
   .halfImg {
@@ -591,6 +590,7 @@ input:focus {
 
   .contentWrite {
     height: 180px;
+    font-size: 13px;
   }
 
   .commentBox {
@@ -601,7 +601,8 @@ input:focus {
     width: 30px;
   }
   .hiddenUsersComment {
-    height: 380px;
+    height: 260px;
+    font-size: 11px;
   }
 
   #userPostEdit {
@@ -613,7 +614,7 @@ input:focus {
   }
 
   .commentLike {
-    margin-top: 390px;
+    margin-top: 200px;
     height: 150px;
     font-size: 14px;
   }
@@ -626,6 +627,17 @@ input:focus {
   .userLists {
     margin-top: -110px;
   }
+
+  .hiddenContent {
+    height: 120px;
+    font-size: 11px;
+
+  }
+
+  .close {
+    top: -7%;
+  }
+
 }
 
 @media (min-width: 600px) and (max-width: 699px) {
@@ -716,9 +728,6 @@ input:focus {
     font-size: 15px;
   }
 
-  .close {
-    top: -6.5%;
-  }
   .userLists {
     width: 100px;
     height: 137px;
@@ -767,13 +776,15 @@ input:focus {
 
   .profileNames {
     width: 90px;
+    height: 30px;
+    margin-top: 5px;
   }
   .hiddenBox {
     width: 90%;
     height: 85%;
     animation: box 0.5s ease;
     display: none;
-    top: 65%;
+    top: 60%;
   }
 
   .slideWriting {
@@ -830,7 +841,7 @@ input:focus {
   }
 
   .close {
-    top: -6.5%;
+    top: -5.5%;
   }
 
   .userLists {

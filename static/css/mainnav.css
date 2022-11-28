@@ -44,7 +44,26 @@ img {
   width: 40px;
 }
 
+.useridSearch img {
+  width: 35px;
+}
 
+.useridSearch {
+  border: 2px solid rgb(190, 91, 230);
+  border-radius: 10px;
+  padding: 0 1vw;
+  display: flex;
+  align-items: flex-end;
+  height: 60%;
+  margin-top: 12px;
+  width: 280px;
+}
+
+#useridSearch {
+  border: none;
+  font-size: 1.2rem;
+  width: 100%;
+}
 @media (max-width: 420px) {
   .logo {
     display: none;
@@ -62,12 +81,6 @@ img {
   li img {
     width: 30px;
   }
-
-  /* .useridSearch {
-    width: 30%; 
-    
-  } */
-  
 }
 
 @media (min-width: 421px) and (max-width: 580px) {
@@ -89,31 +102,6 @@ img {
     text-align: center;
   }
 
-  .counting {
-    width: 22px;
-    height: 22px;
-    margin-left: 33px;
-  }
-
-  .useridSearch {
-    width: 50px;
-  }
 }
 
-.useridSearch {
-  border: 2px solid rgb(190, 91, 230);
-  border-radius: 10px;
-  padding: 0 1vw;
-  display: flex;
-  align-items: flex-end;
-  height: 80%;
-  margin-top: 6px;
-  width: 300px;
-}
 
-#useridSearch {
-  border: none;
-  font-size: 1.2rem;
-  width: 100%;
-  
-}
