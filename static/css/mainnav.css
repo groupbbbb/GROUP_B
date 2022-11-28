@@ -97,3 +97,18 @@ img {
     margin-left: 33px;
   }
 }
+
+.useridSearch {
+  border: 2px solid rgb(190, 91, 230);
+  border-radius: 10px;
+  padding: 0 1vw;
+  display: flex;
+  align-items: flex-end;
+  height: 80%;
+  margin-top: 6px;
+}
+
+#useridSearch {
+  border: none;
+  font-size: 1.2rem;
+}

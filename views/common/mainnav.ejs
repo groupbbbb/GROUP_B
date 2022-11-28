@@ -3,6 +3,17 @@
     <a href="/">
       <img src="/static/img/mainLogo.jpg" alt="logo" class="logo" />
     </a>
+    <div class="useridSearch">
+      <img src="/static/img/search.jpg" alt="useridSearch" />
+      <input
+        type="search"
+        name="useridSearch"
+        id="useridSearch"
+        onfocus="this.placeholder=''"
+        onblur="this.placeholder='user 검색'"
+        placeholder="user 검색"
+      />
+    </div>
 
     <nav class="navBar">
       <ul>
@@ -17,20 +28,20 @@
             <img
               src="/static/img/postImg.png"
               alt="전체 페이지"
-              title="게시글쓰기"
+              title="게시글 업로드"
             />
           </a>
-          <%} else { %>
+          <% } else { %>
           <a href="/user/signin">
             <img
               src="/static/img/postImg.png"
               alt="전체 페이지"
-              title="게시글쓰기"
+              title="게시글 업로드"
             />
           </a>
           <% } %>
         </li>
-        <% if (isLogin) { %> <%} else { %>
+        <% if (isLogin) { %> <% } else { %>
         <li>
           <a href="/user/signin">
             <img
