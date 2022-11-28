@@ -268,6 +268,25 @@ input[type="file"]::file-selector-button {
     height: 5%;
     font-size: 10px;
   }
+  .profileZone {
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 50px;
+  }
+  .informationZone {
+    position: absolute;
+    top: 80%;
+    left: 15%;;
+    transform: translate(-50%, -50%);
+  }
+  .passwordZone {
+    position: absolute;
+    top: 110%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 /* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
@@ -294,6 +313,26 @@ input[type="file"]::file-selector-button {
     width: 20%;
     height: 5%;
     font-size: 10px;
+  }
+
+  .profileZone {
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 50px;
+  }
+  .informationZone {
+    position: absolute;
+    top: 80%;
+    left: 15%;;
+    transform: translate(-50%, -50%);
+  }
+  .passwordZone {
+    position: absolute;
+    top: 110%;
+    left: 15%;
+    transform: translate(-50%, -50%);
   }
 }
 
