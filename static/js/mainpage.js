@@ -95,16 +95,24 @@ const cancelAll = document.querySelectorAll(".cancel");
 const commentEditBtnAll = document.querySelectorAll(".commentEditBtn");
 const commentBoxesAll = document.querySelectorAll(".commentBoxes");
 const contentChildAll = document.querySelectorAll(".contentChild");
-const body = document.querySelector("body");
+const hiddenBoxAll = document.querySelectorAll(".hiddenBox");
 
 for (let k = 0; k < hiddenBox.length; k++) {
-  searchAll[k].addEventListener("click", function (e) {
-    hiddenBox[k].style.display = "block";
-    // e.preventDefault();
-    // e.stopPropagation();
-    // return false;
+  searchAll[k].addEventListener("click", function () {
+    hiddenBoxAll[k].style.display = "block";
+    window.scrollTo({
+      left: 0,
+      top: (850 + 100) * k,
+      behavior: "smooth",
+    });
+    console.log("window.pageYOffset >>> ", window.pageYOffset);
+    console.log(
+      "hiddenBoxAll[k] >>> ",
+      hiddenBoxAll[k].getBoundingClientRect().top
+    );
   });
 }
+
 
 for (let i = 0; i < hiddenBox.length; i++) {
   searchAll[i].addEventListener("click", function () {
@@ -610,7 +618,6 @@ for (let i = 0; i < heart.length; i++) {
     }
   });
 }
-
 
 // 검색 기능
 
