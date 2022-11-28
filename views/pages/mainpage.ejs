@@ -35,7 +35,7 @@
         <div class="card">
           <div class="profile">
             <div class="profileImg">
-              <%= %>
+              <img src="<%= data[i].user.profile_img %>" alt="">
             </div>
             <div class="profileName">
               <%= data[i].user.userID %>
@@ -100,7 +100,7 @@
                 </form>
               </div>
         </div>
-     
+    
 
         <!-- ===================================== 확대 ===================================== -->
         <div class="hiddenBox" id="hiBox">
@@ -167,6 +167,7 @@
                 </div>
                 <div class="hiddenUsersComment">
                   <% for(let j=0; j<data[i].comments.length; j++){ %>
+                    <div>
                     <%= data[i].comments[j].user.userID %> : 
                     <%= data[i].comments[j].content %><br>
                     <% let createdAtHiddenComment = data[i].createdAt.toString().split(" ") %>
@@ -175,17 +176,19 @@
                       
                     <% if(isLogin){if(user==data[i].comments[j].user.userID){ %>
                       <div class="commentEditDeleteBtn">
-                        <button type="button" onclick="commentShow();editComment(this, '<%= data[i].id %>', '<%= data[i].comments[j].id %>');" class="commentEditBtn">댓글 수정</button><br>
+                        <button type="button" onclick="commentShow('<%= j %>');editComment(this, '<%= data[i].id %>', '<%= data[i].comments[j].id %>');" class="commentEditBtn">댓글 수정</button><br>
                         <button type="button" onclick="deleteComment(this, '<%= data[i].comments[j].id %>')" class="commentDeleteBtn">댓글 삭제</button>
                       </div>
                       <div class="commentBoxes">
                       <form name="editComment-form<%= data[i].id %><%= data[i].comments[j].id %>" class="editComment-form display-none">
                         <input type="text" id="content" class="edit-content<%= data[i].id %><%= data[i].comments[j].id %>"/> <br />
                         <button type="button" onclick="commentEditDo(this,  '<%= data[i].id %>', '<%= data[i].comments[j].id %>')" class="CommentChange">변경</button>
-                        <button type="button" onclick="positingCommentCancle();commentEditCancel(this,  '<%= data[i].id %>', '<%= data[i].comments[j].id %>');" class="commentCancel">취소</button>
+                        <button type="button" onclick="commentEditCancel('<%= j %>');" class="commentCancel">취소</button>
                       </form>
                     </div>
-                    <% }}%>
+                    <% } %>
+                    <% } %>
+                    </div>
                     <hr>
                   <% } %>
                 </div>
