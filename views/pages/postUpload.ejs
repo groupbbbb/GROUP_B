@@ -38,6 +38,7 @@
       <div class="box">
         <div class="postBox">
           <i class="bi bi-cloud-arrow-up"></i>
+          <label for="img" class="replaceFile">CHOOSE A FILE</label>
           <input type="file" name="img" id="img" class="fileInput" multiple />
           <input
             type="text"
@@ -45,11 +46,12 @@
             id="content"
             class="textInput"
             onfocus="this.placeholder=''"
-            onblur="this.placeholder='게시글 입력'"
-            placeholder="게시글 입력"
+            onblur="this.placeholder='내용 입력'"
+            placeholder="내용 입력"
             autocomplete="off"
+
           />
-          <button type="button" onclick="upload()" class="btn">업로드</button>
+          <button type="button" onclick="upload()" class="btn">UPLOAD YOUR FILE</button>
         </form>
         </div>
       </div>

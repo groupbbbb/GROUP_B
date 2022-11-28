@@ -23,15 +23,16 @@
 </head>
 
 <body>
-  
+ 
+
   <!-- 임시 이미지 -->
   <% img=["../../static/img/dog.jpg","../../static/img/dog2.jpg","../../static/img/dog3.jpg",]%>
   <% console.log(data)%>
   <%- include('../common/mainnav.ejs') %>
     <% for(let i=0; i < data.length ; i++) {%>
-      
+      <!-- <div class="aa"></div> -->
       <div class="box">
-        <div class="card <%= data[i].user.userID %>">
+        <div class="card">
           <div class="profile">
             <div class="profileImg">
               <%= %>
@@ -51,30 +52,30 @@
             <a class="prev btn" onclick="">❮</a>
             <a class="next btn" onclick="">❯</a>
           </div>
-          <div class="userWriting">
-            <div class="heartList">
-              <% let isHeart=false; %>
-              <% if(isLogin){ %>
-              <%  for(let j=0;j<data[i].likes.length; j++){ %>
-              <%    if(data[i].likes[j].user_id==user_id){ %>
-              <%      isHeart=true; %>
-              <% }} %>
-              <% if(isHeart){ %>
-                <i class="heart-icon<%= data[i].id%> bi bi-heart-fill heart-icon" onclick="like(this, '<%= data[i].id %>')"></i>
-              <% } else { %>
-                <i class="heart-icon<%= data[i].id%> bi bi-heart heart-icon" onclick="like(this, '<%= data[i].id %>')"></i>
-              <% } %>
-              <% } else { %>
-                <i class="heart-icon<%= data[i].id%> bi bi-heart heart-icon-isNotLogin" onclick="like(this, '<%= data[i].id %>')"></i>
-              <% } %>
-              <div class="good">좋아요 <span class="heart-num"><%= data[i].likes.length %></span>개</div>
-          
-              <div class="imgicons">
-                <img src="/static/img/search.jpg" alt="자세히보기" class="search" title="확대" />
-                <img src="/static/img/send.jpg" alt="메세지보내기" class="sendMessage" title="메세지보내기" />
-              </div>
-            </div>
 
+              <div class="userWriting">
+                <div class="heartList">
+                  <% let isHeart=false; %>
+                  <% if(isLogin){ %>
+                  <%  for(let j=0;j<data[i].likes.length; j++){ %>
+                  <%    if(data[i].likes[j].user_id==user_id){ %>
+                  <%      isHeart=true; %>
+                  <% }} %>
+                  <% if(isHeart){ %>
+                    <i class="heart-icon<%= data[i].id%> bi bi-heart-fill heart-icon" onclick="like(this, '<%= data[i].id %>')"></i>
+                  <% }else{ %>
+                    <i class="heart-icon<%= data[i].id%> bi bi-heart heart-icon" onclick="like(this, '<%= data[i].id %>')"></i>
+                  <% } %>
+                  <% }else{ %>
+                    <i class="heart-icon<%= data[i].id%> bi bi-heart heart-icon-isNotLogin" onclick="like(this, '<%= data[i].id %>')"></i>
+                  <% }%>
+                  <div class="good">좋아요 <span class="heart-num"><%= data[i].likes.length %></span>개</div>
+              
+                 <div class="imgicons">
+                  <a href="#hiBox"><img src="/static/img/search.jpg" alt="자세히보기" class="search" title="확대" /></a>
+                  
+                </div>
+                </div>
             
                 <div class="content-container">
                   <div class="contentWrite">
@@ -86,38 +87,33 @@
                     내용 : <%= data[i].content %> <br>
                       등록일 : <%= createdAt[3] %>년 <%= month[createdAt[1]] %>월 <%= createdAt[2] %>일 <%= createdAtTime[0] %>시 <%= createdAtTime[1] %>분<br>
                   </div>
-                  <form name="editPost-form<%= data[i].id %>" class="display-none">
-                    <input type="text" id="content" class="edit-content<%= data[i].id %>" /> <br />
-                    <button type="button" onclick="editPostDo(this, '<%= data[i].id %>',true)">변경</button>
-                    <button type="button" onclick="editPostCancel(this, '<%= data[i].id %>')">취소</button>
-                  </form>
                 </div>
               
                 <br /><br />
               </div>
               <div class="commentBox">
                 <img src="/static/img/chat.jpg" alt="댓글창" class="comment" />
-                <form name="uploadComment-form<%= data[i].id %>" class="uploadComment-form">
+                <form name="uploadComment-form<%= data[i].id %>" class="uploadCommentMain-form">
                   <input type="text" name="content" class="content" onfocus="this.placeholder=''"
                     onblur="this.placeholder='댓글달기'" placeholder="댓글달기" />
                   <button type="button" onclick="uploadComment(this, '<%= data[i].id %>',true)" class="commentUpBtn">댓글 등록</button><br>
                 </form>
               </div>
         </div>
-        
+     
 
         <!-- ===================================== 확대 ===================================== -->
-        <div class="hiddenBox">
+        <div class="hiddenBox" id="hiBox">
           <div class="hiddenImg">
             <div class="halfImg">
               <div class="slideBox">
                 <% for (let k=0; k < imgArray.length; k++) {%>
-                <div class="slideImg slideImgFile<%=[k]%>">
+                <div class="slideImg hiddenSlideBox slideImgFile<%=[k]%>">
                   <img src="../../<%= imgArray[k] %>" alt="" />
                 </div>
                 <% } %>
-                <a class="prev btn" onclick="">❮</a>
-                <a class="next btn" onclick="">❯</a>
+                <a class="prev btn" id="HiddenPrevBtns" onclick="">❮</a>
+                <a class="next btn" id="HiddenNextBtns" onclick="">❯</a>
               </div>
             </div>
             <div class="hiddenComment">
@@ -127,18 +123,30 @@
                 <div class="profileImg">
                   <%= %>
                 </div>
-                <div class="profileName">
+                <div class="profileNames">
                   <%= data[i].user.userID %>
                 </div>
               </div>
                 <% if(isLogin){if(user==data[i].user.userID){ %>
                   <div class="management-btn">
-                    <button onclick="editPost(this, '<%= data[i].id %>',false)" class="postFormEdit">수정</button>
-                    <button onclick="deletePost(this, '<%= data[i].id %>')" class="editPostDelete">삭제</button>
+                    <button onclick="postingFix();editPost(this, '<%= data[i].id %>',false);" class="FormEdit">수정</button>
+                    <button onclick="deletePost(this, '<%= data[i].id %>')" class="FormDelete">삭제</button>
                   </div>
                   <% }}%>
               </div>
-            <br>
+              <!-- <form name="editPost-form-hidden<%= data[i].id %>" class="display-none">
+                <input type="text" id="content" class="edit-content<%= data[i].id %>" /> <br />
+                <button type="button" onclick="editPostDo(this, '<%= data[i].id %>',false)">변경</button>
+                <button type="button" onclick="editPostCancel(this, '<%= data[i].id %>')">취소</button>
+            </form>
+          </div>
+          <% if(isLogin){if(user==data[i].user.userID){ %>
+          <div class="management-btn">
+            <button onclick="editPost(this, '<%= data[i].id %>',false)">게시글수정하기</button>
+            <button onclick="deletePost(this, '<%= data[i].id %>')">게시글삭제하기</button>
+          </div>
+          <% }}%>
+          <br /> -->
               <div class="slideWriting">
                 <div class="hiddenContent">  
                   <% let createdAtHidden = data[i].createdAt.toString().split(" ") %>
@@ -147,11 +155,11 @@
                     게시글 등록일 : <%= createdAtHidden[3] %>년 <%= month[createdAtHidden[1]] %>월 <%= createdAtHidden[2] %>일 <%= createdAtTimeHidden[0] %>시 <%= createdAtTimeHidden[1] %>분<br>                 
                 
                     <div class="contentChild">
-                        <form name="editPost-form-hidden<%= data[i].id %>" class="display-none">
-                          <input type="text" id="content" class="edit-content<%= data[i].id %>" /> 
+                        <form name="editPost-form-hidden<%= data[i].id %>">
+                          <input type="text" id="userPostEdit" class="edit-content<%= data[i].id %>" /> 
                           <div class="buttonChild">
                           <button type="button" onclick="editPostDo(this, '<%= data[i].id %>',false)" class="change">변경</button>
-                          <button type="button" onclick="editPostCancel(this, '<%= data[i].id %>')" class="cancel">취소</button>
+                          <button type="button" onclick="postingCancel();editPostCancel(this, '<%= data[i].id %>');" class="cancel">취소</button>
                         </div>
                         </form>
                       
@@ -166,15 +174,23 @@
                     등록일 : <%= createdAtHiddenComment[3] %>년 <%= month[createdAtHiddenComment[1]] %>월 <%= createdAtHiddenComment[2] %>일 <%= createdAtTimeHiddenComment[0] %>시 <%= createdAtTimeHiddenComment[1] %>분<br>                 
                       
                     <% if(isLogin){if(user==data[i].comments[j].user.userID){ %>
-                      <div class="editDeletBtn">
-                      <button type="button" onclick="editComment(this, '<%= data[i].id %>', '<%= data[i].comments[j].id %>')" class="hiddenCommentEdit">댓글 수정</button><br>
-                      <button type="button" onclick="deleteComment(this, '<%= data[i].comments[j].id %>')" class="hiddenCommentDelete">댓글 삭제</button>
+                      <div class="commentEditDeleteBtn">
+                        <button type="button" onclick="commentShow();editComment(this, '<%= data[i].id %>', '<%= data[i].comments[j].id %>');" class="commentEditBtn">댓글 수정</button><br>
+                        <button type="button" onclick="deleteComment(this, '<%= data[i].comments[j].id %>')" class="commentDeleteBtn">댓글 삭제</button>
+                      </div>
+                      <div class="commentBoxes">
+                      <form name="editComment-form<%= data[i].id %><%= data[i].comments[j].id %>" class="editComment-form display-none">
+                        <input type="text" id="content" class="edit-content<%= data[i].id %><%= data[i].comments[j].id %>"/> <br />
+                        <button type="button" onclick="commentEditDo(this,  '<%= data[i].id %>', '<%= data[i].comments[j].id %>')" class="CommentChange">변경</button>
+                        <button type="button" onclick="positingCommentCancle();commentEditCancel(this,  '<%= data[i].id %>', '<%= data[i].comments[j].id %>');" class="commentCancel">취소</button>
+                      </form>
                     </div>
-                      <% }}%>
+                    <% }}%>
                     <hr>
                   <% } %>
                 </div>
               </div>
+
               <!-- <div class="slideComment"> -->
                 <div class="commentLike">
                   <hr>
@@ -193,24 +209,24 @@
                     <% }else{ %>
                       <i class="heart-icon<%= data[i].id%> bi bi-heart heart-icon-isNotLogin heart-hidden-isNotLogin" onclick="like(this, '<%= data[i].id %>')"></i>
                     <% }%>
-                    <div hiddenLike>
+                    <div class="hiddenLike">
                     좋아요 <span class="heart-num-hidden"><%= data[i].likes.length %></span>개
                     <button onclick="viewLikes(this, '<%= data[i].id %>')" class="likeUsers">좋아요한유저목록</button>
                   </div>
                   </div>
-                  <div>
+                  <!-- <div>
                     <img src="/static/img/send.jpg" alt="메세지보내기" class="send" title="메세지보내기" />
-                  </div>
+                  </div> -->
                   <div class="inputBox">
-                    <img src="/static/img/chat.jpg" alt="댓글창" class="inputComment" />
                     <form name="uploadComment-form-hidden<%= data[i].id %>" class="uploadComment-form">
+                      <!-- <img src="/static/img/chat.jpg" alt="댓글창" class="inputComment" /> -->
                       <input type="text" name="content" class="content" onfocus="this.placeholder=''"
                         onblur="this.placeholder='댓글달기'" placeholder="댓글달기" />
                       <button type="button" onclick="uploadComment(this, '<%= data[i].id %>',false)" class="commentUpLoad">등록</button><br>
                     </form>
                   </div>
                   <div class="userLists">
-                    <div class="likedPeople<%= data[i].id %> display-none"></div>
+                    <div class="likedPeople<%= data[i].id %>"></div>
                   </div>
                 </div>
             
@@ -220,12 +236,9 @@
         </div>
       </div>
       <% } %>
-      </script>
-
     
 
         <script src="/static/js/mainpage.js"></script>
-        <script src="/static/js/mainnav.js"></script>
 </body>
 
 <!-- <script src="/static/js/test.js"></script> -->

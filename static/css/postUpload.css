@@ -6,14 +6,14 @@ body {
   font-family: "GmarketSansMedium";
 }
 .box {
-  height: 800px;
-  width: 700px;
-  margin: auto;
-  border: 1px solid black;
+  height: 700px;
+  width: 600px;
+  margin: 30px auto;
+  border:none;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: black;
+  background: linear-gradient(45deg, rgb(64, 108, 202), rgb(190, 91, 230));
 }
 
 .postBox {
@@ -34,33 +34,55 @@ body {
   height: 300px;
   border: 2px dotted black;
   font-size: 150px;
+  color: rgb(129, 65, 155);
 }
 
-.fileInput,
+
 .textInput {
   margin-bottom: 20px;
   width: 300px;
   height: 33px;
   border-radius: 20px;
   cursor: pointer;
-  border: 1px solid black;
   text-align: center;
+  border: 2px solid rgb(129, 65, 155);
 }
 
-.fileInput {
-  background-color: black;
+
+
+.postBox input[type="file"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}
+
+.replaceFile {
+  margin-bottom: 20px;
+  width: 300px;
+  height: 33px;
+  border-radius: 20px;
+  cursor: pointer;
+  text-align: center;
+  background-color:  rgb(129, 65, 155);
   color: white;
+  border: none;
+  font-size: 13px;
+  padding-top: 5px;
 }
 
 .btn {
-  background-color: black;
+  background: linear-gradient(45deg, rgb(64, 108, 202), rgb(190, 91, 230));
   border: none;
   color: white;
-  width: 100px;
-  height: 50px;
+  width: 300px;
+  height: 45px;
   border-radius: 30px;
   font-size: 16px;
   cursor: pointer;
+  font-weight: 600;
 }
 
 @media (max-width: 509px) {
@@ -74,7 +96,7 @@ body {
     height: 480px;
   }
   .btn {
-    width: 60px;
+    width: 260px;
     height: 30px;
     font-size: 10px;
   }
@@ -82,9 +104,10 @@ body {
     width: 260px;
     height: 260px;
   }
-  .fileInput,
+  .replaceFile,
   .textInput {
     width: 260px;
+    font-size: 10px;
   }
 }
 @media (min-width: 510px) and (max-width: 720px) {
@@ -98,7 +121,6 @@ body {
     height: 500px;
   }
   .btn {
-    width: 80px;
     height: 40px;
     font-size: 13px;
   }

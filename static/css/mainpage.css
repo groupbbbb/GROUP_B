@@ -6,6 +6,18 @@ body {
   font-family: "GmarketSansMedium";
 }
 
+/* .aa {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 300vh;
+  /* display: none;  
+} */
+
 .box {
   height: 850px;
   position: relative;
@@ -13,9 +25,9 @@ body {
 }
 
 .card {
-  width: 500px;
+  width: 550px;
   height: 850px;
-  margin: 80px auto;
+  margin: 100px auto;
   border: solid 1px black;
   background-color: white;
 }
@@ -35,22 +47,20 @@ body {
 
 .hiddenContent {
   width: 100%;
-  position: relative;
+  /* position: relative; */
   padding-top: 0;
   height: 200px;
   border-bottom: 1px solid grey;
   word-break: break-all;
+  overflow: auto;
 }
 
-.contentChild {
-  position: absolute;
-}
 .hiddenUsersComment {
   overflow: auto;
-  height: 330px;
+  height: 385px;
 }
 
-.hiddenCommentEdit {
+/* .hiddenCommentEdit {
   background-color: rgb(194, 81, 100);
   color: white;
   border: none;
@@ -64,17 +74,18 @@ body {
   margin-left: 5px;
   border-radius: 10px;
   cursor: pointer;
-}
+} */
 
 .editDeletBtn {
   display: flex;
 }
 
 .likeUsers {
-  background-color: black;
+  background-color: rgb(161, 101, 185);
   color: white;
   border-radius: 10px;
   cursor: pointer;
+  border: none;
 }
 
 .hiddenpro {
@@ -87,6 +98,16 @@ body {
   align-items: center;
   padding: 1px;
   height: 6vh;
+  word-break: break-all;
+}
+
+.profileNames {
+  border: solid 1px black;
+  width: 120px;
+  height: 35px;
+  margin-left: 5px;
+  word-break: break-all;
+  margin-top: 3px;
 }
 
 .profileImg {
@@ -125,8 +146,7 @@ body {
 }
 
 .userWriting {
-  border-bottom: solid 1px black;
-  height: 230px;
+  height: 200px;
 }
 
 .boxIcon {
@@ -143,15 +163,25 @@ input:focus {
   display: flex;
 }
 .commentBox {
+  border-top: 1px solid black;
+  display: flex;
+  margin-top: 27px;
+}
+
+.uploadCommentMain-form {
   display: flex;
   align-items: center;
-  padding: 5px;
+  width: 90%;
+  margin-left: 5px;
 }
+
 .content-container {
-  height: 280px;
+  height: 220px;
 }
 .commentBox img {
-  width: 40px;
+  width: 38px;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
 .content {
@@ -174,15 +204,16 @@ input:focus {
 .contentWrite {
   width: 98%;
   height: 160px;
-  border: 0;
   margin-left: 5px;
   word-break: break-all;
+  overflow: auto;
 }
 
 .uploadComment-form {
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 90%;
+  margin-left: 35px;
 }
 .imgicons {
   margin-left: -37px;
@@ -203,12 +234,13 @@ input:focus {
 .commentUpLoad {
   width: 60px;
   height: 40px;
-  background-color: black;
+  background: linear-gradient(45deg, rgb(64, 108, 202), rgb(190, 91, 230));
   color: white;
   border-radius: 10px;
   margin-left: 5px;
   margin-right: 5px;
   cursor: pointer;
+  border: none;
 }
 
 .prev,
@@ -219,28 +251,37 @@ input:focus {
   padding: 12px;
   font-weight: bold;
   font-size: 20px;
-  border-radius: 0 3px 3px 0;
   user-select: none;
   -webkit-user-select: none;
 }
 
-.next {
+.next,
+#HiddenNextBtns {
   position: absolute;
   right: 0;
-  border-radius: 3px 0 0 3px;
+  border-radius: 5px 0 0 5px;
 }
 
-.prev {
+.prev,
+#HiddenPrevBtns {
   display: none;
+  border-radius: 0 5px 5px 0;
+}
+
+#HiddenNextBtns,
+#HiddenPrevBtns {
+  padding: 12px;
+  font-weight: bold;
+  font-size: 30px;
+  user-select: none;
+  -webkit-user-select: none;
+  margin-top: 140px;
 }
 
 .btn {
   top: 40%;
   color: rgb(26, 25, 25);
-}
-
-.btn:hover {
-  background: rgba(114, 113, 113, 0.3);
+  background: rgb(238, 237, 237);
 }
 
 .likeCount {
@@ -269,18 +310,17 @@ input:focus {
   margin-right: 5px;
 }
 
-.postFormEdit {
+.FormEdit,
+.FormDelete {
   background-color: black;
   color: white;
   border-radius: 10px;
   cursor: pointer;
+  background-color: rgb(161, 101, 185);
+  border: none;
 }
-.editPostDelete {
+.FormDelete {
   margin-left: 5px;
-  background-color: black;
-  color: white;
-  border-radius: 10px;
-  cursor: pointer;
 }
 .manageEdit,
 .manageDelete {
@@ -310,8 +350,7 @@ input:focus {
   color: rgb(241, 135, 144);
 }
 
-.search,
-.sendMessage {
+.search {
   width: 40px;
   height: 40px;
 }
@@ -323,7 +362,7 @@ input:focus {
   width: 1050px;
   height: 750px;
   position: absolute;
-  top: 60%;
+  top: 66%;
   left: 50%;
 
   transform: translate(-50%, -65%);
@@ -360,6 +399,11 @@ input:focus {
   margin-top: 5.5%;
 }
 
+.hiddenSlideBox img {
+  height: 600px;
+  margin-top: 10%;
+}
+
 .hiddenComment {
   position: absolute;
   width: 35%;
@@ -369,7 +413,7 @@ input:focus {
 }
 
 .slideWriting {
-  height: 30%;
+  height: 200px;
 }
 
 .close {
@@ -401,9 +445,7 @@ input:focus {
 
 .commentLike {
   position: relative;
-  margin-top: 310px;
-  height: 130px;
-  z-index: 1;
+  margin-top: 390px;
 }
 
 .heart-hidden-hiddenSlide {
@@ -435,13 +477,13 @@ input:focus {
   height: 130px;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgb(248, 182, 182);
+  border: 2px solid rgb(161, 101, 185);
+  border-radius: 5px;
   display: none;
-
-  border-radius: 10px;
-  background-color: rgb(247, 221, 225);
-  margin-top: -120px;
+  background-color: white;
+  margin-top: -103px;
   z-index: 1;
+  right: 0;
 }
 .active {
   position: absolute;
@@ -454,40 +496,75 @@ input:focus {
   display: block;
 }
 
-#content {
-  width: 205%;
-  height: 170px;
-  background-color: rgb(247, 221, 225);
-  border-radius: 15px;
-  border: 1px solid rgb(248, 182, 182);
+#userPostEdit {
+  width: 100%;
+  height: 100px;
+  margin-top: 186px;
+  background-color: white;
+  border-radius: 5px;
+  border: 2px solid rgb(161, 101, 185);
   word-break: break-all;
-  margin-left: 2px;
-  margin-top: -55%;
+}
+
+#content {
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  border-radius: 5px;
+  border: 2px solid rgb(161, 101, 185);
+  word-break: break-all;
 }
 .chagneCancleBtn {
   margin-left: 5px;
   margin-top: 5px;
 }
 
-.buttonChild {
-  margin-top: 2px;
-  margin-left: 1px;
-}
-.change {
-  background-color: black;
-  border-radius: 10px;
-  height: 30px;
-  color: white;
-  cursor: pointer;
-}
+.change,
 .cancel {
-  background-color: black;
+  background-color: rgb(58, 58, 179);
   border-radius: 10px;
   height: 30px;
   color: white;
   cursor: pointer;
+  border: none;
 }
 
+.contentChild {
+  display: none;
+  position: relative;
+  margin-top: -235px;
+}
+
+.commentEditDeleteBtn {
+  display: flex;
+}
+
+.commentEditBtn,
+.commentDeleteBtn {
+  border-radius: 10px;
+  height: 25px;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(45deg, rgb(64, 108, 202), rgb(190, 91, 230));
+  border: none;
+}
+.commentDeleteBtn {
+  margin-left: 10px;
+}
+
+.CommentChange,
+.commentCancel {
+  background-color: rgb(58, 58, 179);
+  border-radius: 10px;
+  height: 27px;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.commentBoxes {
+  display: none;
+}
 @keyframes box {
   from {
     opacity: 0;
@@ -497,19 +574,20 @@ input:focus {
   }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 599px) {
   .card {
     width: 80%;
+    margin-top: 80px;
   }
 
   .hiddenBox {
-    height: 80%;
-    width: 80%;
+    height: 87%;
+    width: 83%;
     display: flex;
     flex-direction: column;
     top: 50%;
     display: none;
-    margin-top: 20%;
+    margin-top: 140px;
     font-size: 14px;
   }
   .halfImg {
@@ -519,28 +597,63 @@ input:focus {
     width: 100%;
   }
 
+  .contentWrite {
+    height: 180px;
+  }
+
+  .commentBox {
+    margin-top: 45px;
+  }
+
   .commentBox img {
     width: 30px;
   }
   .hiddenUsersComment {
-    height: 340px;
+    height: 380px;
+  }
+
+  #userPostEdit {
+    width: 100%;
+    margin-top: 193px;
+  }
+  #content {
+    width: 100%;
   }
 
   .commentLike {
-    margin-top: 310px;
+    margin-top: 390px;
     height: 150px;
     font-size: 14px;
   }
+  .commentUpBtn {
+    height: 30px;
+    width: 80px;
+    font-size: 10px;
+  }
+
+  .userLists {
+    margin-top: -110px;
+  }
 }
 
-@media (min-width: 581px) and (max-width: 699px) {
+@media (min-width: 600px) and (max-width: 699px) {
   .card {
-    width: 400px;
+    width: 80%;
+    margin-top: 80px;
+  }
+
+  .profileNames {
+    width: 60px;
+    font-size: 10px;
   }
 
   .hiddenContent {
-    font-size: 13px;
     height: 160px;
+    font-size: 10px;
+  }
+
+  .management-btn {
+    margin-top: -5px;
   }
 
   .hiddenBox {
@@ -551,25 +664,55 @@ input:focus {
     top: 50%;
     display: none;
   }
+  .FormEdit,
+  .FormDelete {
+    font-size: 5px;
+    height: 30px;
+    width: 37px;
+  }
+
+  #content {
+    width: 100%;
+  }
+  #userPostEdit {
+    width: 100%;
+    margin-top: 175px;
+  }
 
   .slideWriting {
     height: 24%;
   }
 
+  .commentEditBtn,
+  .commentDeleteBtn {
+    font-size: 8px;
+    height: 20px;
+  }
+
+  .CommentChange,
+  .commentCancel,
+  .change,
+  .cancel {
+    font-size: 5px;
+  }
+  .commentDeleteBtn {
+    margin-left: 3px;
+  }
   .commentLike {
     margin-top: 310px;
     height: 120px;
-    font-size: 13px;
+    font-size: 10px;
   }
-  #hiddenSlideImg > img {
-    height: 590px;
+  .hiddenSlideBox img {
+    height: 500px;
+    margin-top: 12%;
   }
   .hiddenUsersComment {
-    height: 310px;
-    font-size: 13px;
+    height: 290px;
+    font-size: 10px;
   }
   .heart-hidden-hiddenSlide {
-    margin-top: 36px;
+    margin-top: 20px;
   }
 
   .commentUpBtn {
@@ -584,8 +727,9 @@ input:focus {
   .close {
     top: -6.5%;
   }
-  .efeff {
-    font-size: 13px;
+  .userLists {
+    width: 100px;
+    height: 137px;
   }
   .commentBox img {
     width: 37px;
@@ -593,10 +737,10 @@ input:focus {
   .inputComment {
     width: 25px;
   }
-  .ommentUpLoad {
+  .commentUpLoad {
     width: 50px;
     height: 30px;
-    font-size: 13px;
+    font-size: 10px;
   }
   .imgicons {
     margin-left: -26px;
@@ -610,19 +754,34 @@ input:focus {
   .likeUsers {
     font-size: 10px;
   }
+
+  #HiddenNextBtns {
+    font-size: 20px;
+    border-radius: 5px 0 0 5px;
+    margin-top: 120px;
+  }
+  #HiddenPrevBtns {
+    font-size: 20px;
+    border-radius: 0 5px 5px 0;
+    margin-top: 120px;
+  }
 }
 
 @media (min-width: 700px) and (max-width: 1100px) {
   #content {
-    width: 150%;
+    width: 300px;
+    right: 0;
   }
 
+  .profileNames {
+    width: 90px;
+  }
   .hiddenBox {
     width: 90%;
-    height: 70%;
+    height: 85%;
     animation: box 0.5s ease;
     display: none;
-    top: 55%;
+    top: 65%;
   }
 
   .slideWriting {
@@ -630,25 +789,64 @@ input:focus {
     font-size: 14px;
   }
 
+  .postFormEdit,
+  .editPostDelete {
+    font-size: 7px;
+    height: 40px;
+    width: 30px;
+  }
+
+  .hiddenSlideBox img {
+    height: 600px;
+    margin-top: 9.5%;
+  }
+
   .commentLike {
-    margin-top: 285px;
-    height: 120px;
+    margin-top: 360px;
+    height: 170px;
     font-size: 14px;
   }
 
-  #hiddenSlideImg > img {
-    height: 590px;
+  #content,
+  #userPostEdit {
+    width: 100%;
   }
+
+  #userPostEdit {
+    margin-top: 193px;
+  }
+
   .hiddenUsersComment {
-    height: 270px;
-    font-size: 14px;
+    height: 395px;
+    font-size: 13px;
+  }
+
+  .heart-hidden-hiddenSlide {
+    margin-top: 30px;
+  }
+  .commentUpBtn {
+    font-size: 13px;
+  }
+
+  .commentUpLoad {
+    height: 30px;
+  }
+
+  .hiddenContent {
+    height: 160px;
+    font-size: 13px;
   }
 
   .close {
     top: -6.5%;
   }
+
+  .userLists {
+    height: 146px;
+  }
 }
 
-.display-none {
+/* .display-none {
   display: none;
-}
+} */
+

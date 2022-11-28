@@ -42,15 +42,16 @@ const nextIndexs = {
 };
 
 function buttonClick(cardIdx, arrow) {
+  // console.log("size >>>", imageAll[cardIdx].length);
   if (arrow > 0) {
     imageAll[cardIdx][currentIndexs[cardIdx]].style.display = "none";
     imageAll[cardIdx][nextIndexs[cardIdx]].style.display = "block";
     prevBtn[cardIdx].style.display = "block";
     if (nextIndexs[cardIdx] === imageAll[cardIdx].length - 1) {
       nextBtn[cardIdx].style.display = "none";
-    } else {
-      prevBtn[cardIdx].style.display = "block";
-    }
+    } // else {
+    //   prevBtn[cardIdx].style.display = "block";
+    // }
 
     currentIndexs[cardIdx]++;
     nextIndexs[cardIdx]++;
@@ -59,11 +60,13 @@ function buttonClick(cardIdx, arrow) {
     nextIndexs[cardIdx]--;
 
     if (currentIndexs[cardIdx] === 0) {
+      if (imageAll[cardIdx].length === 2) {
+        nextBtn[cardIdx].style.display = "block";
+      }
       prevBtn[cardIdx].style.display = "none";
     } else {
       nextBtn[cardIdx].style.display = "block";
     }
-
     imageAll[cardIdx][currentIndexs[cardIdx]].style.display = "block";
     imageAll[cardIdx][nextIndexs[cardIdx]].style.display = "none";
   }
@@ -88,20 +91,18 @@ const hiddenBox = document.querySelectorAll(".hiddenBox");
 const box = document.querySelectorAll(".box");
 const contentBox = document.querySelectorAll(".contentBox");
 const card = document.querySelectorAll(".card");
+const cancelAll = document.querySelectorAll(".cancel");
+const commentEditBtnAll = document.querySelectorAll(".commentEditBtn");
+const commentBoxesAll = document.querySelectorAll(".commentBoxes");
+const contentChildAll = document.querySelectorAll(".contentChild");
 const body = document.querySelector("body");
 
 for (let k = 0; k < hiddenBox.length; k++) {
-  searchAll[k].addEventListener("click", function () {
+  searchAll[k].addEventListener("click", function (e) {
     hiddenBox[k].style.display = "block";
-    body.style.backgroundColor = "rgba(0, 0, 0, 0.66)";
-  });
-}
-
-for (let l = 0; l < box.length; l++) {
-  closeAll[l].addEventListener("click", () => {
-    for (let j = 0; j < box.length; j++) hiddenBox[j].style.display = "none";
-    card[l].style.display = "block";
-    body.style.backgroundColor = "transparent";
+    // e.preventDefault();
+    // e.stopPropagation();
+    // return false;
   });
 }
 
@@ -109,6 +110,34 @@ for (let i = 0; i < hiddenBox.length; i++) {
   searchAll[i].addEventListener("click", function () {
     card[i].style.display = "none";
   });
+}
+for (let l = 0; l < box.length; l++) {
+  closeAll[l].addEventListener("click", () => {
+    for (let j = 0; j < box.length; j++) hiddenBox[j].style.display = "none";
+    card[l].style.display = "block";
+  });
+}
+
+function commentShow() {
+  for (let i = 0; i < commentBoxesAll.length; i++) {
+    commentBoxesAll[i].style.display = "block";
+  }
+}
+
+function positingCommentCancle() {
+  for (let i = 0; i < commentBoxesAll.length; i++) {
+    commentBoxesAll[i].style.display = "none";
+  }
+}
+function postingFix() {
+  for (let i = 0; i < box.length; i++) {
+    contentChildAll[i].style.display = "block";
+  }
+}
+function postingCancel() {
+  for (let i = 0; i < box.length; i++) {
+    contentChildAll[i].style.display = "none";
+  }
 }
 
 // 확대 슬라이드 좋아요한 유저 보기
@@ -121,6 +150,12 @@ for (let i = 0; i < hiddenBox.length; i++) {
     userListsAll[i].classList.toggle("active");
   });
 }
+
+// for (let i = 0; i < hiddenBox.length; i++) {
+//   commentEditBtnAll[i].addEventListener("click", function () {
+//     commentBoxes[i].style.display = "block";
+//   });
+// }
 
 // 확대 슬라이드
 const halfImgAll = document.querySelectorAll(".halfImg"); // 5
@@ -165,8 +200,11 @@ const nextHiddenIndexs = {
 
 function slideButtonClick(cardIdx, arrow) {
   if (arrow > 0) {
+    console.log("다음 버튼 클릭");
     halfImgAll[cardIdx][currentHiddenIndexs[cardIdx]].style.display = "none";
     halfImgAll[cardIdx][nextHiddenIndexs[cardIdx]].style.display = "block";
+
+    console.log(nextHiddenIndexs[cardIdx], halfImgAll[cardIdx].length - 1);
     if (nextHiddenIndexs[cardIdx] === halfImgAll[cardIdx].length - 1) {
       hiddenNext[cardIdx].style.display = "none";
     } else {
@@ -176,9 +214,11 @@ function slideButtonClick(cardIdx, arrow) {
     currentHiddenIndexs[cardIdx]++;
     nextHiddenIndexs[cardIdx]++;
   } else {
+    console.log("이전 버튼 클릭");
     currentHiddenIndexs[cardIdx]--;
     nextHiddenIndexs[cardIdx]--;
 
+    console.log(currentHiddenIndexs[cardIdx], halfImgAll[cardIdx].length - 1);
     if (currentHiddenIndexs[cardIdx] === 0) {
       hiddenPrev[cardIdx].style.display = "none";
     } else {
@@ -296,7 +336,7 @@ async function editPost(obj, id, isHidden) {
       if (res === true) {
         const form = document.forms[formName];
         form.classList.toggle("display-none");
-        form.content.value = data.content;
+        form.userPostEdit.value = data.content;
         editPostSelected.post_id = data.id;
         editPostSelected.user_id = data.user_id;
       } else {
@@ -314,7 +354,7 @@ async function editPostDo(obj, id, isHidden) {
     data: {
       id: id,
       user_id: editPostSelected.user_id,
-      content: form.content.value,
+      content: form.userPostEdit.value,
     },
   })
     .then((res) => {
@@ -337,7 +377,7 @@ async function editPostDo(obj, id, isHidden) {
 // 수정 취소
 function editPostCancel(obj, id) {
   const form = document.forms[`editPost-form${id}`];
-  form.classList.toggle("display-none");
+  // form.classList.toggle("display-none");
   editPostSelected.post_id = "";
   editPostSelected.user_id = "";
 }
@@ -570,6 +610,7 @@ for (let i = 0; i < heart.length; i++) {
     }
   });
 }
+
 
 // 검색 기능
 

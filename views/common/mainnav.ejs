@@ -1,7 +1,7 @@
 <div class="headerBox">
   <header class="header">
     <a href="/">
-      <img src="/static/img/navlogo.jpg" alt="logo" class="logo" />
+      <img src="/static/img/mainLogo.jpg" alt="logo" class="logo" />
     </a>
     <div class="useridSearch">
       <img src="/static/img/search.jpg" alt="useridSearch" />
@@ -9,8 +9,9 @@
         type="search"
         name="useridSearch"
         id="useridSearch"
-        placeholder="검색"
-        autocomplete="off"
+        onfocus="this.placeholder=''"
+        onblur="this.placeholder='user 검색'"
+        placeholder="user 검색"
       />
     </div>
 
@@ -27,7 +28,8 @@
             <img
               src="/static/img/postImg.png"
               alt="전체 페이지"
-              title="게시글쓰기"
+
+              title="게시글 업로드"
             />
           </a>
           <% } else { %>
@@ -35,7 +37,7 @@
             <img
               src="/static/img/postImg.png"
               alt="전체 페이지"
-              title="게시글쓰기"
+              title="게시글 업로드"
             />
           </a>
           <% } %>
