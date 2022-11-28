@@ -1,13 +1,16 @@
 const models = require('../models');
+const bcrypt = require('bcrypt');
+const salt = 12;
 
 exports.signup = (req, res) => {
   res.render('pages/signup', {isLogin: req.session.user});
 };
 //======회원가입======
 exports.post_signup = (req, res) => {
+  const hashed_userPW = bcrypt.hashSync(req.body.userPW, salt);
   models.User.create({
     userID: req.body.userID,
-    userPW: req.body.userPW,
+    userPW: hashed_userPW,
     name: req.body.name,
     birth: req.body.birth,
   }).then(() => {
@@ -35,13 +38,15 @@ exports.signin = (req, res) => {
 };
 //======로그인======
 exports.post_signin = (req, res) => {
+ 
   models.User.findOne({
     where: {
       userID: req.body.userID,
-      userPW: req.body.userPW,
     },
   }).then((result) => {
-    if (result === null) {
+    const hash = bcrypt.hashSync(req.body.userPW, 12);
+    const match = bcrypt.compareSync(result.userPW, hash);
+    if(match) {
       res.send(false);
     } else {
       req.session.user = req.body.userID;
@@ -52,8 +57,53 @@ exports.post_signin = (req, res) => {
 };
 
 exports.mypage = (req, res) => {
-  res.render('pages/mypage', {isLogin: req.session.user});
+  const user_id = req.session.user_id;
+  let likeData;
+  let postData;
+  
+  models.Post.findAll({
+    where:{user_id:user_id},
+    order: [['id', 'DESC']],
+    include: [
+      {
+        model: models.Likes, attributes:['user_id'],
+        include : [{model:models.User, attributes:['userID']}]
+      },
+      {
+        model: models.Comment, attributes:['user_id','content','createdAt'],
+        include : [{model:models.User, attributes:['userID']}]
+      }
+    ]
+  }).then(result => {
+    postData=result;
+    models.Likes.findAll({
+      where:{user_id:user_id},
+      order: [['id', 'DESC']],
+      include: [
+        {
+          model: models.Post,
+          include :[
+            { model : models.User, attributes:['userID']},
+            {
+              model: models.Likes, attributes:['user_id'],
+              include : [{model:models.User, attributes:['userID']}]
+            },
+            {
+              model: models.Comment, attributes:['user_id','content','createdAt'],
+              include : [{model:models.User, attributes:['userID']}]
+            }
+          ]
+        }
+      ]
+    }).then(result => {
+      res.render('pages/mypage', { isLogin: req.session.user, postData:postData, likeData:result, user_id:req.session.user_id });
+    })
+  })
+  // res.render('pages/mypage', {isLogin: req.session.user});
 };
+
+
+
 //======로그아웃======
 exports.signout = (req, res) => {
   req.session.destroy(function(){
@@ -67,7 +117,7 @@ exports.getMyInform = (req, res) => {
       userID: req.body.isLogin
     },
   }).then((result) => {
-   res.send({userID:result.dataValues.userID, userPW:result.dataValues.userPW, name:result.dataValues.name,
+   res.send({userID:result.dataValues.userID, name:result.dataValues.name,
     birth:result.dataValues.birth, profile_img:result.dataValues.profile_img});
   });
 }
@@ -102,9 +152,10 @@ exports.profileUploads = (req, res) => {
 }
 //======user비밀번호변경======
 exports.modifyPW = (req, res) => {
+  const hashed_newPW = bcrypt.hashSync(req.body.newPW, salt);
   models.User.update(
     {
-      userPW: req.body.newPW,
+      userPW: hashed_newPW,
     },
     {
       where: { userID: req.body.isLogin },
@@ -117,55 +168,27 @@ exports.modifyPW = (req, res) => {
 //============================================================================================
 // 좋아요 목록 보기
 
-
-
-exports.getMyLike=(req,res)=>{
-  const user_id = req.session.user_id;
-  if(user_id){
-    models.Likes.findAll({
-      where:{user_id:user_id},
-      order: [['id', 'DESC']],
-      include: [
-        {
-          model: models.Post,
-          include :[
-            { model : models.User, attributes:['userID']},
-            {
-              model: models.Likes, attributes:['user_id'],
-              include : [{model:models.User, attributes:['userID']}]
-            },
-            {
-              model: models.Comment, attributes:['user_id','content','createdAt'],
-              include : [{model:models.User, attributes:['userID']}]
-            }
-          ]
-        }
-      ]
-    }).then(result => {
-      res.send({ data: result });
-    })
-  }
+exports.deleteMyPost = (req, res) => {
+  models.Post.destroy({
+    where : {id:req.body.id}
+  }).then(result=>{
+    res.send('게시글 삭제 성공');
+  })
 }
 
+exports.editMyPost = (req,res) => {
+  models.Post.update(
+      {content : req.body.content},
+      {where : {id : req.body.id}}
+  ).then((result)=>{
+      res.send('게시글 수정 성공');
+  })
+}
 
-exports.getMyPost = (req, res) => {
-  const user_id = req.session.user_id;
-  if(user_id){
-    models.Post.findAll({
-      where:{user_id:user_id},
-      order: [['id', 'DESC']],
-      include: [
-        {
-          model: models.Likes, attributes:['user_id'],
-          include : [{model:models.User, attributes:['userID']}]
-        },
-        {
-          model: models.Comment, attributes:['user_id','content','createdAt'],
-          include : [{model:models.User, attributes:['userID']}]
-        }
-      ]
-    }).then(result => {
-      res.send({ data: result });
-    })
-  }
+exports.deleteMyLike = (req, res) => {
+  models.Likes.destroy({
+    where : {id:req.body.id}
+  }).then(result=>{
+    res.send('좋아요를 취소했습니다.');
+  })
 }
