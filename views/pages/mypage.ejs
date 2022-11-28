@@ -101,7 +101,7 @@
                     <div>댓글 없음</div>
                     <% } %>
                     <% for(let j=0; j < postData[i].comments.length ; j++){ %>
-                    <% let commentCreatedAt = postData[i].createdAt.toString().split(" ") %>
+                    <% let commentCreatedAt = postData[i].comments[j].createdAt.toString().split(" ") %>
                     <% let commentCreatedAtTime = commentCreatedAt[4].split(":") %>
                     <div>
                       <span class="comment-user-name"><%= postData[i].comments[j].user.userID %></span>
@@ -162,7 +162,7 @@
                       <div>댓글 없음</div>
                       <% } %>
                       <% for(let j=0; j < likeData[i].post.comments.length ; j++){ %>
-                      <% let likedPostCommentCreatedAt = likeData[i].post.createdAt.toString().split(" ") %>
+                      <% let likedPostCommentCreatedAt = likeData[i].post.comments[j].createdAt.toString().split(" ") %>
                       <% let likedPostCommentCreatedAtTime = likedPostCommentCreatedAt[4].split(":") %>
                       <div>
                         <span class="comment-user-name"><%= likeData[i].post.comments[j].user.userID %></span>
