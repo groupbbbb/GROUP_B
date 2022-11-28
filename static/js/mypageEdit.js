@@ -124,7 +124,8 @@ function modifyInform() {
           },800);
 
       } else {
-        alert('수정에 실패하였습니다.')
+        alert('수정에 실패하였습니다.');
+        location.reload();
       }
       });
   }
