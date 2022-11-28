@@ -29,23 +29,26 @@ document
     const form = document.forms['information'];
     const idMsg = document.querySelector('#idMsg');
     idMsg.innerHTML = '';
-
-    axios({
-      method: 'POST',
-      url: '/user/idCheck',
-      data: {
-        userID: form.userID.value,
-      },
-    }).then((data) => {
-
-      if(data.data){
-        idMsg.innerHTML = '사용 가능한 아이디 입니다.';
-        idMsg.style.color = 'green';
-      }else{
-        idMsg.innerHTML = '중복된 아이디 입니다.';
-        idMsg.style.color = 'red';
-      }
-      });
+    if (form.userID.value === '') {
+      return;
+    } else {
+      axios({
+        method: 'POST',
+        url: '/user/idCheck',
+        data: {
+          userID: form.userID.value,
+        },
+      }).then((data) => {
+  
+        if(data.data){
+          idMsg.innerHTML = '사용 가능한 아이디 입니다.';
+          idMsg.style.color = 'green';
+        }else{
+          idMsg.innerHTML = '중복된 아이디 입니다.';
+          idMsg.style.color = 'red';
+        }
+        });
+    }
   }
   //======비밀번호체크======
 let pwChecking = document.querySelector('#pwCheck');
