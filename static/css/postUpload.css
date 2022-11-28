@@ -73,7 +73,38 @@ body {
   font-weight: 600;
 }
 
-@media (max-width: 509px) {
+
+
+
+@media (max-width: 399px) {
+  .box {
+    margin-top: 10%;
+    width: 85%;
+    height: 550px;
+  }
+
+  .postBox {
+    width:78%;
+    height: 480px;
+  }
+
+  .bi {
+    font-size: 150px;
+  }
+
+  .replaceFile {
+    width: 200px;
+  }
+
+  .textInput {
+    width: 200px;
+  }
+  .btn {
+    width:200px;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 509px) {
   .box {
     margin-top: 10%;
     width: 400px;
@@ -121,7 +152,7 @@ body {
 
 .bi {
   border: 2px dotted black;
-  font-size: 240px;
+  font-size: 220px;
   color: rgb(129, 65, 155);
 }
 
