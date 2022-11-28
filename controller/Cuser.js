@@ -1,12 +1,12 @@
 const models = require('../models');
 const bcrypt = require('bcrypt');
-
+const salt = 10;
 exports.signup = (req, res) => {
   res.render('pages/signup', {isLogin: req.session.user});
 };
 //======회원가입======
 exports.post_signup = (req, res) => {
-  const hashed_userPW = bcrypt.hashSync(req.body.userPW, 10);
+  const hashed_userPW = bcrypt.hashSync(req.body.userPW, salt);
   models.User.create({
     userID: req.body.userID,
     userPW: hashed_userPW,
@@ -161,7 +161,7 @@ exports.profileUploads = (req, res) => {
 }
 //======user비밀번호변경======
 exports.modifyPW = (req, res) => {
-  const hashed_newPW = bcrypt.hashSync(req.body.newPW, 10);
+  const hashed_newPW = bcrypt.hashSync(req.body.newPW, salt);
   models.User.update(
     {
       userPW: hashed_newPW,
