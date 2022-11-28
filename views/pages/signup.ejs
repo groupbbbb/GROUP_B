@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>회원가입</title>
+    <title>Pocogram</title>
     <link rel="stylesheet" href="/static/css/signup.css" />
     <link
       rel="stylesheet"
@@ -13,10 +13,17 @@
     <%- include('../common/include.ejs') %>
     <script type="text/javascript">
       window.history.forward();
-      function noBack(){window.history.forward();}
-     </script>
+      function noBack() {
+        window.history.forward();
+      }
+    </script>
+    <link rel="icon" href="/static/img/pocopabicon.png" />
   </head>
-  <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
+  <body
+    onload="noBack();"
+    onpageshow="if(event.persisted) noBack();"
+    onunload=""
+  >
     <%- include('../common/nav.ejs') %>
     <main class="signup">
       <div class="signupBoard">
@@ -102,7 +109,5 @@
     <script src="/static/js/signup.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
   </body>
-  
 </html>
