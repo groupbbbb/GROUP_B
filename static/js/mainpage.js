@@ -119,7 +119,7 @@ for (let l = 0; l < box.length; l++) {
       commentBoxesAll[boxclose].style.display = "none";
     }
     for (let listclose = 0; listclose < userListsAll.length; listclose++) {
-      userListsAll[listclose].classList.toggle("active");
+      userListsAll[listclose].style.display = "none";
     }
   });
 }
