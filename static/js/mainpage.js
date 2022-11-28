@@ -123,19 +123,21 @@ for (let l = 0; l < box.length; l++) {
   closeAll[l].addEventListener("click", () => {
     for (let j = 0; j < box.length; j++) hiddenBox[j].style.display = "none";
     card[l].style.display = "block";
+    for (let boxclose = 0; boxclose < commentBoxesAll.length; boxclose++) {
+      commentBoxesAll[boxclose].style.display = "none";
+    }
+    for (let listclose = 0; listclose < userListsAll.length; listclose++) {
+      userListsAll[listclose].classList.toggle("active");
+    }
   });
 }
 
-function commentShow() {
-  for (let i = 0; i < commentBoxesAll.length; i++) {
-    commentBoxesAll[i].style.display = "block";
-  }
+function commentShow(n) {
+  commentBoxesAll[parseInt(n)].style.display = "block";
 }
 
-function positingCommentCancle() {
-  for (let i = 0; i < commentBoxesAll.length; i++) {
-    commentBoxesAll[i].style.display = "none";
-  }
+function positingCommentCancle(n) {
+  commentBoxesAll[parseInt(n)].style.display = "none";
 }
 function postingFix() {
   for (let i = 0; i < box.length; i++) {
@@ -154,7 +156,7 @@ const likeUsersAll = document.querySelectorAll(".likeUsers");
 
 for (let i = 0; i < hiddenBox.length; i++) {
   likeUsersAll[i].addEventListener("click", function () {
-    console.log(userListsAll);
+    // console.log(userListsAll);
     userListsAll[i].classList.toggle("active");
   });
 }
@@ -414,38 +416,41 @@ async function viewComment(obj, id) {
 
 // 댓글 달기
 function uploadComment(obj, id, isHidden) {
-  if (isHidden) {
-    const form = document.forms[`uploadComment-form${id}`];
-    axios({
-      method: "POST",
-      url: "/post/uploadComment",
-      data: {
-        content: form.content.value,
-        post_id: id,
-      },
-    }).then((res) => {
-      alert(res.data);
-      location.reload();
-      location.replace(location.href);
-      location.href = location.href;
-      // console.log(res.data);
-    });
+  const form = document.forms[`uploadComment-form${id}`];
+  if (form.content.value == "") {
+    alert("댓글란에 댓글을 입력해주세요");
   } else {
-    const form = document.forms[`uploadComment-form-hidden${id}`];
-    axios({
-      method: "POST",
-      url: "/post/uploadComment",
-      data: {
-        content: form.content.value,
-        post_id: id,
-      },
-    }).then((res) => {
-      // console.log(res.data);
-      alert(res.data);
-      location.reload();
-      location.replace(location.href);
-      location.href = location.href;
-    });
+    if (isHidden) {
+      axios({
+        method: "POST",
+        url: "/post/uploadComment",
+        data: {
+          content: form.content.value,
+          post_id: id,
+        },
+      }).then((res) => {
+        alert(res.data);
+        location.reload();
+        location.replace(location.href);
+        location.href = location.href;
+      });
+    } else {
+      const form = document.forms[`uploadComment-form-hidden${id}`];
+      axios({
+        method: "POST",
+        url: "/post/uploadComment",
+        data: {
+          content: form.content.value,
+          post_id: id,
+        },
+      }).then((res) => {
+        // console.log(res.data);
+        alert(res.data);
+        location.reload();
+        location.replace(location.href);
+        location.href = location.href;
+      });
+    }
   }
 }
 
@@ -511,9 +516,10 @@ function commentEditDo(obj, post_id, comment_id) {
 }
 
 // 수정 취소
-function commentEditCancel(obj, post_id, comment_id) {
-  const form = document.forms[`editComment-form${post_id}${comment_id}`];
-  form.classList.toggle("display-none");
+function commentEditCancel(n) {
+  // const form = document.forms[`editComment-form${post_id}${comment_id}`];
+  // form.classList.toggle("display-none");
+  commentBoxesAll[parseInt(n)].style.display = "none";
 }
 
 // =========================================  좋아요  =========================================

@@ -119,12 +119,13 @@ body {
   margin-left: 5px;
 }
 
+
 .profileImg img{
   border-style: none;
   border-radius: 50%;
   width: 41px;
   height: 41px;
-}
+
 
 .profileName {
   border: solid 1px black;
@@ -865,4 +866,3 @@ input:focus {
 /* .display-none {
   display: none;
 } */
-

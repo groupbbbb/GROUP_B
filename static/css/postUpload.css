@@ -9,7 +9,7 @@ body {
   height: 700px;
   width: 600px;
   margin: 30px auto;
-  border:none;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,16 +28,6 @@ body {
   text-align: center;
 }
 
-.bi {
-  margin-bottom: 20px;
-  width: 300px;
-  height: 300px;
-  border: 2px dotted black;
-  font-size: 150px;
-  color: rgb(129, 65, 155);
-}
-
-
 .textInput {
   margin-bottom: 20px;
   width: 300px;
@@ -47,8 +37,6 @@ body {
   text-align: center;
   border: 2px solid rgb(129, 65, 155);
 }
-
-
 
 .postBox input[type="file"] {
   position: absolute;
@@ -66,7 +54,7 @@ body {
   border-radius: 20px;
   cursor: pointer;
   text-align: center;
-  background-color:  rgb(129, 65, 155);
+  background-color: rgb(129, 65, 155);
   color: white;
   border: none;
   font-size: 13px;
@@ -126,4 +114,39 @@ body {
   }
 }
 
+.imgPreview {
+  width: 300px;
+  height: 330px;
+}
 
+.bi {
+  border: 2px dotted black;
+  font-size: 240px;
+  color: rgb(129, 65, 155);
+}
+
+.imgPreview img {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 30px;
+}
+
+.circle {
+  display: flex;
+  border-style: none;
+  border-radius: 50px;
+  background-color: rgb(129, 65, 155);
+  color: white;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  bottom: 340px;
+  left: 150px;
+  justify-content: center;
+}
+
+.display-none {
+  display: none;
+}

@@ -1,13 +1,12 @@
 const models = require('../models');
 const bcrypt = require('bcrypt');
-const salt = 12;
 
 exports.signup = (req, res) => {
   res.render('pages/signup', {isLogin: req.session.user});
 };
 //======회원가입======
 exports.post_signup = (req, res) => {
-  const hashed_userPW = bcrypt.hashSync(req.body.userPW, salt);
+  const hashed_userPW = bcrypt.hashSync(req.body.userPW, 10);
   models.User.create({
     userID: req.body.userID,
     userPW: hashed_userPW,
@@ -44,62 +43,72 @@ exports.post_signin = (req, res) => {
       userID: req.body.userID,
     },
   }).then((result) => {
-    const hash = bcrypt.hashSync(req.body.userPW, 12);
-    const match = bcrypt.compareSync(result.userPW, hash);
-    if(match) {
+    if (result === null) {
       res.send(false);
     } else {
-      req.session.user = req.body.userID;
-      req.session.user_id = result.dataValues.id;
-      res.send({isLogin: req.session.user, id: result.dataValues.id});
+      const match = bcrypt.compareSync(req.body.userPW, result.userPW);
+      if(match === false) {
+        res.send(false);
+      } else {
+        req.session.user = req.body.userID;
+        req.session.user_id = result.dataValues.id;
+        res.send({isLogin: req.session.user, id: result.dataValues.id});
+      }
     }
   });
 };
 
 exports.mypage = (req, res) => {
   const user_id = req.session.user_id;
+  const user = req.session.user;
   let likeData;
   let postData;
-  
-  models.Post.findAll({
-    where:{user_id:user_id},
-    order: [['id', 'DESC']],
-    include: [
-      {
-        model: models.Likes, attributes:['user_id'],
-        include : [{model:models.User, attributes:['userID']}]
-      },
-      {
-        model: models.Comment, attributes:['user_id','content','createdAt'],
-        include : [{model:models.User, attributes:['userID']}]
-      }
-    ]
-  }).then(result => {
-    postData=result;
-    models.Likes.findAll({
+  if (user !== undefined) {
+    models.Post.findAll({
       where:{user_id:user_id},
       order: [['id', 'DESC']],
       include: [
         {
-          model: models.Post,
-          include :[
-            { model : models.User, attributes:['userID']},
-            {
-              model: models.Likes, attributes:['user_id'],
-              include : [{model:models.User, attributes:['userID']}]
-            },
-            {
-              model: models.Comment, attributes:['user_id','content','createdAt'],
-              include : [{model:models.User, attributes:['userID']}]
-            }
-          ]
+          model: models.Likes, attributes:['user_id'],
+          include : [{model:models.User, attributes:['userID']}]
+        },
+        {
+          model: models.Comment, attributes:['user_id','content','createdAt'],
+          include : [{model:models.User, attributes:['userID']}]
         }
       ]
     }).then(result => {
-      res.render('pages/mypage', { isLogin: req.session.user, postData:postData, likeData:result, user_id:req.session.user_id });
+      postData=result;
+      models.Likes.findAll({
+        where:{user_id:user_id},
+        order: [['id', 'DESC']],
+        include: [
+          {
+            model: models.Post,
+            include :[
+              { model : models.User, attributes:['userID']},
+              {
+                model: models.Likes, attributes:['user_id'],
+                include : [{model:models.User, attributes:['userID']}]
+              },
+              {
+                model: models.Comment, attributes:['user_id','content','createdAt'],
+                include : [{model:models.User, attributes:['userID']}]
+              }
+            ]
+          }
+        ]
+      }).then(result => {
+        res.render('pages/mypage', { isLogin: req.session.user, postData:postData, likeData:result, user_id:req.session.user_id });
+      })
     })
-  })
-  // res.render('pages/mypage', {isLogin: req.session.user});
+  
+  } else {
+    res.render('pages/mypage', {isLogin: req.session.user});
+
+  }
+
+
 };
 
 
@@ -152,7 +161,7 @@ exports.profileUploads = (req, res) => {
 }
 //======user비밀번호변경======
 exports.modifyPW = (req, res) => {
-  const hashed_newPW = bcrypt.hashSync(req.body.newPW, salt);
+  const hashed_newPW = bcrypt.hashSync(req.body.newPW, 10);
   models.User.update(
     {
       userPW: hashed_newPW,

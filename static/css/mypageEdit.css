@@ -16,7 +16,7 @@ body {
   top: -10%;
   width: 200px;
   height: 500px;
-  background-color: black;
+  background-color: #987195;
   margin-top: 50px;
   text-align: center;
   border-radius: 0 20px 20px 0;
@@ -35,7 +35,7 @@ body {
 
 .infoList > div:hover {
   background-color: white;
-  color: black;
+  color: #59007e;
   border-radius: 30px 0 0 30px;
   margin-left: 10px;
 }
@@ -66,8 +66,9 @@ body {
 #editBtn {
   position: absolute;
   top: -15%;
-  background-color: black;
+  background-color: #987195;
   color: white;
+  border: none;
 }
 #logoutBtn {
   margin-top: 25px;
@@ -133,22 +134,21 @@ body {
   background-color: rgb(231, 231, 231);
 }
 
-
 .profileZone {
-  position: absolute; 
+  position: absolute;
   top: 40%;
   left: 20%;
   transform: translate(-50%, -50%);
   margin-bottom: 50px;
 }
 .informationZone {
-  position: absolute; 
+  position: absolute;
   top: 43%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 .passwordZone {
-  position: absolute; 
+  position: absolute;
   top: 43%;
   left: 75%;
   transform: translate(-50%, -50%);
@@ -163,13 +163,13 @@ input {
 }
 
 .modifyInformBtn:disabled {
-  background-color: rgb(147, 147, 147);
+  background-color: #cdc1d4;
 }
 
 .modifyInformBtn {
   width: 80px;
   height: 30px;
-  background-color: #2eabff;
+  background-color: #6f78a1;
   color: white;
   border-radius: 4px;
   margin-top: 35px;
@@ -180,7 +180,7 @@ input {
 #fileUploadBtn {
   width: 80px;
   height: 30px;
-  background-color: #2eabff;
+  background-color: #6f78a1;
   color: white;
   border-radius: 4px;
   margin-left: 50%;
@@ -194,10 +194,10 @@ input {
   top: -5%;
 }
 
-input[type=file]::file-selector-button {
+input[type="file"]::file-selector-button {
   width: 80px;
   height: 30px;
-  background-color: #88cfff;
+  background-color: #6f78a1;
   color: rgb(255, 255, 255);
   border-radius: 4px;
   border: none;
@@ -208,49 +208,49 @@ input[type=file]::file-selector-button {
 .modifyPWBtn {
   width: 80px;
   height: 30px;
-  background-color: #2eabff;
+  background-color: #6f78a1;
   color: white;
   border-radius: 4px;
   margin-top: 35px;
   margin-left: 115px;
   border: none;
 }
- /* PC , 테블릿 가로 (해상도 768px ~ 1023px)*/ 
-@media all and (min-width:768px) and (max-width:1023px) { 
+/* PC , 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
   .infoList {
     position: absolute;
     top: -10%;
     width: 200px;
     height: 500px;
-    background-color: black;
+    background-color: #987195;
     margin-top: 50px;
     text-align: center;
     border-radius: 0 20px 20px 0;
   }
-} 
+}
 
-/* 테블릿 세로 (해상도 768px ~ 1023px)*/ 
-@media all and (min-width:768px) and (max-width:1023px) { 
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
   .infoList {
     position: absolute;
     top: -10%;
     width: 100px;
     height: 300px;
-    background-color: black;
+    background-color: #987195;
     margin-top: 50px;
     text-align: center;
     border-radius: 0 20px 20px 0;
   }
-} 
+}
 
-/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/ 
-@media all and (min-width:480px) and (max-width:767px) {
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
   .infoList {
     position: absolute;
     top: -10%;
     width: 100px;
     height: 500px;
-    background-color: black;
+    background-color: #987195;
     margin-top: 50px;
     text-align: center;
     border-radius: 0 20px 20px 0;
@@ -267,17 +267,17 @@ input[type=file]::file-selector-button {
     width: 20%;
     height: 5%;
     font-size: 10px;
+  }
 }
-} 
 
-/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/ 
-@media all and (max-width:479px) {
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media all and (max-width: 479px) {
   .infoList {
     position: absolute;
     top: -10%;
     width: 100px;
     height: 500px;
-    background-color: black;
+    background-color: #987195;
     margin-top: 50px;
     text-align: center;
     border-radius: 0 20px 20px 0;
@@ -294,124 +294,119 @@ input[type=file]::file-selector-button {
     width: 20%;
     height: 5%;
     font-size: 10px;
+  }
 }
-}
-
 
 /* ================================================================== */
 
-.post{
+.post {
   border-style: solid;
   border-color: gray;
   border-radius: 10px;
   border-width: 1px;
-  padding:10px;
+  padding: 10px;
   align-items: center;
 }
 
-.post > span{
-  padding-left:10px;
-  padding-right:10px;
+.post > span {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-.post-content-more{
-  color:gray;
+.post-content-more {
+  color: gray;
   align-items: right;
-  cursor:pointer;
+  cursor: pointer;
 }
 
-.post-content{
-  display:flex;
+.post-content {
+  display: flex;
   justify-content: space-between;
 }
 
-.post-more-comment-like{
-  display:flex;
+.post-more-comment-like {
+  display: flex;
   justify-content: space-between;
 }
 
-.post-more-comment-like .userName{
+.post-more-comment-like .userName {
   font-weight: 300;
 }
 
-.post-more-comment{
-  padding-left:5px;
+.post-more-comment {
+  padding-left: 5px;
 }
 
-.post-more-like{
+.post-more-like {
   text-align: right;
-  padding-right:5px;
+  padding-right: 5px;
 }
 
-.comment-user-name{
+.comment-user-name {
   font-weight: 600;
 }
 
-.like-user-name{
+.like-user-name {
   font-weight: 600;
 }
 
-.display-none{
+.display-none {
   display: none;
 }
 
-.post-content-title{
+.post-content-title {
   font-weight: 700;
 }
 
-.post-more-img{
-  width:100%;
-  height:10vh;
-  background-color: black;
-  color:white;
+.post-more-img {
+  width: 100%;
+  height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.post-more-img img{
-  width:10%;
-  height:10vh;
+.post-more-img img {
+  width: 10%;
+  height: 10vh;
 }
 
 .post-more-img img:hover {
   transform: scale(2);
 }
 
-
-
 .heart-icon {
   font-size: 30px;
   cursor: pointer;
   color: rgb(241, 135, 144);
-  padding-right:4px;
+  padding-right: 4px;
 }
 
-.left-container{
-  padding-top:15px;
+.left-container {
+  padding-top: 15px;
 }
 
-.postEdit input{
-  width:80%;
-  height:5vh;
+.postEdit input {
+  width: 80%;
+  height: 5vh;
   border-style: solid;
   border-color: gray;
   border-radius: 10px;
   border-width: 1px;
 }
 
-.postEdit button{
+.postEdit button {
   border-style: solid;
   border-radius: 10px;
   border-width: 1px;
   background-color: black;
-  color:white;
+  color: white;
 }
 
-.post-edit-form{
-  display:flex;
+.post-edit-form {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left:5%;
-  padding-right:5%;
+  padding-left: 5%;
+  padding-right: 5%;
 }

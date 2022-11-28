@@ -25,7 +25,7 @@ use pocogram;
 CREATE TABLE IF NOT EXISTS `pocogram`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `userID` VARCHAR(20) NOT NULL UNIQUE,
-  `userPW` VARCHAR(100) NOT NULL,
+  `userPW` VARCHAR(1000) NOT NULL,
   `name` VARCHAR(10) NOT NULL,
   `birth` DATE NULL,
   `profile_img` VARCHAR(500) NULL,
@@ -153,26 +153,6 @@ CREATE TABLE IF NOT EXISTS `pocogram`.`participant` (
     REFERENCES `pocogram`.`room` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
-
-
--- -----------------------------------------------------
--- Table `pocogram`.`msg`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pocogram`.`msg` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `content` VARCHAR(1000) NOT NULL,
-  `createdAt` DATETIME NOT NULL,
-  `updatedAt` DATETIME NOT NULL,
-  `participant_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_msg_participant1`
-    FOREIGN KEY (`participant_id`)
-    REFERENCES `pocogram`.`participant` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE);
-
-
-
 
 -- ##############################################################################
 --                                데이터 추가 샘플

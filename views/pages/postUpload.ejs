@@ -37,9 +37,10 @@
     <form name="form_upload">
       <div class="box">
         <div class="postBox">
-          <i class="bi bi-cloud-arrow-up"></i>
+          <div class="imgPreview"><i class="bi bi-cloud-arrow-up"></i></div>
+          <div class="circle display-none"></div>
           <label for="img" class="replaceFile">CHOOSE A FILE</label>
-          <input type="file" name="img" id="img" class="fileInput" multiple />
+          <input type="file" name="img" id="img" class="fileInput" onchange="readURL(this);" multiple accept="image/*"/>
           <input
             type="text"
             name="content"
