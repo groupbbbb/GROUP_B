@@ -44,6 +44,7 @@ img {
   width: 40px;
 }
 
+
 @media (max-width: 420px) {
   .logo {
     display: none;
@@ -53,7 +54,7 @@ img {
     text-align: center;
   }
   ul {
-    width: 100vw;
+    width: 150px;
     justify-content: center;
     padding-left: 0;
   }
@@ -62,6 +63,10 @@ img {
     width: 30px;
   }
 
+  /* .useridSearch {
+    width: 30%; 
+    
+  } */
   
 }
 
@@ -75,7 +80,7 @@ img {
   }
 
   ul {
-    width: 100vw;
+    width: 200px;
     justify-content: center;
     padding-left: 0;
   }
@@ -103,12 +108,12 @@ img {
   align-items: flex-end;
   height: 80%;
   margin-top: 6px;
-  width: 30vw;
-  min-width: 35vw;
+  width: 300px;
 }
 
 #useridSearch {
   border: none;
   font-size: 1.2rem;
   width: 100%;
+  
 }
