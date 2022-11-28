@@ -26,6 +26,7 @@ ul {
   display: flex;
   list-style: none;
   flex-direction: row;
+  margin-top: 10px;
 }
 
 ul > li {
@@ -60,6 +61,8 @@ img {
   li img {
     width: 30px;
   }
+
+  
 }
 
 @media (min-width: 421px) and (max-width: 580px) {
@@ -85,6 +88,10 @@ img {
     width: 22px;
     height: 22px;
     margin-left: 33px;
+  }
+
+  .useridSearch {
+    width: 50px;
   }
 }
 
