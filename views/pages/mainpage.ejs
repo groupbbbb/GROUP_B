@@ -28,8 +28,6 @@
  
 
   <!-- 임시 이미지 -->
-  <% img=["../../static/img/dog.jpg","../../static/img/dog2.jpg","../../static/img/dog3.jpg",]%>
-  <% console.log(data)%>
   <%- include('../common/mainnav.ejs') %>
     <% for(let i=0; i < data.length ; i++) {%>
       <div class="box">
@@ -171,8 +169,8 @@
                     <div>
                     <%= data[i].comments[j].user.userID %> : 
                     <%= data[i].comments[j].content %><br>
-                    <% let createdAtHiddenComment = data[i].createdAt.toString().split(" ") %>
-                    <% let createdAtTimeHiddenComment = createdAtHidden[4].split(":") %>
+                    <% let createdAtHiddenComment = data[i].comments[j].createdAt.toString().split(" ") %>
+                    <% let createdAtTimeHiddenComment = createdAtHiddenComment[4].split(":") %>
                     등록일 : <%= createdAtHiddenComment[3] %>년 <%= month[createdAtHiddenComment[1]] %>월 <%= createdAtHiddenComment[2] %>일 <%= createdAtTimeHiddenComment[0] %>시 <%= createdAtTimeHiddenComment[1] %>분<br>                 
                       
                     <% if(isLogin){if(user==data[i].comments[j].user.userID){ %>
