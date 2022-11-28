@@ -1,3 +1,15 @@
+let userIDEnter = document.querySelector('#userID');
+let userPWEnter = document.querySelector('#userPW');
+userIDEnter.addEventListener("keyup", function (event) {
+  if (event.code === 'Enter') {
+    login();
+  }
+  })
+  userPWEnter.addEventListener("keyup", function (event) {
+  if (event.code === 'Enter') {
+    login();
+  }
+  })
 function login() {
     const form_login = document.forms['signinForm'];
 
