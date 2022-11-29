@@ -1,13 +1,13 @@
 {
-  "name": "team__b",
+  "name": "pocogram",
   "version": "1.0.0",
-  "description": "",
+  "description": "이 프로젝트는 pocogram이라는 sns을 통해 다양한 유저와 일상을 공유하고 소통하고 싶은 유저들을 위해 만들었습니다.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "B팀",
   "license": "ISC",
   "dependencies": {
     "axios": "1.1.3",

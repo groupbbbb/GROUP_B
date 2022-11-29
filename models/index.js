@@ -18,10 +18,6 @@ db.User = require("./User")(sequelize, Sequelize);
 db.Post = require("./Post")(sequelize, Sequelize);
 db.Likes = require("./Likes")(sequelize, Sequelize);
 db.Comment = require("./Comment")(sequelize, Sequelize);
-db.Room = require("./Room")(sequelize, Sequelize);
-db.Participant = require("./Participant")(sequelize, Sequelize);
-db.Msg = require("./Msg")(sequelize, Sequelize);
-// db.Follow = require("./Follow")(sequelize, Sequelize);
 
 db.Post.hasMany(db.Likes, { foreignKey: "post_id" });
 db.Likes.belongsTo(db.Post, { foreignKey: "post_id" });

@@ -20,7 +20,6 @@ function upload() {
         "Content-Type": "multipart/form-data",
       },
     }).then(function (res) {
-      // console.log(res.data);
       alert(res.data);
       document.location.href = "/";
     });
