@@ -127,19 +127,18 @@ for (let l = 0; l < box.length; l++) {
   });
 }
 
-function commentShow(i,j) {
-  document.querySelector(`.commentBoxes${i}${j}`).style.display="block";
+function commentShow(i, j) {
+  document.querySelector(`.commentBoxes${i}${j}`).style.display = "block";
 }
 
-function positingCommentCancle(i,j) {
-  document.querySelector(`.commentBoxes${i}${j}`).style.display="none";
+function positingCommentCancle(i, j) {
+  document.querySelector(`.commentBoxes${i}${j}`).style.display = "none";
 }
 
-
-function commentEditCancel(i,j) {
-  document.querySelector(`.commentBoxes${i}${j}`).style.display="none";
+// 수정 취소
+function commentEditCancel(i, j) {
+  document.querySelector(`.commentBoxes${i}${j}`).style.display = "none";
 }
-
 
 function postingFix() {
   for (let i = 0; i < box.length; i++) {
@@ -246,7 +245,6 @@ for (let z = 0; z < hiddenPrev.length; z++) {
     slideButtonClick(z, -1);
   });
 }
-
 // =========================================  포스트  =========================================
 
 // 선택 포스트 보기
@@ -523,7 +521,6 @@ async function like(obj, id) {
       url: "/post/addLike",
       data: { id: id },
     }).then((res) => {
-
     });
   }
 }
