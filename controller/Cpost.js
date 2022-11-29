@@ -1,5 +1,5 @@
-// const { AbstractQuery } = require('sequelize/types/dialects/abstract/query');
-const models = require("../models");
+const models = require('../models'); 
+
 
 // =========================================  포스트  =========================================
 exports.main = (req, res) => {

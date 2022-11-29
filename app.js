@@ -22,17 +22,6 @@ app.use("/pages", express.static(__dirname + "/pages"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-io.on("connection", (socket) => {
-  socket.on("chatting", (data) => {
-    const { name, msg } = data;
-    io.emit("chatting", {
-      name: name,
-      msg: msg,
-      time: moment(new Date()).format("h:ss A"),
-    });
-  });
-});
-
 app.use(
   session({
     secret: "secretKey",
@@ -42,11 +31,9 @@ app.use(
 );
 
 const userRouter = require("./routes/user");
-const chatRouter = require("./routes/chat");
 const postRouter = require("./routes/post");
 
 app.use("/user", userRouter);
-app.use("/chat", chatRouter);
 app.use("/", postRouter); // 메인이 post 컨트롤러 사용
 
 app.get("/", (req, res) => {

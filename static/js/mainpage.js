@@ -81,7 +81,7 @@ for (let z = 0; z < prevBtn.length; z++) {
   });
 }
 
-// 슬라이드 확대 취소 버튼 기능
+
 const searchAll = document.querySelectorAll(".search");
 const closeAll = document.querySelectorAll(".close");
 const hiddenBox = document.querySelectorAll(".hiddenBox");
@@ -89,7 +89,6 @@ const box = document.querySelectorAll(".box");
 const contentBox = document.querySelectorAll(".contentBox");
 const card = document.querySelectorAll(".card");
 const cancelAll = document.querySelectorAll(".cancel");
-const body = document.querySelector("body");
 const commentEditBtnAll = document.querySelectorAll(".commentEditBtn");
 const commentBoxesAll = document.querySelectorAll(".commentBoxes");
 const contentChildAll = document.querySelectorAll(".contentChild");
@@ -104,11 +103,6 @@ for (let k = 0; k < hiddenBox.length; k++) {
       top: (850 + 100) * k,
       behavior: "smooth",
     });
-    console.log("window.pageYOffset >>> ", window.pageYOffset);
-    console.log(
-      "hiddenBoxAll[k] >>> ",
-      hiddenBoxAll[k].getBoundingClientRect().top
-    );
   });
 }
 
@@ -172,9 +166,9 @@ for (let i = 0; i < hiddenBox.length; i++) {
 }
 
 // 확대 슬라이드
-const halfImgAll = document.querySelectorAll(".halfImg"); // 5
-const hiddenNext = document.querySelectorAll(".hiddenNext"); // 5
-const hiddenPrev = document.querySelectorAll(".hiddenPrev"); // 5
+const halfImgAll = document.querySelectorAll(".halfImg"); 
+const hiddenNext = document.querySelectorAll(".hiddenNext"); 
+const hiddenPrev = document.querySelectorAll(".hiddenPrev"); 
 
 const hiddenImageAll = [];
 for (let i = 0; i < halfImgAll.length; i++) {
@@ -214,11 +208,9 @@ const nextHiddenIndexs = {
 
 function slideButtonClick(cardIdx, arrow) {
   if (arrow > 0) {
-    console.log("다음 버튼 클릭");
     halfImgAll[cardIdx][currentHiddenIndexs[cardIdx]].style.display = "none";
     halfImgAll[cardIdx][nextHiddenIndexs[cardIdx]].style.display = "block";
 
-    console.log(nextHiddenIndexs[cardIdx], halfImgAll[cardIdx].length - 1);
     if (nextHiddenIndexs[cardIdx] === halfImgAll[cardIdx].length - 1) {
       hiddenNext[cardIdx].style.display = "none";
     } else {
@@ -228,11 +220,9 @@ function slideButtonClick(cardIdx, arrow) {
     currentHiddenIndexs[cardIdx]++;
     nextHiddenIndexs[cardIdx]++;
   } else {
-    console.log("이전 버튼 클릭");
     currentHiddenIndexs[cardIdx]--;
     nextHiddenIndexs[cardIdx]--;
 
-    console.log(currentHiddenIndexs[cardIdx], halfImgAll[cardIdx].length - 1);
     if (currentHiddenIndexs[cardIdx] === 0) {
       hiddenPrev[cardIdx].style.display = "none";
     } else {
@@ -268,7 +258,6 @@ function viewThisPost(obj, id) {
       return res.data;
     })
     .then((data) => {
-      console.log(data);
     });
 }
 
@@ -330,7 +319,6 @@ async function editPost(obj, id, isHidden) {
         editPostSelected.post_id = data.id;
         editPostSelected.user_id = data.user_id;
       } else {
-        console.log(res);
       }
     });
 }
@@ -505,7 +493,6 @@ async function viewThisLike(obj, id) {
   }).then((res) => {
     return res.data;
   });
-  console.log(data);
 }
 
 // 선택 게시글 좋아요 했는지 조회
@@ -520,20 +507,21 @@ async function like(obj, id) {
     return res.data;
   });
   if (data == "로그인 하세요") {
-    console.log(data);
     alert(data);
   } else if (data) {
     axios({
       method: "POST",
       url: "/post/removeLike",
       data: { id: id },
-    }).then((res) => {});
+    }).then((res) => {
+    });
   } else {
     axios({
       method: "POST",
       url: "/post/addLike",
       data: { id: id },
-    }).then((res) => {});
+    }).then((res) => {
+    });
   }
 }
 

@@ -45,7 +45,6 @@ body {
 
 .hiddenContent {
   width: 100%;
-  /* position: relative; */
   padding-top: 0;
   height: 200px;
   border-bottom: 1px solid grey;
@@ -93,7 +92,6 @@ body {
 }
 
 .profileImg {
-  /* border: solid 1px black; */
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -119,7 +117,7 @@ body {
   display: none;
 }
 
-/* 첫번째 슬라이드 이미지는 보이기 */
+
 .slideBox .slideImg:first-of-type {
   display: block;
 }
@@ -474,12 +472,7 @@ input:focus {
   right: 0;
   overflow: auto;
 }
-/* .active {
-  position: absolute;
-  display: block;
-  overflow: auto;
-  right: 0;
-} */
+
 
 .likedPeople {
   display: block;

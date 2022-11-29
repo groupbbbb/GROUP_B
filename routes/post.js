@@ -20,15 +20,6 @@ const uploadDetail = multer({
   limits: { fileSize: 5 * 1024 * 1024 },
 });
 
-// router.get("/", (req, res) => {
-//   const user = req.session.user;
-//   if (user !== undefined) {
-//     res.render("pages/mainpage", { isLogin: true, user: user });
-//   } else {
-//     res.render("pages/mainpage", { isLogin: false });
-//   }
-// });
-
 router.get("/", controller.main);
 router.get("/post/post", controller.viewPage);
 router.get("/post/upload", controller.uploadPage);

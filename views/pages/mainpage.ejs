@@ -4,8 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pocogram</title>
+  <meta name="viewport" content="유저가 pocogram을 접속 했을 때 처음으로 보게 될 메인 페이지 이다. 회원가입 후 유저가 게시물을 업로드 할 경우 업로드한 게시물은 화면 최상단에 
+  노출 된다. 또한 이곳에 업로드되어있는 다른 유저들의 게시물을 보며 댓글달기, 좋아요, 게시글 삭제와 댓글수정 그리고 해당 게시물에 좋아요 한 유저들의 아이디 목록도 확인 할 수 있다.
+  추가적으로 유저 검색 기능을 메인페이지의 nav에 넣어만, 원하는 유저의 아이디를 검색하면 해당 아이디를 가진 유저의 게시물만 화면에 나타나게 된다." />
+  <title>pocogram 첫 화면</title>
   <link rel="stylesheet" href="/static/css/mainpage.css" />
 
   <%- include('../common/maininclude.ejs') %>
@@ -26,7 +28,6 @@
 <body>
 
 
-  <!-- 임시 이미지 -->
   <%- include('../common/mainnav.ejs') %>
     <% for(let i=0; i < data.length ; i++) {%>
       <div class="box">
@@ -43,7 +44,6 @@
               <%= data[i].user.userID %>
             </div>
           </div>
-          <!-- 슬라이드 -->
           <div class="slideBox">
             <% let imgArray = data[i].img_src.slice(0,-4).split("~!@#") %>
             <% for (let k=0; k < imgArray.length; k++) {%>
@@ -71,11 +71,9 @@
                     <i class="heart-icon<%= data[i].id%> bi bi-heart heart-icon-isNotLogin" onclick="like(this, '<%= data[i].id %>')"></i>
                   <% }%>
                   <div class="good">좋아요 <span class="heart-num"><%= data[i].likes.length %></span>개</div>
-              
-                <div class="imgicons">
-                  <img src="/static/img/search.jpg" alt="자세히보기" class="search" title="확대" />
-                  
-                </div>
+                  <div class="imgicons">
+                    <img src="/static/img/search.jpg" alt="자세히보기" class="search" title="확대" />
+                  </div>
                 </div>
             
                 <div class="content-container">
@@ -187,7 +185,6 @@
                   <% } %>
                 </div>
               </div>
-
                 <div class="commentLike">
                   <hr>
                   <div>
@@ -208,7 +205,6 @@
                     <div class="hiddenLike">
                     좋아요 <span class="heart-num-hidden"><%= data[i].likes.length %></span>개
                     <button onclick="viewLikes(this, '<%= data[i].id %>')" class="likeUsers">좋아요한유저목록</button>
-                  </div>
                   </div>
                   <div class="inputBox">
                     <form name="uploadComment-form-hidden<%= data[i].id %>" class="uploadComment-form">
@@ -233,5 +229,4 @@
         <script src="/static/js/mainpage.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
-
 </html>
