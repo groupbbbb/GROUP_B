@@ -14,6 +14,9 @@ npm install express express-session ejs sequelize sequelize-cli bcrypt multer my
 node app.js
 ```
 
+### db 설계
+![KakaoTalk_20221128_151002451](https://user-images.githubusercontent.com/56117742/204452924-371a12b5-2b83-4374-8297-7c383bb99a0d.png)
+
 ### 페이지설명
 #### *mainpage.ejs : 게시글이 나열 된 메인화면
 <img width="900" alt="메인페이지" src="https://user-images.githubusercontent.com/97078724/204448494-c0fc85f6-c407-44e8-a56b-f3f3eae9e46e.PNG">
