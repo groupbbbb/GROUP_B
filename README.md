@@ -7,7 +7,7 @@
 - http://101.101.209.231:8080
 <br>
 
-## 설치 방법
+## 설치 및 사용 방법
 ```
 git clone https://github.com/groupbbbb/GROUP_B.git
 npm install express express-session ejs sequelize sequelize-cli bcrypt multer mysql2
