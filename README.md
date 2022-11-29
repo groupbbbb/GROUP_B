@@ -7,6 +7,13 @@
 ### 링크
 #### http://101.101.209.231:8080/
 
+### 설치 방법
+```
+git clone https://github.com/groupbbbb/GROUP_B.git
+npm install 
+node app.js
+```
+
 ### 페이지설명
 #### *mainpage.ejs : 게시글이 나열 된 메인화면
 <img width="900" alt="메인페이지" src="https://user-images.githubusercontent.com/97078724/204448494-c0fc85f6-c407-44e8-a56b-f3f3eae9e46e.PNG">
