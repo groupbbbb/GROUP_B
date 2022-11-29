@@ -10,7 +10,7 @@
 ### 설치 방법
 ```
 git clone https://github.com/groupbbbb/GROUP_B.git
-npm install express express-session ejs sequelize sequelize-cli bcrypt multer mysql2 socket.io 
+npm install express express-session ejs sequelize sequelize-cli bcrypt multer mysql2
 node app.js
 ```
 
