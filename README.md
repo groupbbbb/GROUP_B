@@ -26,6 +26,9 @@ node app.js
 > #### *mainpage.ejs : 게시물 자세히보기 및 댓글 좋아요 / 해당 게시글 수정 및 삭제
 > <img width="900" alt="자세히보기" src="https://user-images.githubusercontent.com/97078724/204448484-d7065614-4cc1-4165-ab3f-bebe68bbd5ad.PNG">
 
+> #### *postUpload.ejs : 게시물 업로드(단일/다중 사진 업로드 가능)
+<img width="900" alt="파일업로드" src="https://user-images.githubusercontent.com/97078724/204455057-79bd74c3-65b1-4d4e-989d-8e1d50774a01.PNG">
+
 > #### *signup.ejs : 회원가입
 > <img width="900" alt="회원가입" src="https://user-images.githubusercontent.com/97078724/204448985-70510a97-6473-483e-b183-b4d10912c2a7.PNG">
 
