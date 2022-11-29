@@ -42,16 +42,13 @@ const nextIndexs = {
 };
 
 function buttonClick(cardIdx, arrow) {
-  // console.log("size >>>", imageAll[cardIdx].length);
   if (arrow > 0) {
     imageAll[cardIdx][currentIndexs[cardIdx]].style.display = "none";
     imageAll[cardIdx][nextIndexs[cardIdx]].style.display = "block";
     prevBtn[cardIdx].style.display = "block";
     if (nextIndexs[cardIdx] === imageAll[cardIdx].length - 1) {
       nextBtn[cardIdx].style.display = "none";
-    } // else {
-    //   prevBtn[cardIdx].style.display = "block";
-    // }
+    }
 
     currentIndexs[cardIdx]++;
     nextIndexs[cardIdx]++;
@@ -118,7 +115,6 @@ for (let k = 0; k < hiddenBox.length; k++) {
 for (let i = 0; i < hiddenBox.length; i++) {
   searchAll[i].addEventListener("click", function () {
     card[i].style.display = "none";
-    // body.style.overflow = "hidden";
     backColor.style.display = "block";
   });
 }
@@ -126,7 +122,6 @@ for (let l = 0; l < box.length; l++) {
   closeAll[l].addEventListener("click", () => {
     for (let j = 0; j < box.length; j++) hiddenBox[j].style.display = "none";
     card[l].style.display = "block";
-    // body.style.overflow = "visible";
     backColor.style.display = "none";
 
     for (let boxclose = 0; boxclose < commentBoxesAll.length; boxclose++) {
@@ -139,19 +134,15 @@ for (let l = 0; l < box.length; l++) {
 }
 
 function commentShow(i, j) {
-  // commentBoxesAll[parseInt(n)].style.display = "block";
   document.querySelector(`.commentBoxes${i}${j}`).style.display = "block";
 }
 
 function positingCommentCancle(i, j) {
-  // commentBoxesAll[parseInt(n)].style.display = "none";
   document.querySelector(`.commentBoxes${i}${j}`).style.display = "none";
 }
 
 // 수정 취소
 function commentEditCancel(i, j) {
-  // const form = document.forms[`editComment-form${post_id}${comment_id}`];
-  // form.classList.toggle("display-none");
   document.querySelector(`.commentBoxes${i}${j}`).style.display = "none";
 }
 
@@ -264,29 +255,6 @@ for (let z = 0; z < hiddenPrev.length; z++) {
     slideButtonClick(z, -1);
   });
 }
-
-// function mypage() {
-//   function getParameterByName(name) {
-//     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-//     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-//       results = regex.exec(location.search);
-//     return results == null
-//       ? ""
-//       : decodeURIComponent(results[1].replace(/\+/g, " "));
-//   }
-//   var id = getParameterByName("id");
-
-//   axios({
-//     method: "POST",
-//     url: "/user/mypage",
-//     data: {
-//       id,
-//     },
-//   }).then((data) => {
-//     document.location.href = `/user/mypage?isLogin=${data.data.isLogin}?id=${data.data.id}`;
-//   });
-// }
-
 // =========================================  포스트  =========================================
 
 // 선택 포스트 보기
@@ -323,7 +291,6 @@ async function deletePost(obj, id) {
       return res.data;
     })
     .then((res) => {
-      // console.log(res);
       alert(res);
       location.reload();
       location.replace(location.href);
@@ -384,7 +351,6 @@ async function editPostDo(obj, id, isHidden) {
       return res.data;
     })
     .then((res) => {
-      // console.log(res);
       alert(res);
       location.reload();
       location.replace(location.href);
@@ -400,7 +366,6 @@ async function editPostDo(obj, id, isHidden) {
 // 수정 취소
 function editPostCancel(obj, id) {
   const form = document.forms[`editPost-form${id}`];
-  // form.classList.toggle("display-none");
   editPostSelected.post_id = "";
   editPostSelected.user_id = "";
 }
@@ -461,7 +426,6 @@ function uploadComment(obj, id, isHidden) {
           post_id: id,
         },
       }).then((res) => {
-        // console.log(res.data);
         alert(res.data);
         location.reload();
         location.replace(location.href);
@@ -485,7 +449,6 @@ async function deleteComment(obj, id) {
     url: "/post/deleteComment",
     data: { id: id, user_id: data.user_id },
   }).then((res) => {
-    // console.log(res.data);
     alert(res.data);
     location.reload();
     location.replace(location.href);
@@ -524,7 +487,6 @@ function commentEditDo(obj, post_id, comment_id) {
       return res.data;
     })
     .then((res) => {
-      // console.log(res);
       alert(res);
       location.reload();
       location.replace(location.href);
@@ -561,23 +523,17 @@ async function like(obj, id) {
     console.log(data);
     alert(data);
   } else if (data) {
-    // console.log('좋아요 기록이 있어서 좋아요를 취소합니다.');
     axios({
       method: "POST",
       url: "/post/removeLike",
       data: { id: id },
-    }).then((res) => {
-      // console.log(res.data);
-    });
+    }).then((res) => {});
   } else {
-    // console.log('좋아요 기록이 없어서 좋아요를 진행합니다.');
     axios({
       method: "POST",
       url: "/post/addLike",
       data: { id: id },
-    }).then((res) => {
-      // console.log(res.data);
-    });
+    }).then((res) => {});
   }
 }
 
