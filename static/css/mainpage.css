@@ -472,6 +472,7 @@ input:focus {
   margin-top: -103px;
   z-index: 1;
   right: 0;
+  overflow: auto;
 }
 /* .active {
   position: absolute;
