@@ -138,23 +138,22 @@ for (let l = 0; l < box.length; l++) {
   });
 }
 
-function commentShow(i,j) {
+function commentShow(i, j) {
   // commentBoxesAll[parseInt(n)].style.display = "block";
-  document.querySelector(`.commentBoxes${i}${j}`).style.display="block";
+  document.querySelector(`.commentBoxes${i}${j}`).style.display = "block";
 }
 
-function positingCommentCancle(i,j) {
+function positingCommentCancle(i, j) {
   // commentBoxesAll[parseInt(n)].style.display = "none";
-  document.querySelector(`.commentBoxes${i}${j}`).style.display="none";
+  document.querySelector(`.commentBoxes${i}${j}`).style.display = "none";
 }
 
 // 수정 취소
-function commentEditCancel(i,j) {
+function commentEditCancel(i, j) {
   // const form = document.forms[`editComment-form${post_id}${comment_id}`];
   // form.classList.toggle("display-none");
-  document.querySelector(`.commentBoxes${i}${j}`).style.display="none";
+  document.querySelector(`.commentBoxes${i}${j}`).style.display = "none";
 }
-
 
 function postingFix() {
   for (let i = 0; i < box.length; i++) {
