@@ -41,7 +41,7 @@ http://101.101.209.231:8080<br>
 - `POST /user/profileUpload` - **multer**를 사용한 프로필 사진 업로드
 ### 마이페이지 - 게시글, 좋아요 관리
 - `GET /user/mypage` - 세션id를 기준으로 해당 유저가 올린 게시글, 좋아요한 게시글 확인
-- `POST /user/deleteMyPost`, `POST /user/editMyPost`, `POSt /user/deleteMyLike` - 해당 게시글 관리<br>
+- `POST /user/deleteMyPost`, `POST /user/editMyPost`, `POST /user/deleteMyLike` - 해당 게시글 관리<br>
 <br><br>
 ## db 설계
 ![KakaoTalk_20221128_151002451](https://user-images.githubusercontent.com/56117742/204452924-371a12b5-2b83-4374-8297-7c383bb99a0d.png)
