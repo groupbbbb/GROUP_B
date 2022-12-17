@@ -17,7 +17,7 @@ http://101.101.209.231:8080<br>
 - `POST /post/viewThis` - 선택 게시글 자세히 보기
 - 슬라이드
 ### 게시글
-- __Multer__ 게시글 다중 업로드
+- **multer** 게시글 다중 업로드
 - `POST post/upload` - 게시글 업로드
 - `POST /post/delete` - 게시글 등록
 - `POST /post/edit` - 게시글 삭제
@@ -38,7 +38,7 @@ http://101.101.209.231:8080<br>
 ### 마이페이지 - 유저 정보 관리
 - `POST /user/getMyInform` - 사용자 정보 조회
 - `POST /user/modifyUserInform` - 사용자 정보 수정
-- `POST /user/profileUpload` - __multer__를 사용한 프로필 사진 업로드
+- `POST /user/profileUpload` - **multer**를 사용한 프로필 사진 업로드
 ### 마이페이지 - 게시글, 좋아요 관리
 - `GET /user/mypage` - 세션id를 기준으로 해당 유저가 올린 게시글, 좋아요한 게시글 확인
 - `POST /user/deleteMyPost`, `POST /user/editMyPost`, `POSt /user/deleteMyLike` - 해당 게시글 관리<br>
