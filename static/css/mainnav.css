@@ -45,9 +45,11 @@ img {
 
 .useridSearch img {
   width: 35px;
+  height: 35px;
+  margin-top: 13px;
 }
 
-.useridSearch {
+#useridSearch {
   border: 2px solid rgb(190, 91, 230);
   border-radius: 10px;
   padding: 0 1vw;
@@ -55,14 +57,14 @@ img {
   align-items: flex-end;
   height: 60%;
   margin-top: 12px;
-  width: 280px;
+  width: 200px;
 }
 
-#useridSearch {
-  border: none;
-  font-size: 1.2rem;
-  width: 100%;
+.useridSearch {
+  position: relative;
+  display: flex;
 }
+
 @media (max-width: 420px) {
   .logo {
     display: none;
