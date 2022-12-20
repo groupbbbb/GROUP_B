@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -26,11 +26,12 @@
 </head>
 
 <body>
-
+ 
 
   <%- include('../common/mainnav.ejs') %>
     <% for(let i=0; i < data.length ; i++) {%>
       <div class="box">
+       
         <div class="card">
           <div class="profile">
             <div class="profileImg">
@@ -54,6 +55,7 @@
             <a class="prev btn" onclick="">❮</a>
             <a class="next btn" onclick="">❯</a>
           </div>
+
               <div class="userWriting">
                 <div class="heartList">
                   <% let isHeart=false; %>
@@ -99,6 +101,7 @@
                 </form>
               </div>
         </div>
+    
         <!-- ===================================== 확대 ===================================== -->
         
           <div class="hiddenBox">
@@ -206,6 +209,7 @@
                     좋아요 <span class="heart-num-hidden"><%= data[i].likes.length %></span>개
                     <button onclick="viewLikes(this, '<%= data[i].id %>')" class="likeUsers">좋아요한유저목록</button>
                   </div>
+                </div>
                   <div class="inputBox">
                     <form name="uploadComment-form-hidden<%= data[i].id %>" class="uploadComment-form">
                       <input type="text" name="content" class="content" onfocus="this.placeholder=''"
@@ -227,6 +231,8 @@
     
       <div class="backColor"></div>
         <script src="/static/js/mainpage.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </html>
