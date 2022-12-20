@@ -40,7 +40,7 @@ http://101.101.209.231:8080<br>
 - `POST /user/signup` - 회원가입
 - `POST /user/idCheck` - 회원가입 시 아이디 중복 체크
 - `POST /user/signin` - 로그인<br>
-
+![sign](https://user-images.githubusercontent.com/109293305/208675415-5b60b8d6-05de-4f6e-bb50-d508d56befc6.gif)
 ### 마이페이지 - 유저 정보 관리
 - `POST /user/getMyInform` - 사용자 정보 조회
 - `POST /user/modifyUserInform` - 사용자 정보 수정
