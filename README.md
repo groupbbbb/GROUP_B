@@ -12,37 +12,45 @@ http://101.101.209.231:8080<br>
 <br>
 ## REST API, 페이지 설명
 ### 메인 페이지
-- `GET /` - 모든 게시글 조회
+- `GET /` - 모든 게시글 조회<br>
+![mainpage](https://user-images.githubusercontent.com/109293305/208553011-4ebc3217-e946-4c74-bcef-887a6c1076a0.gif)
 ### 자세히 보기
 - `POST /post/viewThis` - 선택 게시글 자세히 보기
-- 슬라이드
+- 슬라이드<br>
+![imgslide](https://user-images.githubusercontent.com/109293305/208553108-a6da4241-a314-4497-99d6-1728e49a25b9.gif)
 ### 게시글
 - **multer** 게시글 다중 업로드
 - `POST post/upload` - 게시글 업로드
 - `POST /post/delete` - 게시글 등록
-- `POST /post/edit` - 게시글 삭제
+- `POST /post/edit` - 게시글 삭제<br>
+![post](https://user-images.githubusercontent.com/109293305/208553725-823ae5b3-926d-4ebf-b78c-e2473a8873af.gif)
 ### 댓글
 - `POST /post/viewComment` - 댓글 조회
 - `POST /post/uploadComment` - 댓글 등록
 - `POST /post/deleteComment` - 댓글 삭제
-- `POST /post/editComment` - 댓글 수정
+- `POST /post/editComment` - 댓글 수정<br>
+![comment](https://user-images.githubusercontent.com/109293305/208553977-1a91f759-5bfa-43c2-82af-b7a7d67418c6.gif)
 ### 좋아요
 - `POST /post/viewLike` - 좋아요 조회
 - `POST /post/addLike` - 좋아요 등록
-- `POST /post/removeLike` - 좋아요 취소
+- `POST /post/removeLike` - 좋아요 취소<br>
+![like](https://user-images.githubusercontent.com/109293305/208554092-24630441-a70d-4509-b30f-1d4d208afe4c.gif)
 ### 회원가입, 로그인
 - **bcrypt, hash, salt**를 사용한 비밀번호 암호화
 - `POST /user/signup` - 회원가입
 - `POST /user/idCheck` - 회원가입 시 아이디 중복 체크
-- `POST /user/signin` - 로그인
+- `POST /user/signin` - 로그인<br>
+
 ### 마이페이지 - 유저 정보 관리
 - `POST /user/getMyInform` - 사용자 정보 조회
 - `POST /user/modifyUserInform` - 사용자 정보 수정
-- `POST /user/profileUpload` - **multer**를 사용한 프로필 사진 업로드
+- `POST /user/profileUpload` - **multer**를 사용한 프로필 사진 업로드<br>
+![profile](https://user-images.githubusercontent.com/109293305/208555064-26035b5f-7264-4f7f-8c53-6090e34c6a15.gif)
 ### 마이페이지 - 게시글, 좋아요 관리
 - `GET /user/mypage` - 세션id를 기준으로 해당 유저가 올린 게시글, 좋아요한 게시글 확인
 - `POST /user/deleteMyPost`, `POST /user/editMyPost`, `POST /user/deleteMyLike` - 해당 게시글 관리<br>
-<br><br>
+![mypost](https://user-images.githubusercontent.com/109293305/208555244-9c992258-ecb7-4792-accf-195782db7998.gif)
+<br><br><br>
 ## db 설계
 ![KakaoTalk_20221128_151002451](https://user-images.githubusercontent.com/56117742/204452924-371a12b5-2b83-4374-8297-7c383bb99a0d.png)
    
